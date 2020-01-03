@@ -1,0 +1,6 @@
+plugged
+.DS_Store
+.netrwhist
+tags*
+
+priv.vim
