@@ -26,23 +26,23 @@ let g:purple = "#c678dd"
 
 
 " italic !!!
-hi jsxAttrib cterm=italic gui=italic
-hi Define cterm=italic gui=italic
-hi Keyword cterm=italic gui=italic
-hi Exception cterm=italic gui=italic
-hi Conditional cterm=italic gui=italic
-hi Statement cterm=italic gui=italic
-hi Label cterm=italic gui=italic
-hi Type cterm=italic gui=italic
+" hi jsxAttrib cterm=italic gui=italic
+" hi Define cterm=italic gui=italic
+" hi Keyword cterm=italic gui=italic
+" hi Exception cterm=italic gui=italic
+" hi Conditional cterm=italic gui=italic
+" hi Statement cterm=italic gui=italic
+" hi Label cterm=italic gui=italic
+" hi Type cterm=italic gui=italic
 
 " Ruby italic
-hi rubyClass cterm=italic gui=italic
-hi rubyFunction cterm=italic gui=italic
-hi rubySymbol cterm=italic gui=italic
-hi rubyConstant cterm=italic gui=italic
-hi rubyControl cterm=italic gui=italic
-hi rubyBlock ctermfg=170 guifg=#c678dd cterm=italic, gui=italic
-hi rubyInclude cterm=italic gui=italic
+" hi rubyClass cterm=italic gui=italic
+" hi rubyFunction cterm=italic gui=italic
+" hi rubySymbol cterm=italic gui=italic
+" hi rubyConstant cterm=italic gui=italic
+" hi rubyControl cterm=italic gui=italic
+" hi rubyBlock ctermfg=170 guifg=#c678dd cterm=italic, gui=italic
+" hi rubyInclude cterm=italic gui=italic
 
 
 " Tabbar

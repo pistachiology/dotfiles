@@ -21,8 +21,6 @@ nnoremap <leader>0 10gt
 nnoremap q] :cn<CR>
 nnoremap q[ :cp<CR>
 let g:qf_max_height = 5
-" set omnifunc=syntaxcomplete#Complete
-"
 
 
 " fzf plugin
@@ -33,11 +31,11 @@ function! s:build_quickfix_list(lines)
 endfunction
 
 
-let g:fzf_action = {
-  \ 'ctrl-p': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+" let g:fzf_action = {
+"   \ 'ctrl-p': function('s:build_quickfix_list'),
+"   \ 'ctrl-t': 'tab split',
+"   \ 'ctrl-x': 'split',
+"   \ 'ctrl-v': 'vsplit' }
 
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>s :Tags<space><C-R><C-W><space><CR>
@@ -45,23 +43,23 @@ nnoremap <leader>f :Ag<space><C-R><C-W><space><CR>
 nnoremap <leader>a :Dash<space>
 nnoremap <leader><leader>a :Dash<space><C-R><C-W><space><CR>
 
-command! -bang -nargs=* Find call fzf#vim#grep('rg --files --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" -g "\\!vendor/*" '.shellescape(<q-args>), 1, <bang>0)
+" command! -bang -nargs=* Find call fzf#vim#grep('rg --files --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" -g "\\!vendor/*" '.shellescape(<q-args>), 1, <bang>0)
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+" command! -bang -nargs=* Rg
+"   \ call fzf#vim#ag(<q-args>,
+"   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+"   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+"   \                 <bang>0)
 
-command! -bang -nargs=* Ag
-  \ call fzf#vim#grep(
-  \   "rg --column --line-number --no-heading --color=always --smart-case -g '!vendor/*' ".shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+" command! -bang -nargs=* Ag
+"   \ call fzf#vim#grep(
+"   \   "rg --column --line-number --no-heading --color=always --smart-case -g '!vendor/*' ".shellescape(<q-args>), 1,
+"   \   <bang>0 ? fzf#vim#with_preview('up:60%')
+"   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+"   \   <bang>0)
+" 
+" command! -bang -nargs=? -complete=dir Files
+"   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " NerdTree
 map <C-\> :NERDTreeToggle<CR>
@@ -94,13 +92,6 @@ let g:tagbar_type_elixir = {
         \ 'z:foo'
     \ ]
     \ }
-
-" Testing
-nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
-nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
-nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
-nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
-nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
 
 " Autoformat
 noremap <F3> :Autoformat<CR>
@@ -135,10 +126,6 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 " autocmd filetype php LanguageClientStart
-"
-" PHP
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['omni']
 
 " deoplete
 let g:deoplete#enable_at_startup = 1

@@ -16,7 +16,6 @@ syntax on
 set number
 
 " colorscheme one
-
 set laststatus=0 " Hide airline
 
 let mapleader = " "
@@ -80,17 +79,13 @@ set ignorecase
 set smartcase
 
 " relative line number
-" set number relativenumber
-"
-" augroup numbertoggle
-"   autocmd!
-"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-" augroup END
-"
+set number relativenumber
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
-"conceals
-setlocal conceallevel=2
 
 source ~/.config/nvim/plugin.vim
 source ~/.config/nvim/theme.vim
@@ -98,4 +93,4 @@ source ~/.config/nvim/priv.vim
 source ~/.config/nvim/config.vim
 source ~/.config/nvim/custom_command.vim
 source ~/.config/nvim/conceals.vim
-
+source ~/.config/nvim/coc.vim
