@@ -31,35 +31,29 @@ function! s:build_quickfix_list(lines)
 endfunction
 
 
-" let g:fzf_action = {
-"   \ 'ctrl-p': function('s:build_quickfix_list'),
-"   \ 'ctrl-t': 'tab split',
-"   \ 'ctrl-x': 'split',
-"   \ 'ctrl-v': 'vsplit' }
+let g:fzf_action = {
+  \ 'ctrl-p': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>s :Tags<space><C-R><C-W><space><CR>
-nnoremap <leader>f :Ag<space><C-R><C-W><space><CR>
+nnoremap <leader>q :Rg<space><C-R><C-W><space><CR>
 nnoremap <leader>a :Dash<space>
 nnoremap <leader><leader>a :Dash<space><C-R><C-W><space><CR>
 
-" command! -bang -nargs=* Find call fzf#vim#grep('rg --files --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" -g "\\!vendor/*" '.shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --files --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" -g "\\!vendor/*" '.shellescape(<q-args>), 1, <bang>0)
 
-" command! -bang -nargs=* Rg
-"   \ call fzf#vim#ag(<q-args>,
-"   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-"   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-"   \                 <bang>0)
-
-" command! -bang -nargs=* Ag
-"   \ call fzf#vim#grep(
-"   \   "rg --column --line-number --no-heading --color=always --smart-case -g '!vendor/*' ".shellescape(<q-args>), 1,
-"   \   <bang>0 ? fzf#vim#with_preview('up:60%')
-"   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-"   \   <bang>0)
-" 
-" command! -bang -nargs=? -complete=dir Files
-"   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* Ag
+   \ call fzf#vim#grep(
+   \   "rg --column --line-number --no-heading --color=always --smart-case -g '!vendor/*' ".shellescape(<q-args>), 1,
+   \   <bang>0 ? fzf#vim#with_preview('up:60%')
+   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+   \   <bang>0)
+ 
+command! -bang -nargs=? -complete=dir Files
+   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " NerdTree
 map <C-\> :NERDTreeToggle<CR>

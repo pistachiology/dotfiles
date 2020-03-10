@@ -1,3 +1,19 @@
+let g:coc_global_extensions = [
+            \     'coc-solargraph',
+            \     'coc-json',               
+            \     'coc-tsserver',           
+            \     'coc-eslint',             
+            \     'coc-prettier',           
+            \     'coc-rust-analyzer',      
+            \     'coc-json',               
+            \     'coc-git',                
+            \     'coc-vimlsp',             
+            \     'coc-tailwindcss',         
+            \     'coc-omni',         
+            \     'coc-syntax',         
+            \     'coc-html' ]
+
+
 " TextEdit might fail if hidden is not set.
 set hidden
 

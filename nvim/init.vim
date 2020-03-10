@@ -86,6 +86,10 @@ augroup numbertoggle
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
+" Terminal mode
+tnoremap <C-w>h <C-\><C-n><C-w>h
+tnoremap <C-w>l <C-\><C-n><C-w>l
+
 
 source ~/.config/nvim/plugin.vim
 source ~/.config/nvim/theme.vim
@@ -94,3 +98,5 @@ source ~/.config/nvim/config.vim
 source ~/.config/nvim/custom_command.vim
 source ~/.config/nvim/conceals.vim
 source ~/.config/nvim/coc.vim
+
+

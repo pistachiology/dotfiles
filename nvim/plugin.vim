@@ -114,6 +114,10 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 
+" TOML
+Plug 'cespare/vim-toml'
+
+
 " Initialize plugin system
 call plug#end()
 
