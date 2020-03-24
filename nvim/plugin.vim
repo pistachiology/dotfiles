@@ -80,6 +80,7 @@ Plug 'editorconfig/editorconfig-vim'                              " EditorConfig
 "Typescript Plugins
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Quramy/tsuquyomi', { 'do': 'npm install -g typescript' }
+Plug '/leafgarland/typescript-vim'
 " Plug 'mhartington/deoplete-typescript'
 
 " Rust
@@ -87,7 +88,7 @@ Plug 'rust-lang/rust.vim'
 
 " PHP
 " Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
-Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+" Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 
 
 " Elixir
@@ -117,6 +118,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " TOML
 Plug 'cespare/vim-toml'
 
+" Elm
+Plug 'andys8/vim-elm-syntax'
+
+" Fish
+Plug 'dag/vim-fish'
 
 " Initialize plugin system
 call plug#end()

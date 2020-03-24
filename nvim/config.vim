@@ -38,10 +38,10 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 nnoremap <C-p> :Files<CR>
-nnoremap <leader>s :Tags<space><C-R><C-W><space><CR>
+nnoremap <leader>d :Tags<space><C-R><C-W><space><CR>
 nnoremap <leader>q :Rg<space><C-R><C-W><space><CR>
-nnoremap <leader>a :Dash<space>
-nnoremap <leader><leader>a :Dash<space><C-R><C-W><space><CR>
+nnoremap <leader>b :Buffers<space><C-R><C-W><space><CR>
+nnoremap <leader>] :BTags<space><C-R><C-W><space><CR>
 
 command! -bang -nargs=* Find call fzf#vim#grep('rg --files --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" -g "\\!vendor/*" '.shellescape(<q-args>), 1, <bang>0)
 
@@ -90,14 +90,10 @@ let g:tagbar_type_elixir = {
 " Autoformat
 noremap <F3> :Autoformat<CR>
 
-" Custom Commands
-map <leader>e :call custom_command#run()<cr>
-map <leader>d :call custom_command#set()<cr>
-
 " Gutentags
 " let g:gutentags_cache_dir = util#localpath('tags')
-let g:gutentags_ctags_exclude = ['venv', 'build', 'static', 'node_modules']
-let g:gutentags_ctags_extra_args = ['--options='.util#localpath('ctagsrc')]
+" let g:gutentags_file_list_command = 'rg --files'
+let g:gutentags_ctags_exclude = ['venv', 'build', 'static', 'node_modules', ".next", "target"]
 let g:gutentags_ctags_exclude_wildignore = 0
 " Temporary fix due to https://github.com/ludovicchabant/vim-gutentags/issues/167
 au FileType gitcommit,gitrebase let g:gutentags_enabled=0
@@ -121,21 +117,6 @@ let g:LanguageClient_serverCommands = {
 
 " autocmd filetype php LanguageClientStart
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-
-" Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_ruby_checkers = ['rubocop']
-" let g:syntastic_ruby_rubocop_exec = '/Users/pistachio/.rbenv/shims/rubocop'
-
 
 " identify syntax
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -144,6 +125,8 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 
 " Golang
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
 let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 1
 
@@ -161,6 +144,13 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 nmap <F8> :TagbarToggle<CR>
 
+" Elm
+let g:elm_format_autosave = 1
+
+
+" Rust
+let g:rust_fold = 1
+ 
 
 " YAML
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

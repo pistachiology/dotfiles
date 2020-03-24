@@ -1,3 +1,36 @@
 { 
-    "rust-analyzer.serverPath": "/Users/pistachio/.cargo/bin/rust-analyzer"
+    "rust-analyzer.cargo-watch.command": "clippy",
+    "rust-analyzer.serverPath": "/Users/pistachio/.cargo/bin/rust-analyzer",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "css",
+        "html",
+        "javascript",
+        "javascript.jsx",
+        "json",
+        "typescript",
+        "typescript.tsx",
+        "typescriptereact",
+        "rust"
+    ],
+    "languageserver": {
+        "elmLS": {
+            "command": "elm-language-server",
+            "filetypes": ["elm"],
+            "rootPatterns": ["elm.json"],
+            "initializationOptions": {
+                "elmPath": "elm",
+                "elmFormatPath": "elm-format", 
+                "elmTestPath": "elm-test", 
+                "elmAnalyseTrigger": "change"
+            }
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"],
+            "initializationOptions": {
+                "usePlaceholders": true
+            }
+        }
+    }
 }

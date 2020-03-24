@@ -16,6 +16,7 @@ function link() {
     ln -sv ${DIR}/fish/theme.fish $HOME/.config/fish/theme.fish
     ln -sv ${DIR}/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
+    ln -sv ${DIR}/mutt/muttrc $HOME/.mutt/muttrc
 }
 
 

@@ -3,7 +3,8 @@ alias vim="nvim"
 alias vi="nvim"
 alias oldvim="\vim"
 
-source "$HOME/.config/fish/theme.fish"
+source "$HOME/dotfiles/fish/theme.fish"
+source "$HOME/dotfiles/fish/private.fish"
 
 # Ruby
 status --is-interactive; and source (rbenv init - | psub)
@@ -59,6 +60,9 @@ if [ -f '/Users/pistachio/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users
 set -gx LDFLAGS "-L /usr/local/opt/zlib/lib -L/usr/local/opt/libffi/lib"  
 set -gx CPPFLAGS "-I /usr/local/opt/zlib/include"
 set -gx PKG_CONFIG_PATH "/usr/local/opt/zlib/lib/pkgconfig"
+
+# envrc
+eval (direnv hook fish)
 
 
 function fish_mode_prompt --description 'Displays the current mode'
