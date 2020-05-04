@@ -12,7 +12,10 @@ let g:coc_global_extensions = [
             \     'coc-omni',         
             \     'coc-syntax',         
             \     'coc-python',         
-            \     'coc-html' ]
+            \     'coc-phpls',
+            \     'coc-html',
+            \     'coc-xml'
+            \   ]
 
 
 " TextEdit might fail if hidden is not set.

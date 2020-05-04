@@ -43,11 +43,11 @@ nnoremap <leader>q :Rg<space><C-R><C-W><space><CR>
 nnoremap <leader>b :Buffers<space><C-R><C-W><space><CR>
 nnoremap <leader>] :BTags<space><C-R><C-W><space><CR>
 
-command! -bang -nargs=* Find call fzf#vim#grep('rg --files --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" -g "\\!vendor/*" '.shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --files --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" -g "\\!vendor/*  -g "\\!target/*" '.shellescape(<q-args>), 1, <bang>0)
 
 command! -bang -nargs=* Ag
    \ call fzf#vim#grep(
-   \   "rg --column --line-number --no-heading --color=always --smart-case -g '!vendor/*' ".shellescape(<q-args>), 1,
+   \   "rg --column --line-number --no-heading --color=always --smart-case -g '!vendor/*' -g '!target/*'".shellescape(<q-args>), 1,
    \   <bang>0 ? fzf#vim#with_preview('up:60%')
    \           : fzf#vim#with_preview('right:50%:hidden', '?'),
    \   <bang>0)
@@ -105,15 +105,6 @@ let g:ale_sign_column_always = 1
 let g:ale_linters = {'ruby': ['rubocop']}
 let g:ale_linter_aliases = {'jsx': 'css'}
 let g:ale_lint_on_text_changed = 'never'
-
-" Language Server
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'ruby': ['solargraph', 'stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'css': ['vscode-css-languageserver-bin'],
-    \ }
 
 " autocmd filetype php LanguageClientStart
 

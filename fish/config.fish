@@ -45,6 +45,11 @@ set -gx PATH $HOME/go/bin $HOME/bin /usr/local/go/bin $PATH
 source $HOME/.cargo/env
 set -gx PATH $HOME/.cargo/bin $PATH
 
+# Java
+alias set_java11="set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home/"
+set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home/
+
+
 set -x GPG_TTY (tty)
 
 set -gx EDITOR "nvim"
@@ -61,8 +66,20 @@ set -gx LDFLAGS "-L /usr/local/opt/zlib/lib -L/usr/local/opt/libffi/lib"
 set -gx CPPFLAGS "-I /usr/local/opt/zlib/include"
 set -gx PKG_CONFIG_PATH "/usr/local/opt/zlib/lib/pkgconfig"
 
+# Android
+set -gx ANDROID_HOME $HOME/Library/Android/sdk
+set -gx PATH $PATH $ANDROID_HOME/emulator
+set -gx PATH $PATH $ANDROID_HOME/tools
+set -gx PATH $PATH $ANDROID_HOME/tools/bin
+set -gx PATH $PATH ANDROID_HOME/platform-tools
+
 # envrc
 eval (direnv hook fish)
+
+# enable tools
+function enable_jmeter_bin
+    set -gx PATH $PATH $HOME/tools/jmeter-5.2.1/bin
+end
 
 
 function fish_mode_prompt --description 'Displays the current mode'
