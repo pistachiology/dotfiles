@@ -17,6 +17,9 @@ function link() {
     ln -sv ${DIR}/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
     ln -sv ${DIR}/mutt/muttrc $HOME/.mutt/muttrc
+
+    ln -sv ${DIR}/lldb/lldbinit $HOME/.lldbinit
+    ln -sv ${DIR}/lldb $HOME/lldb 
 }
 
 

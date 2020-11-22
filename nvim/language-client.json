@@ -1,0 +1,9 @@
+{
+  "initializationOptions": {
+    "rust-analyzer": {
+      "checkOnSave": {
+        "enable": false
+      }
+    }
+  }
+}

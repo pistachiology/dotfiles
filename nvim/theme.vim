@@ -17,12 +17,14 @@ endif
 "
 
 
-let g:onedark_terminal_italics = 1
-colorscheme onedark
+
+let g:nord_bold = 0
+" let g:onedark_terminal_italics = 1
+colorscheme nord
 " set background=dark " for the light version
 " let g:one_allow_italics = 1 " I love italic for comments
 "
-let g:purple = "#c678dd"
+" let g:purple = "#c678dd"
 
 
 " italic !!!
@@ -47,9 +49,9 @@ let g:purple = "#c678dd"
 
 " Tabbar
 
-hi TabLineFill cterm=none ctermfg=grey  ctermbg=cyan
-hi TabLine     cterm=none ctermfg=white ctermbg=cyan
-hi TabLineSel  cterm=none ctermfg=black ctermbg=white
+" hi TabLineFill cterm=none ctermfg=grey  ctermbg=cyan
+" hi TabLine     cterm=none ctermfg=white ctermbg=cyan
+" hi TabLineSel  cterm=none ctermfg=black ctermbg=white
 
 " Golang
-hi goDeclaration cterm=italic gui=italic
+" hi goDeclaration cterm=italic gui=italic

@@ -4,9 +4,12 @@ Plug 'chakrit/vim-thai-keys'
 
 Plug 'google/vim-jsonnet'
 
+Plug 'elzr/vim-json'
+
 " Visual
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
+Plug 'arcticicestudio/nord-vim'
 " Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
 Plug 'mkitt/tabline.vim'
@@ -31,7 +34,7 @@ Plug 'terryma/vim-multiple-cursors'
 " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 " Plug 'Valloric/YouCompleteMe'
 
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'ludovicchabant/vim-gutentags'
 
 " Git
@@ -71,6 +74,7 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " JavaScript
 "
 
+Plug 'pangloss/vim-javascript'
 Plug 'neoclide/vim-jsx-improve', { 'for': [ 'javascript', 'js', 'jsx' ]}
 
 Plug 'skywind3000/asyncrun.vim'
@@ -80,7 +84,7 @@ Plug 'editorconfig/editorconfig-vim'                              " EditorConfig
 "Typescript Plugins
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Quramy/tsuquyomi', { 'do': 'npm install -g typescript' }
-Plug '/leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim'
 " Plug 'mhartington/deoplete-typescript'
 
 " Rust
@@ -98,6 +102,8 @@ Plug 'elixir-editors/vim-elixir'
 
 " Test
 " Plug 'janko-m/vim-test'
+" Terraform
+Plug 'hashivim/vim-terraform'
 
 " Utilities
 Plug 'tomtom/tcomment_vim'
@@ -111,8 +117,14 @@ Plug 'tpope/vim-obsession'
 " Jinja2
 Plug 'Glench/Vim-Jinja2-Syntax'
 
-" Coc
+" Language Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf'
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
+"
 
 
 " TOML
@@ -123,6 +135,13 @@ Plug 'andys8/vim-elm-syntax'
 
 " Fish
 Plug 'dag/vim-fish'
+
+" Python
+Plug 'vim-python/python-syntax'
+
+" DB
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 
 " Initialize plugin system
 call plug#end()

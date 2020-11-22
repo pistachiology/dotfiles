@@ -29,13 +29,10 @@ alias sclear="clear; tmux clear-history"
 
 
 # Expose Term for SSH
-alias ssh="env TERM=xterm-256color ssh"
+function ssh
+    TERM=screen-256color command ssh $argv
+end
 alias gs="git status --short --branch"
-
-alias j="jump"
-alias ja="mark"
-alias jd="unmark"
-alias js="marks" # show
 
 # Go(lang)
 set GOPATH $HOME/go/
@@ -44,6 +41,11 @@ set -gx PATH $HOME/go/bin $HOME/bin /usr/local/go/bin $PATH
 # Rust
 source $HOME/.cargo/env
 set -gx PATH $HOME/.cargo/bin $PATH
+alias ccw="cargo check --workspace --all-targets"
+
+
+# Python
+set -gx PATH $PATH /Library/Frameworks/Python.framework/Versions/3.8/bin
 
 # Java
 alias set_java11="set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home/"
@@ -57,9 +59,6 @@ set -gx EDITOR "nvim"
 # set -g fish_user_paths "/usr/local/opt/icu4c/sbin" $fish_user_paths
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/pistachio/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/pistachio/Downloads/google-cloud-sdk/path.fish.inc'; end
-
 
 # zlib
 set -gx LDFLAGS "-L /usr/local/opt/zlib/lib -L/usr/local/opt/libffi/lib"  
@@ -72,6 +71,7 @@ set -gx PATH $PATH $ANDROID_HOME/emulator
 set -gx PATH $PATH $ANDROID_HOME/tools
 set -gx PATH $PATH $ANDROID_HOME/tools/bin
 set -gx PATH $PATH ANDROID_HOME/platform-tools
+
 
 # envrc
 eval (direnv hook fish)
@@ -102,3 +102,41 @@ function fish_mode_prompt --description 'Displays the current mode'
         printf " "
     end
 end
+
+
+# ~/.config/fish/functions/nvm.fish
+function nvm
+  bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+end
+
+# ~/.config/fish/functions/nvm_find_nvmrc.fish
+function nvm_find_nvmrc
+  bass source ~/.nvm/nvm.sh --no-use ';' nvm_find_nvmrc
+end
+
+# ~/.config/fish/functions/load_nvm.fish
+function load_nvm
+  set -l default_node_version (nvm version default)
+  set -l node_version (nvm version)
+  set -l nvmrc_path (nvm_find_nvmrc)
+  if test -n "$nvmrc_path"
+    set -l nvmrc_node_version (nvm version (cat $nvmrc_path))
+    if test "$nvmrc_node_version" = "N/A"
+      nvm install $nvmrc_node_version
+    else if test nvmrc_node_version != node_version
+      nvm use $nvmrc_node_version
+    end
+  else if test "$node_version" != "$default_node_version"
+    echo "Reverting to default Node version"
+    nvm use default
+  end
+end
+
+
+status --is-interactive; and source (jump shell fish --bind=z | psub)
+
+complete --command j --exclusive --arguments '(__jump_hint)'
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc' ]; . '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc'; end

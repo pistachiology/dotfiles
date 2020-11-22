@@ -16,7 +16,7 @@ syntax on
 set number
 
 " colorscheme one
-set laststatus=0 " Hide airline
+set laststatus=2 " Hide airline
 
 let mapleader = " "
 
@@ -98,5 +98,7 @@ source ~/.config/nvim/config.vim
 source ~/.config/nvim/custom_command.vim
 source ~/.config/nvim/conceals.vim
 source ~/.config/nvim/coc.vim
+" source ~/.config/nvim/language_client.vim
+
 
 

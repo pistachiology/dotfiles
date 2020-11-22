@@ -2,6 +2,7 @@
 " git gutter
 set signcolumn=yes
 
+
 " default vim mapping
 nnoremap tn :tabnew<CR>
 
@@ -115,8 +116,6 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 
-" Golang
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 1
@@ -141,7 +140,33 @@ let g:elm_format_autosave = 1
 
 " Rust
 let g:rust_fold = 1
- 
+
+" Javascript
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType typescript setlocal shiftwidth=2 tabstop=2
+autocmd FileType typescriptreact setlocal shiftwidth=2 tabstop=2
+
 
 " YAML
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+augroup filetypedetect
+    au BufRead,BufNewFile *.py.schema set filetype=yaml
+    au BufRead,BufNewFile *.tera set filetype=jinja
+augroup END
+
+
+" Cyclic Autocomplete
+inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>""
+
+
+" Json
+let g:vim_json_syntax_conceal = 0
+
+" Terraform
+let g:terraform_fmt_on_save=1
+let g:terraform_align=1
+
+
+

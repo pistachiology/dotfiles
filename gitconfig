@@ -6,6 +6,10 @@
 
     parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
 
+    pcb = !"git push -u origin -omerge_request.create -omerge_request.label=\"component: Backend\" \"$(git rev-parse --abbrev-ref HEAD)\""
+    pcf = !"git push -u origin -omerge_request.create -omerge_request.label=\"component: Frontend\" \"$(git rev-parse --abbrev-ref HEAD)\""
+    pcfb = !"git push -u origin -omerge_request.create -omerge_request.label=\"component: Frontend\" -omerge_request.label=\"component: Backend\" \"$(git rev-parse --abbrev-ref HEAD)\""
+
 
 
 [color]
@@ -33,5 +37,11 @@
 [core]
     editor = nvim
 	ignorecase = false
+    pager = delta --plus-color="#012800" --minus-color="#340001" --theme='DarkNeon'
+
+
+[interactive]
+    diffFilter = delta --color-only
+
 [commit]
     gpgsign = true
