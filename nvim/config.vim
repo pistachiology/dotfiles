@@ -168,5 +168,15 @@ let g:vim_json_syntax_conceal = 0
 let g:terraform_fmt_on_save=1
 let g:terraform_align=1
 
+" vimwiki
+let g:vimwiki_list = [{
+            \ 'path': '~/Documents/vimwiki/',
+            \ 'auto-tags': 1,
+            \ 'syntax': 'markdown', 'ext': '.md'
+            \ }]
+
+let g:vimwiki_auto_chdir = 1
+let g:vimwiki-option-auto_toc = 1
+
 
 

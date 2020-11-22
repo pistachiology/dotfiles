@@ -143,6 +143,11 @@ Plug 'vim-python/python-syntax'
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 
+" Vim wiki
+Plug 'vimwiki/vimwiki'
+Plug 'plasticboy/vim-markdown'
+
+
 " Initialize plugin system
 call plug#end()
 
