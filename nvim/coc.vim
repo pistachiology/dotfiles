@@ -6,12 +6,12 @@ let g:coc_global_extensions = [
             \     'coc-eslint',             
             \     'coc-prettier',           
             \     'coc-rust-analyzer',      
-            \     'coc-json',               
             \     'coc-git',                
             \     'coc-vimlsp',             
             \     'coc-tailwindcss',         
             \     'coc-omni',         
             \     'coc-syntax',         
+            \     'coc-metals',
             \     'coc-python',         
             \     'coc-phpls',
             \     'coc-html',
@@ -19,7 +19,7 @@ let g:coc_global_extensions = [
             \   ]
 
 " Floating windows
-nnoremap <leader>w :call coc#util#float_jump()<CR>
+nnoremap <leader><leader>w :call coc#util#float#jump()<CR>
 
 " Golang
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')

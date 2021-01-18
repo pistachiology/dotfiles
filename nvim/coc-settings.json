@@ -14,7 +14,8 @@
     "typescript",
     "typescript.tsx",
     "typescriptreact",
-    "rust"
+    "rust",
+    "scala"
   ],
   "suggest.timeout": 5000,
   "languageserver": {

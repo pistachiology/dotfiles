@@ -171,12 +171,12 @@ let g:terraform_align=1
 " vimwiki
 let g:vimwiki_list = [{
             \ 'path': '~/Documents/vimwiki/',
-            \ 'auto-tags': 1,
+            \ 'auto_tags': 1,
+            \ 'auto_toc': 1,
             \ 'syntax': 'markdown', 'ext': '.md'
             \ }]
 
 let g:vimwiki_auto_chdir = 1
-let g:vimwiki-option-auto_toc = 1
 
 
 
