@@ -1,0 +1,8 @@
+xmonad-x86_64-linux
+xmonad.errors
+xmonad.hi
+xmonad.o
+.stack-work
+*.o
+*.hi
+myXmonad.cabal
