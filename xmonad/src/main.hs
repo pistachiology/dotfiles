@@ -72,6 +72,8 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
           [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
       -- launch rofi
           , ((controlMask, xK_space), spawn "rofi -modi \"run,ssh\" -show run")
+      -- cmd space
+          , ((mod4Mask, xK_space), spawn "$HOME/dotfiles/bin/layout_switch.sh")
       -- close focused window
           , ((modm .|. shiftMask, xK_c), kill)
       -- Rotate through the available layout algorithms
