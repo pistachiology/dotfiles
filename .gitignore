@@ -1,2 +1,3 @@
 tags
 *.secret*
+.DS_Store

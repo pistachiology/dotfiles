@@ -1,10 +1,12 @@
 # Vim replace
-alias vim="nvim"
-alias vi="nvim"
+function vim; nvim $argv; end
+function vi; nvim $argv; end
 alias oldvim="\vim"
 
 source "$HOME/dotfiles/fish/theme.fish"
 source "$HOME/dotfiles/fish/private.fish"
+
+fish_vi_key_bindings
 
 # Ruby
 status --is-interactive; and source (rbenv init - | psub)
@@ -23,33 +25,33 @@ set -gx SKIM_DEFAULT_COMMAND "rg --files --ignore-case --hidden -g '!.git"
 
 # Tmux
 set ZSH_TMUX_AUTOSTART true
-alias ta="tmux attach -t" 
-alias tm="tmux"
-alias sclear="clear; tmux clear-history"
+function ta; tmux attach -t $argv; end
+function sclear ; clear; tmux clear-history; end
 
 
 # Expose Term for SSH
 function ssh
     TERM=screen-256color command ssh $argv
 end
-alias gs="git status --short --branch"
+function gs ; git status --short --branch $argv; end
 
 # Go(lang)
 set GOPATH $HOME/go/
 set -gx PATH $HOME/go/bin $HOME/bin /usr/local/go/bin $PATH 
 
 # Rust
-source $HOME/.cargo/env
+# source $HOME/.cargo/env
 set -gx PATH $HOME/.cargo/bin $PATH
-alias ccw="cargo check --workspace --all-targets"
+function ccw ; cargo check --workspace --all-targets $argv; end
 
 
 # Python
 set -gx PATH $PATH /Library/Frameworks/Python.framework/Versions/3.8/bin
 
 # Java
-alias set_java11="set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home/"
-set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home/
+# alias set_java11="set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home/"
+# set -x JAVA_HOME "/usr/local/Cellar/openjdk@11/11.0.9/libexec/openjdk.jdk/Contents/Home/"
+#
 
 
 set -x GPG_TTY (tty)
@@ -106,12 +108,12 @@ end
 
 # ~/.config/fish/functions/nvm.fish
 function nvm
-  bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+  # bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
 end
 
 # ~/.config/fish/functions/nvm_find_nvmrc.fish
 function nvm_find_nvmrc
-  bass source ~/.nvm/nvm.sh --no-use ';' nvm_find_nvmrc
+  # bass source ~/.nvm/nvm.sh --no-use ';' nvm_find_nvmrc
 end
 
 # ~/.config/fish/functions/load_nvm.fish
@@ -140,3 +142,6 @@ complete --command j --exclusive --arguments '(__jump_hint)'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc' ]; . '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc'; end
+
+
+set SBT_OPTS "-mem 8094"

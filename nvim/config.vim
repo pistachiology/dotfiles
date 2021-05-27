@@ -47,11 +47,9 @@ nnoremap <leader>] :BTags<space><C-R><C-W><space><CR>
 command! -bang -nargs=* Find call fzf#vim#grep('rg --files --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" -g "\\!vendor/*  -g "\\!target/*" '.shellescape(<q-args>), 1, <bang>0)
 
 command! -bang -nargs=* Ag
-   \ call fzf#vim#grep(
-   \   "rg --column --line-number --no-heading --color=always --smart-case -g '!vendor/*' -g '!target/*'".shellescape(<q-args>), 1,
-   \   <bang>0 ? fzf#vim#with_preview('up:60%')
-   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-   \   <bang>0)
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
  
 command! -bang -nargs=? -complete=dir Files
    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
@@ -140,15 +138,23 @@ let g:elm_format_autosave = 1
 
 " Rust
 let g:rust_fold = 1
+autocmd FileType rust setlocal shiftwidth=4 tabstop=4
 
 " Javascript
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2
 autocmd FileType typescriptreact setlocal shiftwidth=2 tabstop=2
 
+" scala
+au BufRead,BufNewFile *.sbt,*.sc set filetype=scala
+
 
 " YAML
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+"
+autocmd FileType conf setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
 
 augroup filetypedetect
     au BufRead,BufNewFile *.py.schema set filetype=yaml

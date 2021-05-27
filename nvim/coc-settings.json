@@ -1,11 +1,11 @@
 {
-  "rust-analyzer.serverPath": "/Users/pistachio/.cargo/bin/rust-analyzer",
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.checkOnSave.enable": false,
   "rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.checkOnSave.allTargets": false,
   "rust-analyzer.checkOnSave.extraArgs": [],
+  "metals.scalafixConfigPath": "~/.config/scalafix.conf",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "html",

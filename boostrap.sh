@@ -12,6 +12,8 @@ function link() {
     mkdir -p $HOME/.config
     ln -sv ${DIR}/nvim      	   $HOME/.config/nvim
     ln -sv ${DIR}/fish/config.fish $HOME/.config/fish/config.fish
+    ln -sv ${DIR}/yabai            $HOME/.config/yabai
+    ln -sv ${DIR}/skhd            $HOME/.config/skhd
     ln -sv ${DIR}/fish/kubectl_aliases $HOME/.config/fish/kubectl_aliases
     ln -sv ${DIR}/fish/theme.fish $HOME/.config/fish/theme.fish
     ln -sv ${DIR}/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
@@ -20,6 +22,7 @@ function link() {
 
     ln -sv ${DIR}/lldb/lldbinit $HOME/.lldbinit
     ln -sv ${DIR}/lldb $HOME/lldb 
+    ln -sv ${DIR}/direnv/ $HOME/.config/direnv
 }
 
 
@@ -27,6 +30,7 @@ function enable_fastkeyboard() {
     # set keyboard repeat to very fast need to relogin after running this command
     defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
     defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+    defaults write com.jetbrains.intellij.ce ApplePressAndHoldEnabled -bool false
 }
 
 function showhelp() {
