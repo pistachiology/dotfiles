@@ -8,8 +8,23 @@ source "$HOME/dotfiles/fish/private.fish"
 
 fish_vi_key_bindings
 
+if test -e "$HOME/.asdf/asdf.fish"
+	source "$HOME/.asdf/asdf.fish"
+end
+
+if type -q zoxide
+    zoxide init fish | source
+end
+
+switch (uname) 
+    case Linux
+        source "$HOME/dotfiles/fish/linux.fish"
+    case '*'
+        echo
+end
+
 # Ruby
-status --is-interactive; and source (rbenv init - | psub)
+# status --is-interactive; and source (rbenv init - | psub)
 
 
 # fzf
@@ -40,7 +55,6 @@ set GOPATH $HOME/go/
 set -gx PATH $HOME/go/bin $HOME/bin /usr/local/go/bin $PATH 
 
 # Rust
-# source $HOME/.cargo/env
 set -gx PATH $HOME/.cargo/bin $PATH
 function ccw ; cargo check --workspace --all-targets $argv; end
 
@@ -135,7 +149,7 @@ function load_nvm
 end
 
 
-status --is-interactive; and source (jump shell fish --bind=z | psub)
+# status --is-interactive; and source (jump shell fish --bind=z | psub)
 
 complete --command j --exclusive --arguments '(__jump_hint)'
 

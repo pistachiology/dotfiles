@@ -104,7 +104,7 @@ apply_theme() {
 
     session_fg=colour16  # black
     session_bg=colour108 # dark green
-    status_left="#[fg=$session_fg,bg=$session_bg,bold]  #S #[fg=$session_bg,bg=$status_bg,nobold]$left_separator_black"
+    status_left="#[fg=$session_fg,bg=$session_bg,bold] #S #[fg=$session_bg,bg=$status_bg,nobold]$left_separator_black"
     if [ x"`tmux -q -L tmux_theme_status_left_test -f /dev/null new-session -d \; show -g -v status-left \; kill-session`" = x"[#S] " ] ; then
         status_left="$status_left "
     fi
@@ -154,7 +154,7 @@ apply_theme() {
     fi
 
     if [ "$SHOW_BATTERY" = true ]; then
-        status_right="$status_right #{battery_icon} #{battery_percentage}"
+        status_right="$status_right ☣ #{ram_percentage}"
     fi
 
     # Only add intermediate separator if both CPU and Batter are to be displayed
@@ -163,10 +163,10 @@ apply_theme() {
     fi
 
     if [ "$SHOW_CPU" = true ]; then
-        status_right="$status_right 龍#{cpu_percentage}"
+        status_right="$status_right ⚡#{cpu_percentage}"
     fi
 
-    status_right="$status_right #[fg=${user_bg},bg=${host_bg}]$right_separator_black#[fg=${user_fg},bg=${user_bg}]  Pistachio "
+    status_right="$status_right #[fg=${user_bg},bg=${host_bg}]$right_separator_black#[fg=${user_fg},bg=${user_bg}] ☃ Pistachio "
 
     tmux set -g status-right-length 80 \; set -g status-right "$status_right"
 

@@ -10,18 +10,25 @@ function link() {
     ln -sv ${DIR}/tmux 	    $HOME/.tmux
 
     mkdir -p $HOME/.config
-    ln -sv ${DIR}/nvim      	   $HOME/.config/nvim
-    ln -sv ${DIR}/fish/config.fish $HOME/.config/fish/config.fish
+    ln -sv ${DIR}/nvim      	                $HOME/.config/nvim
+    ln -sv ${DIR}/fish/config.fish              $HOME/.config/fish/config.fish
+    ln -sv ${DIR}/fish/kubectl_aliases          $HOME/.config/fish/kubectl_aliases
+    ln -sv ${DIR}/fish/theme.fish               $HOME/.config/fish/theme.fish
+    ln -sv ${DIR}/alacritty/alacritty.yml       $HOME/.config/alacritty/alacritty.yml
+    
     ln -sv ${DIR}/yabai            $HOME/.config/yabai
     ln -sv ${DIR}/skhd            $HOME/.config/skhd
-    ln -sv ${DIR}/fish/kubectl_aliases $HOME/.config/fish/kubectl_aliases
-    ln -sv ${DIR}/fish/theme.fish $HOME/.config/fish/theme.fish
-    ln -sv ${DIR}/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
-    ln -sv ${DIR}/mutt/muttrc $HOME/.mutt/muttrc
+    # linux specifics
+    ln -sv ${DIR}/xinitrc                       $HOME/.xinitrc
+    ln -sv ${DIR}/rofi                          $HOME/.config/rofi
+    ln -sv ${DIR}/polybar                       $HOME/.config/polybar
+    ln -sv ${DIR}/xmonad                        $HOME/.xmonad
+    ln -sv ${DIR}/dunst                         $HOME/.config/dunst
+    ln -sv ${DIR}/mutt/muttrc                   $HOME/.mutt/muttrc
 
-    ln -sv ${DIR}/lldb/lldbinit $HOME/.lldbinit
-    ln -sv ${DIR}/lldb $HOME/lldb 
+    ln -sv ${DIR}/lldb/lldbinit                 $HOME/.lldbinit
+    ln -sv ${DIR}/lldb                          $HOME/lldb 
     ln -sv ${DIR}/direnv/ $HOME/.config/direnv
 }
 

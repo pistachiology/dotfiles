@@ -6,6 +6,7 @@
   "rust-analyzer.checkOnSave.allTargets": false,
   "rust-analyzer.checkOnSave.extraArgs": [],
   "metals.scalafixConfigPath": "~/.config/scalafix.conf",
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "html",
@@ -15,6 +16,7 @@
     "typescript.tsx",
     "typescriptreact",
     "rust",
+    "elixir",
     "scala"
   ],
   "suggest.timeout": 5000,
@@ -46,6 +48,17 @@
         ],
         "initializationOptions": {},
         "settings": {}
+    },
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+      "filetypes": ["haskell", "lhaskell"],
+      "initializationOptions": {
+          "languageServerHaskell": {
+              "formattingProvider": "brittany"
+          }
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 let g:coc_global_extensions = [
             \     'coc-db',
             \     'coc-solargraph',
+            \     'coc-elixir',
             \     'coc-json',               
             \     'coc-tsserver',           
             \     'coc-eslint',             
