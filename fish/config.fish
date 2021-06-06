@@ -11,6 +11,9 @@ fish_vi_key_bindings
 
 if test -e "$HOME/.asdf/asdf.fish"
 	source "$HOME/.asdf/asdf.fish"
+else if test -e "/usr/local/opt/asdf/asdf.fish"
+    # for mac os install with homebrew
+    source /usr/local/opt/asdf/asdf.fish
 end
 
 if type -q zoxide
@@ -89,6 +92,10 @@ set -gx PATH $PATH $ANDROID_HOME/tools
 set -gx PATH $PATH $ANDROID_HOME/tools/bin
 set -gx PATH $PATH ANDROID_HOME/platform-tools
 
+# Scala
+set -gx PATH $PATH "/Users/pistachio/Library/Application Support/Coursier/bin"
+
+
 
 # envrc
 eval (direnv hook fish)
@@ -158,5 +165,5 @@ complete --command j --exclusive --arguments '(__jump_hint)'
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc' ]; . '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc'; end
 
-
 set SBT_OPTS "-mem 8094"
+

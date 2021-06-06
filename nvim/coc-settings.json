@@ -17,6 +17,8 @@
     "typescriptreact",
     "rust",
     "elixir",
+    "c",
+    "cpp",
     "scala"
   ],
   "suggest.timeout": 5000,
@@ -58,6 +60,27 @@
           "languageServerHaskell": {
               "formattingProvider": "brittany"
           }
+      },
+      "settings": {}
+    },
+
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        },
+        "client": {
+          "snippetSupport": true
+        }
       }
     }
   }

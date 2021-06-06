@@ -135,6 +135,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 nmap <F8> :TagbarToggle<CR>
 
+" C/C++
+"
+autocmd FileType cpp setlocal shiftwidth=2 tabstop=2
+autocmd FileType c setlocal shiftwidth=2 tabstop=2
 " Elm
 let g:elm_format_autosave = 1
 
@@ -142,6 +146,7 @@ let g:elm_format_autosave = 1
 " Rust
 let g:rust_fold = 1
 autocmd FileType rust setlocal shiftwidth=4 tabstop=4
+
 
 " Javascript
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
