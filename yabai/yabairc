@@ -31,5 +31,9 @@ yabai -m config bottom_padding               1
 yabai -m config left_padding                 1
 yabai -m config right_padding                1
 # yabai -m config window_gap                   06
+#
+yabai -m rule --add app='^Microsoft Teams$' manage=off
+yabai -m rule --add app='^Zoom$' manage=off
+yabai -m rule --add app='^BlueJeans$' manage=off
 
 echo "yabai configuration loaded.."

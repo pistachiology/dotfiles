@@ -61,6 +61,9 @@ map <leader>r :NERDTreeFind<CR>
 let NERDTreeIgnore = ['node_modules', '\.pyc$', '_build']
 let g:NERDTreeMouseMode = 3     " Single Click
 
+nnoremap <leader>cn :NnnPicker %:p:h<CR>
+nnoremap <leader>n :NnnPicker<CR>
+
 " Ruby
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1

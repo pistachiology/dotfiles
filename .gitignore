@@ -1,3 +1,4 @@
 tags
 *.secret*
 .DS_Store
+.metals

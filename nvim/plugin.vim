@@ -27,6 +27,7 @@ Plug 'romainl/vim-qf'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'mcchrish/nnn.vim'
 
 Plug 'terryma/vim-multiple-cursors'
 

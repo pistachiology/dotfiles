@@ -5,6 +5,7 @@ alias oldvim="\vim"
 
 source "$HOME/dotfiles/fish/theme.fish"
 source "$HOME/dotfiles/fish/private.fish"
+source "$HOME/dotfiles/fish/nnn.fish"
 
 fish_vi_key_bindings
 
