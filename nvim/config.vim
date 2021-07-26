@@ -24,20 +24,6 @@ nnoremap q[ :cp<CR>
 let g:qf_max_height = 5
 
 
-" fzf plugin
-function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
-endfunction
-
-
-let g:fzf_action = {
-  \ 'ctrl-p': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
 nnoremap <C-p> :Files<CR>
 nnoremap <leader>d :Tags<space><C-R><C-W><space><CR>
 nnoremap <leader>q :Rg<space><C-R><C-W><space><CR>
@@ -46,13 +32,6 @@ nnoremap <leader>] :BTags<space><C-R><C-W><space><CR>
 
 command! -bang -nargs=* Find call fzf#vim#grep('rg --files --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" -g "\\!vendor/*  -g "\\!target/*" '.shellescape(<q-args>), 1, <bang>0)
 
-command! -bang -nargs=* Ag
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
- 
-command! -bang -nargs=? -complete=dir Files
-   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " NerdTree
 map <C-\> :NERDTreeToggle<CR>
@@ -61,8 +40,6 @@ map <leader>r :NERDTreeFind<CR>
 let NERDTreeIgnore = ['node_modules', '\.pyc$', '_build']
 let g:NERDTreeMouseMode = 3     " Single Click
 
-nnoremap <leader>cn :NnnPicker %:p:h<CR>
-nnoremap <leader>n :NnnPicker<CR>
 
 " Ruby
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
@@ -160,7 +137,6 @@ au BufRead,BufNewFile *.sbt,*.sc set filetype=scala
 " YAML
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-"
 autocmd FileType conf setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
 

@@ -90,17 +90,6 @@ augroup END
 tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>l <C-\><C-n><C-w>l
 
-" NNN
-let g:nnn#set_default_mappings = 0
-let g:nnn#session = 'local'
-" Opens the n³ window in a split
-let g:nnn#layout = 'new' " or vnew, tabnew etc.
-" Or pass a dictionary with window size
-let g:nnn#layout = { 'left': '~21%' } " or right, up, down
-" Floating window (neovim latest and vim with patch 8.2.191)
-let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
-
-
 
 source ~/.config/nvim/plugin.vim
 source ~/.config/nvim/theme.vim
@@ -109,7 +98,6 @@ source ~/.config/nvim/config.vim
 source ~/.config/nvim/custom_command.vim
 source ~/.config/nvim/conceals.vim
 source ~/.config/nvim/coc.vim
-" source ~/.config/nvim/language_client.vim
 
 
 
