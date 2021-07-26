@@ -18,6 +18,11 @@ if type -q zoxide
     zoxide init fish | source
 end
 
+if type -q just
+    just --completions fish | source
+    function j; just $argv; end
+end
+
 switch (uname) 
     case Linux
         source "$HOME/dotfiles/fish/linux.fish"
