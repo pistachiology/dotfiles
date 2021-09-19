@@ -13,8 +13,10 @@ import           Graphics.X11.ExtraTypes.XF86
 import           System.Exit
 import           XMonad
 import           XMonad.Hooks.ManageDocks
+import           XMonad.Layout.MultiToggle
 import qualified XMonad.StackSet               as W
 import           XMonad.Util.SpawnOnce          ( spawnOnce )
+import XMonad.Layout.MultiToggle.Instances
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -78,8 +80,10 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
           , ((modm .|. shiftMask, xK_c), kill)
       -- Rotate through the available layout algorithms
           , ((modm, xK_space), sendMessage NextLayout)
-      --  Reset the layouts on the current workspace to default
+      -- Reset the layouts on the current workspace to default
           , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
+      -- Toggle Full screen
+          , ((modm, xK_f), sendMessage $ Toggle FULL)
       -- Resize viewed windows to the correct size
           , ((modm, xK_n), refresh)
       -- Move focus to the next window
@@ -184,10 +188,9 @@ myMouseBindings XConfig { XMonad.modMask = modm } = M.fromList
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout :: Choose Tall (Choose (Mirror Tall) Full) a
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = mkToggle (single FULL) (tiled ||| Mirror tiled)
   where
-    -- default tiling algorithm partitions the screen into two panes
+        -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
 
     -- The default number of windows in the master pane
@@ -274,7 +277,6 @@ main = xmonad defaults
 --
 -- No need to modify this.
 --
-defaults :: XConfig (Choose Tall (Choose (Mirror Tall) Full))
 defaults = def { -- simple stuff
                  terminal           = myTerminal
                , focusFollowsMouse  = myFocusFollowsMouse

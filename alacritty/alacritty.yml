@@ -43,7 +43,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: buttonless
+  # decorations: buttonless
 
   # Startup Mode (changes require restart)
   #
@@ -103,24 +103,24 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: "Iosevka Custom"
+    family: "PragmataProLiga Nerd Font"
     # The `style` can be specified to pick a specific face.
-    style: Light
+    style: Regular
 
   # Bold font face
   bold:
-    family: "Iosevka Custom"
-    style: Regular
+    family: "PragmataProLiga Nerd Font"
+    style: Bold
 
   # Italic font face
   italic:
-    family: "Iosevka Custom"
-    style: Light Italic
+    family: "PragmataProLiga Nerd Font"
+    style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: "Iosevka Custom"
-    style: Italic
+    family: "PragmataProLiga"
+    style: Bold Italic
 
   # Point size
   size: 17.0

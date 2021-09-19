@@ -1,1 +1,0 @@
-/Users/pistachio/.config/nvim/plugged/gocode/nvim/autoload/gocomplete.vim
