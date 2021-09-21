@@ -114,5 +114,5 @@ end
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc' ]; . '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc'; end
 
-set SBT_OPTS "-mem 8094"
+set -x SBT_OPTS "-mem 8094"
 

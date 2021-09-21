@@ -1,9 +1,8 @@
-(module plugs.cmp
-  {require {nvim aniseed.nvim
-            cmp cmp}})
+(local cmp (require :cmp))
 
-(defn setup []
+(fn setup []
   (cmp.setup {:enable true
+              :snippet {:expand #(vim.fn.vsnip#anonymous $1.body)}
               :completion {:completeopt "menu,menuone,noinsert"}
               :mapping {:<C-d> (cmp.mapping.scroll_docs -4)
                         :<C-f> (cmp.mapping.scroll_docs 4)
@@ -11,6 +10,7 @@
                         :<cr>  (cmp.mapping.confirm {:select true})}
               :sources [{:name "buffer"}
                         {:name "conjure"}
-                        {:name "nvim_lsp"}]}))
+                        {:name "vsnip"}
+                        {:name "nvim_lsp" :priority 1337}]}))
 
 (setup)

@@ -1,12 +1,11 @@
 (module plugs.nvim-tree
-  {require {nvim aniseed.nvim}})
+  {autoload {nvim aniseed.nvim}})
 
-(defn- noremap [mode from to]
+(fn noremap [mode from to]
   (nvim.set_keymap mode from to {:noremap true}))
 
-(defn setup []
+(fn setup []
   (noremap :n :<C-\> ":NvimTreeToggle<cr>")
   (noremap :n :<M-\> ":NvimTreeFindFile<cr>"))
-
 
 (setup)

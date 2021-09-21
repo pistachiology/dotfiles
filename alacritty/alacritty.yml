@@ -43,7 +43,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  # decorations: buttonless
+  decorations: buttonless
 
   # Startup Mode (changes require restart)
   #
@@ -119,7 +119,7 @@ font:
 
   # Bold italic font face
   bold_italic:
-    family: "PragmataProLiga"
+    family: "PragmataProLiga Nerd Font"
     style: Bold Italic
 
   # Point size

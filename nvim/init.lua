@@ -22,8 +22,9 @@ ensure("Olical", "aniseed")
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g["aniseed#env"] = true
+-- vim.g["aniseed#env"] = { compile = false }
 
-require('load-packers')
 require('core')
-require('keys')
+require('keys').setup()
+require('load-packers')
 

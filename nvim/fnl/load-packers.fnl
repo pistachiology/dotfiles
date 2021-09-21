@@ -1,9 +1,9 @@
-(module load-packers
-  {autoload {nvim aniseed.nvim
-            core aniseed.core
-            packer packer}})
 
-(defn- plug [name]
+(local packer (require :packer))
+(local a (require :aniseed.core))
+(local my-galaxy (require :plugs.galaxyline))
+
+(fn plug [name]
   (let [(ok? val-or-err) (pcall require (.. :plugs. name))]
     (when (not ok?)
       (print (.. "plug error: " val-or-err)))))
@@ -26,17 +26,28 @@
   :kyazdani42/nvim-tree.lua {:requires [:kyazdani42/nvim-web-devicons]
                              :plug :nvim-tree}
 
+  ;; DB
+  :tpope/vim-dadbod {}
+  :kristijanhusak/vim-dadbod-ui {}
+
   ;; LSP & Autocomplete
   :neovim/nvim-lspconfig {:plug :lspconfig}
   :hrsh7th/cmp-nvim-lsp {}
   :hrsh7th/cmp-buffer {}
   :hrsh7th/nvim-cmp {:plug :cmp}
-  :PaterJason/cmp-conjure {:requires [:nvim-cmp :Olical/conjure]}
+  :PaterJason/cmp-conjure {:requires [:hrsh7th/nvim-cmp :Olical/conjure]}
+  :hrsh7th/vim-vsnip {}
+  :hrsh7th/cmp-vsnip {:requires [:hrsh7th/nvim-cmp :hrsh7th/vim-vsnip]}
 
   ;; Languages stuffs
   :bakpakin/fennel.vim {:ft ["fennel"]}
   :Olical/aniseed {}
   :Olical/conjure {:tag :v4.23.0}
+  ;;; Scala
+  :scalameta/nvim-metals {:plug :metals-hook}
+  :derekwyatt/vim-scala {}
+  ;;; Rust
+  :simrat39/rust-tools.nvim {:requires [:neovim/nvim-lspconfig]}
 
   ;; Utilities
   :dag/vim-fish {}
@@ -47,8 +58,9 @@
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"}
   :glacambre/firenvim {:run #(. vim.fn.firenvim#install 0) }
   :glepnir/galaxyline.nvim {:branch :main
-                            :config #(require :statusline)
+                            :config (my-galaxy.run)
                             :requires [:kyazdani42/nvim-web-devicons]}
+  :b3nj5m1n/kommentary {}
 
   ;; Git
   :lewis6991/gitsigns.nvim {:requires [:nvim-lua/plenary.nvim]
@@ -61,4 +73,4 @@
   (fn [use]
     (each [name opts (pairs pkgs)]
       (-?> (. opts :plug) (plug))
-      (use (core.assoc opts 1 name)))))
+      (use (a.assoc opts 1 name)))))
