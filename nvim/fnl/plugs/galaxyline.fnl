@@ -1,9 +1,4 @@
-(module plugs.galaxyline
-  {autoload {nvim aniseed.nvim
-            a aniseed.core
-            gl galaxyline
-            fileinfo galaxyline.provider_fileinfo
-            git galaxyline.provider_vcs}})
+(module plugs.galaxyline {autoload {a aniseed.core }})
 
 ;; Thanks to
 ;; https://raw.githubusercontent.com/voitd/dotfiles/master/.config/nvim/lua/plugins/statusline.lua
@@ -29,13 +24,21 @@
 
 ;; Utils
 (local buffer_not_empty (fn []
-                          (~= (nvim.fn.empty (nvim.fn.expand "%:t")) 1)))
+                          (~= (vim.fn.empty (vim.fn.expand "%:t")) 1)))
 
 (local checkwidth (fn []
-                    (local squeeze-width (/ (nvim.fn.winwidth 0) 2))
+                    (local squeeze-width (/ (vim.fn.winwidth 0) 2))
                     (> squeeze-width 40)))
 
 (fn run []
+  ; just hack for installation
+  (when (= vim.env.SETUP "true")
+    (lua "return {}"))
+
+  (local gl (require :galaxyline))
+  (local fileinfo (require :galaxyline.provider_fileinfo))
+  (local git (require :galaxyline.provider_vcs))
+
   (tset gl :short_line_list ["packager"])
 
   (local mid 
@@ -92,7 +95,7 @@
                    :separator_highlight [nord_colors.purple nord_colors.line_bg]
                    :highlight [(fileinfo.get_file_icon_color) nord_colors.line_bg]}}
 
-     4 {:FileName {:provider (fn [] (nvim.fn.expand "%:F"))
+     4 {:FileName {:provider (fn [] (vim.fn.expand "%:F"))
                    :condition buffer_not_empty
                    :separator " "
                    :separator_highlight [nord_colors.purple nord_colors.line_bg]

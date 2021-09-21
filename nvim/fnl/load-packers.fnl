@@ -55,7 +55,8 @@
   :tpope/vim-dispatch {:opt true
                        :cmd ["Dispatch" "Make" "Focus" "Start"]}
   :andymass/vim-matchup {:event "VimEnter"}
-  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"}
+  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
+                                    :plug :treesitter}
   :glacambre/firenvim {:run #(. vim.fn.firenvim#install 0) }
   :glepnir/galaxyline.nvim {:branch :main
                             :config (my-galaxy.run)
