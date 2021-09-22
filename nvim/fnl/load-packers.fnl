@@ -49,11 +49,15 @@
   ;;; Rust
   :simrat39/rust-tools.nvim {:requires [:neovim/nvim-lspconfig]}
 
+
+  ;; Debug
+  :mfussenegger/nvim-dap {:plug :dap}
+
+
   ;; Utilities
   :dag/vim-fish {}
   :tpope/vim-sleuth {}
-  :tpope/vim-dispatch {:opt true
-                       :cmd ["Dispatch" "Make" "Focus" "Start"]}
+  :tpope/vim-dispatch {}
   :andymass/vim-matchup {:event "VimEnter"}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :plug :treesitter}
@@ -62,6 +66,7 @@
                             :config (my-galaxy.run)
                             :requires [:kyazdani42/nvim-web-devicons]}
   :b3nj5m1n/kommentary {}
+  :junegunn/vim-easy-align {}
 
   ;; Git
   :lewis6991/gitsigns.nvim {:requires [:nvim-lua/plenary.nvim]
@@ -75,3 +80,4 @@
     (each [name opts (pairs pkgs)]
       (-?> (. opts :plug) (plug))
       (use (a.assoc opts 1 name)))))
+

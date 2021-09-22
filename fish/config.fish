@@ -23,6 +23,11 @@ if type -q just
     function j; just $argv; end
 end
 
+# envrc
+if type -q direnv
+    eval (direnv hook fish)
+end
+
 switch (uname) 
     case Linux
         source "$HOME/dotfiles/fish/linux.fish"
@@ -81,9 +86,6 @@ set -gx PATH $PATH $ANDROID_HOME/tools
 set -gx PATH $PATH $ANDROID_HOME/tools/bin
 set -gx PATH $PATH ANDROID_HOME/platform-tools
 
-
-# envrc
-eval (direnv hook fish)
 
 # enable tools
 function enable_jmeter_bin

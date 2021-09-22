@@ -4,7 +4,8 @@
             metals metals}})
 
 (fn on-attach [client bufnr]
-  (keys.lsp-setup bufnr))
+  (keys.lsp-setup bufnr)
+  (metals.setup_dap))
 
 (local capabilities (a.assoc-in (vim.lsp.protocol.make_client_capabilities)
                                 [:textDocument :completion :completionItem :snippetSupport] true))
@@ -22,6 +23,5 @@
   (vim.opt_global.shortmess:remove :F)
   (metals.initialize_or_attach (a.merge metals.bare_config cfg)))
 
-(setup)
 ;; setup will call via `metals-hook` since it need to require lua file and run so we add another indirection.
 {:setup setup}
