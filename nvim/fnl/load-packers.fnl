@@ -38,6 +38,7 @@
   :PaterJason/cmp-conjure {:requires [:hrsh7th/nvim-cmp :Olical/conjure]}
   :hrsh7th/vim-vsnip {}
   :hrsh7th/cmp-vsnip {:requires [:hrsh7th/nvim-cmp :hrsh7th/vim-vsnip]}
+  :mhartington/formatter.nvim {:plug :formatter}
 
   ;; Languages stuffs
   :bakpakin/fennel.vim {:ft ["fennel"]}
@@ -48,7 +49,10 @@
   :derekwyatt/vim-scala {}
   ;;; Rust
   :simrat39/rust-tools.nvim {:requires [:neovim/nvim-lspconfig]}
-
+  ;;; Kotlin
+  :udalov/kotlin-vim {}
+  ;;; Others
+  :vmchale/just-vim {}
 
   ;; Debug
   :mfussenegger/nvim-dap {:plug :dap}
@@ -58,6 +62,7 @@
   :dag/vim-fish {}
   :tpope/vim-sleuth {}
   :tpope/vim-dispatch {}
+  :tpope/vim-fugitive {}
   :andymass/vim-matchup {:event "VimEnter"}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :plug :treesitter}

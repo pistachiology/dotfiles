@@ -17,28 +17,26 @@
   (local params (vim.lsp.util.make_range_params))
   (tset params :context context)
 
-  (local result (vim.lsp.buf_request_sync 0 :textDocument/codeAction params timeout_ms))
-  (lua "if not result or next(result) == nil then return end")
-  (local actions (. (. result 1) :result))
-  (lua "if not actions then return end")
-  (local action (. actions 1))
-  
-  (if action.edit (vim.lsp.util.apply_workspace_edit action.edit)
-    (= (type action.command) :table) (vim.lsp.buf.execute_command action.command)
-    (vim.lsp.buf.execute_command action)
-  )))
+  (let [result (vim.lsp.buf_request_sync 0 :textDocument/codeAction params timeout_ms)
+        action (?. result 1 :result 1)
+
+        exec (fn [action]
+               (if action.edit                      (vim.lsp.util.apply_workspace_edit action.edit)
+                 (= (type action.command) :table)   (vim.lsp.buf.execute_command action.command)
+                 (vim.lsp.buf.execute_command action)))
+        ]
+    (-?> action exec))))
 
 (vim.cmd "autocmd BufWritePre *.go lua goimports(1000)")
 
 (fn on-attach [client bufnr] (keys.lsp-setup bufnr))
-
-(local langs {:tsserver {}
-              :gopls {}})
-
 (local default-cfg {:on_attach on-attach
                     :capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
                     :flags {:debounce-text-change 150}})
 
+(local langs {:tsserver {:init_options {}}
+              :kotlin_language_server {}
+              :gopls {}})
 (each [lang cfg (pairs langs)]
   (let [server (. lsp lang)
         setting (a.merge default-cfg cfg)] 
