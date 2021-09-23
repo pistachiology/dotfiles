@@ -30,11 +30,14 @@
 (vim.cmd "autocmd BufWritePre *.go lua goimports(1000)")
 
 (fn on-attach [client bufnr] (keys.lsp-setup bufnr))
+
 (local default-cfg {:on_attach on-attach
                     :capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
                     :flags {:debounce-text-change 150}})
 
+
 (local langs {:tsserver {:init_options {}}
+              :clojure_lsp {}
               :kotlin_language_server {}
               :gopls {}})
 (each [lang cfg (pairs langs)]

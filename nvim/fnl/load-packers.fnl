@@ -43,7 +43,8 @@
   ;; Languages stuffs
   :bakpakin/fennel.vim {:ft ["fennel"]}
   :Olical/aniseed {}
-  :Olical/conjure {:tag :v4.23.0}
+  :Olical/conjure {:plug :conjure
+                   :tag :v4.23.0}
   ;;; Scala
   :scalameta/nvim-metals {:plug :metals-hook}
   :derekwyatt/vim-scala {}
