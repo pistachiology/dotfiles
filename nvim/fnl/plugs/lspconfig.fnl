@@ -38,6 +38,7 @@
 
 (local langs {:tsserver {:init_options {}}
               :clojure_lsp {}
+              :ccls {:init_options {:clang {:extraArgs ["-std=c++20" "-lstdc++"]}}}
               :kotlin_language_server {}
               :gopls {}})
 (each [lang cfg (pairs langs)]

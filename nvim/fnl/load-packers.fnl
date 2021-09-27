@@ -61,13 +61,14 @@
 
   ;; Utilities
   :dag/vim-fish {}
-  :tpope/vim-sleuth {}
+  ;; :tpope/vim-sleuth {}
   :tpope/vim-dispatch {}
   :tpope/vim-fugitive {}
   :andymass/vim-matchup {:event "VimEnter"}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :plug :treesitter}
-  :glacambre/firenvim {:run #(. vim.fn.firenvim#install 0) }
+  :glacambre/firenvim {:run #(. vim.fn.firenvim#install 0)
+                       :plug :firenvim}
   :glepnir/galaxyline.nvim {:branch :main
                             :config (my-galaxy.run)
                             :requires [:kyazdani42/nvim-web-devicons]}
