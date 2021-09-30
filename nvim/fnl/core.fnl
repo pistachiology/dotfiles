@@ -15,6 +15,10 @@
 (set nvim.o.completeopt "menu,menuone,noselect")
 (set nvim.o.hidden true) ;; allows dirty buffer to be hidden instead of preventing to go to another buffer
 (set nvim.g.qf_max_height 5)
+(set nvim.o.tabstop 2)
+(set nvim.o.shiftwidth 2)
+(set nvim.o.softtabstop 2)
+(set nvim.o.expandtab true)
 
 (nvim.ex.set :invspell)
 (nvim.ex.set :list)

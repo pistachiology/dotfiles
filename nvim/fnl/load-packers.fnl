@@ -67,7 +67,7 @@
   :andymass/vim-matchup {:event "VimEnter"}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :plug :treesitter}
-  :glacambre/firenvim {:run #(. vim.fn.firenvim#install 0)
+  :glacambre/firenvim {:run #(vim.fn.firenvim#install 0)
                        :plug :firenvim}
   :glepnir/galaxyline.nvim {:branch :main
                             :config (my-galaxy.run)
