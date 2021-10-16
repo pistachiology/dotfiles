@@ -1,5 +1,6 @@
 (local telescope (require :telescope))
 (local actions   (require :telescope.actions))
+(local builtin   (require :telescope.builtin))
 (local nvim      (require :aniseed.nvim))
 
 (local opts {:noremap true :silent true})
@@ -19,8 +20,10 @@
 (telescope.load_extension :fzf)
 (telescope.load_extension :frecency)
 
+(global telescope_live_grep (fn [] (builtin.live_grep {:debounce 200})))
+
 (nvim.set_keymap :n :<leader>ff ":lua require('telescope.builtin').find_files()<cr>" opts)
-(nvim.set_keymap :n :<leader>fg ":lua require('telescope.builtin').live_grep()<cr>" opts)
+(nvim.set_keymap :n :<leader>fg ":lua telescope_live_grep()<cr>" opts)
 (nvim.set_keymap :n :<leader>fs ":lua require('telescope.builtin').grep_string()<cr>" opts)
 (nvim.set_keymap :n :<leader>fb ":lua require('telescope.builtin').buffers()<cr>" opts)
 (nvim.set_keymap :n :<leader>fc "<cmd> require('telescope').extensions.frecency.frecency()<cr>" opts)
