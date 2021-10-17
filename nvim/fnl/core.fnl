@@ -11,7 +11,6 @@
 (set nvim.o.number true)
 (set nvim.o.ignorecase true)
 (set nvim.o.smartcase true)
-(set nvim.o.scroll 16)
 (set nvim.o.completeopt "menu,menuone,noselect")
 (set nvim.o.hidden true) ;; allows dirty buffer to be hidden instead of preventing to go to another buffer
 (set nvim.g.qf_max_height 5)

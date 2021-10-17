@@ -66,6 +66,7 @@ function ccw ; cargo check --workspace --all-targets $argv; end
 
 # Python
 set -gx PATH $PATH /Library/Frameworks/Python.framework/Versions/3.8/bin
+set -gx PATH $PATH $HOME/.local/bin
 
 set -x GPG_TTY (tty)
 

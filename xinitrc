@@ -33,7 +33,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # set keyborad to dvorak programmer
-setxkbmap -variant dvp
+setxkbmap us
 # set keyboard rate
 xset r rate 150 50
 # change caplocks to escape

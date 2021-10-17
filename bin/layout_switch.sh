@@ -3,13 +3,14 @@
 layout=$(setxkbmap -query | grep layout | awk 'END{print $2}')
 case $layout in
   th)
-    setxkbmap us -variant dvp
+    setxkbmap us
     ;;
   us)
-    setxkbmap th
+    # dvorak programmer 40 percent
+    setxkbmap th -variant Mnc-DP40
     ;;
   *)
-    setxkbmap us -variant dvp
+    setxkbmap us
     ;;
 esac
 # change repeat rate
