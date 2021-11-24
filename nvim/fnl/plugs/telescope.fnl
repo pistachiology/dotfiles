@@ -24,9 +24,9 @@
 
 (nvim.set_keymap :n :<leader>ff ":lua require('telescope.builtin').find_files()<cr>" opts)
 (nvim.set_keymap :n :<leader>fg ":lua telescope_live_grep()<cr>" opts)
-(nvim.set_keymap :n :<leader>fs ":lua require('telescope.builtin').grep_string()<cr>" opts)
+(nvim.set_keymap :n :<leader>fc ":lua require('telescope.builtin').grep_string()<cr>" opts)
+(nvim.set_keymap :n :<leader>fs ":lua require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep for > \") })<cr>" opts)
 (nvim.set_keymap :n :<leader>fb ":lua require('telescope.builtin').buffers()<cr>" opts)
-(nvim.set_keymap :n :<leader>fc "<cmd> require('telescope').extensions.frecency.frecency()<cr>" opts)
 
 (nvim.set_keymap :n :<leader>bb ":lua require('telescope.builtin').buffers()<cr>" opts)
 (nvim.set_keymap :n :<leader>bc ":lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>" opts)

@@ -39,6 +39,7 @@
   :hrsh7th/vim-vsnip {}
   :hrsh7th/cmp-vsnip {:requires [:hrsh7th/nvim-cmp :hrsh7th/vim-vsnip]}
   :mhartington/formatter.nvim {:plug :formatter}
+  :ray-x/lsp_signature.nvim {}
 
   ;; Languages stuffs
   :bakpakin/fennel.vim {:ft ["fennel"]}
@@ -46,7 +47,8 @@
   :Olical/conjure {:plug :conjure
                    :tag :v4.23.0}
   ;;; Scala
-  :scalameta/nvim-metals {:plug :metals-hook}
+  :scalameta/nvim-metals {:requires [:nvim-lua/plenary.nvim]
+                          :plug :metals-hook}
   :derekwyatt/vim-scala {}
   ;;; Rust
   :simrat39/rust-tools.nvim {:requires [:neovim/nvim-lspconfig]}
