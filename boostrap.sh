@@ -11,10 +11,9 @@ function link() {
 
     mkdir -p $HOME/.config
     ln -sv ${DIR}/nvim      	                $HOME/.config/nvim
-    ln -sv ${DIR}/fish/config.fish              $HOME/.config/fish/config.fish
-    ln -sv ${DIR}/fish/kubectl_aliases          $HOME/.config/fish/kubectl_aliases
-    ln -sv ${DIR}/fish/theme.fish               $HOME/.config/fish/theme.fish
+    ln -sv ${DIR}/nixpkgs                       $HOME/.config/nixpkgs
     ln -sv ${DIR}/alacritty/alacritty.yml       $HOME/.config/alacritty/alacritty.yml
+    ln -sv ${DIR}/wezterm                       $HOME/.config/wezterm
     
     ln -sv ${DIR}/yabai            $HOME/.config/yabai
     ln -sv ${DIR}/skhd            $HOME/.config/skhd

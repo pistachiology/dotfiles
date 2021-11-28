@@ -4,8 +4,9 @@
             lsp lspconfig
             cmplsp cmp_nvim_lsp
             keys keys
-            rust-tools rust-tools}})
-
+            rust-tools rust-tools
+            null-ls null-ls}})
+;; Golang
 ; Make it works thinking about proper place to puts this :p
 ; only mapping one to one from link for now will make it better after migrate to hotpot
 ;
@@ -26,8 +27,28 @@
                  (vim.lsp.buf.execute_command action)))
         ]
     (-?> action exec))))
-
 (vim.cmd "autocmd BufWritePre *.go lua goimports(1000)")
+
+;; Null-ls
+(fn null-ls-setup []
+  (local null-ls (require "null-ls"))
+  (local helper (require "null-ls.helpers"))
+
+  (local node-lookup (fn [mod bin] (helper.conditional (fn [utils] 
+                                                         (let [project-local-bin (.. "node_modules/.bin/" bin)
+                                                               cfg {:command (or (and (utils.root_has_file project-local-bin) project-local-bin) bin )}]
+                                                           (mod cfg))))))
+
+  (local eslint (node-lookup null-ls.builtins.diagnostics.eslint.with "eslint"))
+  (local eslint-format (node-lookup null-ls.builtins.formatting.eslint.with "eslint"))
+  (local prettier (node-lookup null-ls.builtins.formatting.prettier.with "prettier"))
+
+  (null-ls.config {:debug true
+                   :sources [prettier eslint eslint-format]}))
+
+(null-ls-setup)
+
+;; Defaults
 
 (fn on-attach [client bufnr] (keys.lsp-setup bufnr))
 
@@ -62,5 +83,4 @@
                                                                             :procMacro {:enable true}}}}})
    :tools {:autoSetHints true}}]
 
-  (rust-tools.setup rust-cfg)
-  )
+  (rust-tools.setup rust-cfg))

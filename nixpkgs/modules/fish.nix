@@ -1,0 +1,35 @@
+{ config, pkgs, libs, ... }:
+{
+  programs.fish = {
+    enable = true;
+    plugins = [
+      # Need this when using Fish as a default macOS shell in order to pick
+      # up ~/.nix-profile/bin
+      {
+        name = "nix-env";
+        src = pkgs.fetchFromGitHub {
+          owner = "lilyball";
+          repo = "nix-env.fish";
+          rev = "00c6cc762427efe08ac0bd0d1b1d12048d3ca727";
+          sha256 = "1hrl22dd0aaszdanhvddvqz3aq40jp9zi2zn0v1hjnf7fx4bgpma";
+        };
+      }
+    ];
+
+    shellInit = ''
+      source ${config.xdg.configHome}/myfish/config.fish
+      source ${config.xdg.configHome}/myfish/theme.fish
+    '';
+
+    shellAbbrs = {
+      n = "nvim";
+      vim = "nvim";
+    };
+  };
+
+
+  xdg.configFile.myfish = {
+    source = ../config/fish;
+    recursive = true;
+  };
+}

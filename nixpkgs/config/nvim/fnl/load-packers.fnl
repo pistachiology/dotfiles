@@ -38,9 +38,8 @@
   :PaterJason/cmp-conjure {:requires [:hrsh7th/nvim-cmp :Olical/conjure]}
   :hrsh7th/vim-vsnip {}
   :hrsh7th/cmp-vsnip {:requires [:hrsh7th/nvim-cmp :hrsh7th/vim-vsnip]}
-  :mhartington/formatter.nvim {:plug :formatter}
+  :jose-elias-alvarez/null-ls.nvim {:requires [:nvim-lua/plenary.nvim]}
   :ray-x/lsp_signature.nvim {}
-  :jose-elias-alvarez/null-ls.nvim {:plug :null-ls :requires [:nvim-lua/plenary.nvim]}
 
   ;; Languages stuffs
   :bakpakin/fennel.vim {:ft ["fennel"]}

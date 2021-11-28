@@ -2,9 +2,6 @@
 function vim; nvim $argv; end
 function vi; nvim $argv; end
 
-source "$HOME/dotfiles/fish/theme.fish"
-source "$HOME/dotfiles/fish/private.fish"
-
 fish_vi_key_bindings
 
 if test -e "$HOME/.asdf/asdf.fish"
@@ -14,6 +11,14 @@ else if test -e "/usr/local/opt/asdf/libexec/asdf.fish"
 else if test -e "/usr/local/opt/asdf/asdf.fish"
     # for mac os install with homebrew
     source /usr/local/opt/asdf/asdf.fish
+end
+
+if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'; and type -q bass
+  bass source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+end
+
+if test -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"; and type -q bass
+  bass source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 end
 
 if type -q zoxide
@@ -32,7 +37,7 @@ end
 
 switch (uname) 
     case Linux
-        source "$HOME/dotfiles/fish/linux.fish"
+        source "$HOME/.config/nixpkgs/config/fish/linux.fish"
     case '*'
 end
 
@@ -64,8 +69,6 @@ set -gx PATH $HOME/go/bin $HOME/bin /usr/local/go/bin $PATH
 set -gx PATH $HOME/.cargo/bin $PATH
 function ccw ; cargo check --workspace --all-targets $argv; end
 
-# Python
-set -gx PATH $PATH /Library/Frameworks/Python.framework/Versions/3.8/bin
 set -gx PATH $PATH $HOME/.local/bin
 
 set -x GPG_TTY (tty)
@@ -89,11 +92,6 @@ set -gx PATH $PATH $ANDROID_HOME/tools
 set -gx PATH $PATH $ANDROID_HOME/tools/bin
 set -gx PATH $PATH ANDROID_HOME/platform-tools
 
-
-# enable tools
-function enable_jmeter_bin
-    set -gx PATH $PATH $HOME/tools/jmeter-5.2.1/bin
-end
 
 function fish_mode_prompt --description 'Displays the current mode'
     if test "$fish_key_bindings" = "fish_vi_key_bindings"
