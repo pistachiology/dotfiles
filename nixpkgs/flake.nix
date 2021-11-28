@@ -33,6 +33,7 @@
               sqlite
               tree
               tree-sitter
+              hostname
             ];
 
             # Let Home Manager install and manage itself.
