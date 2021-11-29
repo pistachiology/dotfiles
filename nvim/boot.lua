@@ -1,1 +1,0 @@
-/nix/store/ynv47wwbz0fhsn74c39954vf9nwjk2gf-home-manager-files/.config/nvim/boot.lua
