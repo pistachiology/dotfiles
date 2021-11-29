@@ -14,8 +14,8 @@
 
   ;; Themes
   :tjdevries/colorbuddy.nvim {}
-  :maaslalani/nordbuddy {:requires [:tjdevries/colorbuddy.nvim]
-                         :plug :nordbuddy}
+  :andersevenrud/nordic.nvim {:requires [:tjdevries/colorbuddy.nvim]
+                         :plug :nordic}
   ;; Navigation
   :nvim-telescope/telescope.nvim {:requires [:nvim-lua/plenary.nvim
                                              :nvim-lua/popup.nvim]

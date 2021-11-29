@@ -1,9 +1,7 @@
-(module plugs.nordbuddy {})
+(module plugs.nordic {})
 
-
-((. (require :nordbuddy) :colorscheme)
+((. (require :nordic) :colorscheme)
  {:underline_option "none"
   :italic true
   :italic_comments false})
-
 

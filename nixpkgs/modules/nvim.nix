@@ -6,7 +6,7 @@
     withNodeJs = true;
 
     extraConfig = ''
-      let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'
+      let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.${if pkgs.stdenv.isDarwin then "dylib" else "so"}'
       luafile ${config.xdg.configHome}/nvim/boot.lua
     '';
 

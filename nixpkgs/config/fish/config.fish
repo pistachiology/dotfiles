@@ -4,14 +4,14 @@ function vi; nvim $argv; end
 
 fish_vi_key_bindings
 
-if test -e "$HOME/.asdf/asdf.fish"
-    source "$HOME/.asdf/asdf.fish"
-else if test -e "/usr/local/opt/asdf/libexec/asdf.fish"
-    source /usr/local/opt/asdf/asdf.fish
-else if test -e "/usr/local/opt/asdf/asdf.fish"
-    # for mac os install with homebrew
-    source /usr/local/opt/asdf/asdf.fish
-end
+# if test -e "$HOME/.asdf/asdf.fish"
+#     source "$HOME/.asdf/asdf.fish"
+# else if test -e "/usr/local/opt/asdf/libexec/asdf.fish"
+#     source /usr/local/opt/asdf/asdf.fish
+# else if test -e "/usr/local/opt/asdf/asdf.fish"
+#     # for mac os install with homebrew
+#     source /usr/local/opt/asdf/asdf.fish
+# end
 
 if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'; and type -q bass
   bass source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
