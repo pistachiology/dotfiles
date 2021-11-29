@@ -23,4 +23,6 @@
   xdg.configFile."nvim/boot.lua" = {
     source = ../config/nvim/init.lua;
   };
+
+  xdg.configFile."nvim/parser/fennel.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-fennel}/parser";
 }

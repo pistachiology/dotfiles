@@ -4,17 +4,14 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 function link() {
     echo "linking file"
-    
+
     ln -sv ${DIR}/gitconfig $HOME/.gitconfig
-    ln -sv ${DIR}/tmux.conf $HOME/.tmux.conf
-    ln -sv ${DIR}/tmux 	    $HOME/.tmux
 
     mkdir -p $HOME/.config
-    ln -sv ${DIR}/nvim      	                $HOME/.config/nvim
     ln -sv ${DIR}/nixpkgs                       $HOME/.config/nixpkgs
     ln -sv ${DIR}/alacritty/alacritty.yml       $HOME/.config/alacritty/alacritty.yml
     ln -sv ${DIR}/wezterm                       $HOME/.config/wezterm
-    
+
     ln -sv ${DIR}/yabai            $HOME/.config/yabai
     ln -sv ${DIR}/skhd            $HOME/.config/skhd
 

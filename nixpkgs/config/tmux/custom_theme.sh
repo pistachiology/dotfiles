@@ -1,17 +1,8 @@
 #/usr/bin/env bash
 set -e
 
-PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
-
-# Determine whether the tmux-cpu plugin should be installed
-SHOW_CPU=false
-if [[ $PLUGINS == *"tmux-cpu"* ]]; then
-    SHOW_CPU=true
-fi
-SHOW_BATTERY=false
-if [[ $PLUGINS == *"tmux-battery"* ]]; then
-    SHOW_BATTERY=true
-fi
+SHOW_CPU=true
+SHOW_BATTERY=true
 
 # Battery icons
 tmux set -g @batt_charged_icon "︎♡"

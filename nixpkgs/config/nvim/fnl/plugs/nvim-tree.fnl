@@ -8,6 +8,8 @@
 (fn do-setup []
   (tree.setup {})
   (noremap :n :<C-\> ":NvimTreeToggle<cr>")
-  (noremap :n :<M-\> ":NvimTreeFindFile<cr>"))
+  (noremap :n :<M-\> ":NvimTreeFindFile<cr>")
+  (noremap :n :<leader>nt ":NvimTreeToggle<cr>")
+  (noremap :n :<leader>nf ":NvimTreeFindFile<cr>"))
 
 (do-setup)
