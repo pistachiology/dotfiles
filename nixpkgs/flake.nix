@@ -15,6 +15,7 @@
           username = "tua";
           homeDirectory = "/home/tua";
           stateVersion = "22.05";
+
           configuration = { config, pkgs, ... }: {
             imports = [
               ./modules/base.nix

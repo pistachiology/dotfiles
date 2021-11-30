@@ -1,34 +1,4 @@
-# Vim replace
-function vim; nvim $argv; end
-function vi; nvim $argv; end
-
 fish_vi_key_bindings
-
-# if test -e "$HOME/.asdf/asdf.fish"
-#     source "$HOME/.asdf/asdf.fish"
-# else if test -e "/usr/local/opt/asdf/libexec/asdf.fish"
-#     source /usr/local/opt/asdf/asdf.fish
-# else if test -e "/usr/local/opt/asdf/asdf.fish"
-#     # for mac os install with homebrew
-#     source /usr/local/opt/asdf/asdf.fish
-# end
-
-if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'; and type -q bass
-  bass source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-end
-
-if test -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"; and type -q bass
-  bass source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
-end
-
-if type -q zoxide
-    zoxide init fish | source
-end
-
-if type -q just
-    just --completions fish | source
-    function j; just $argv; end
-end
 
 # envrc
 if type -q direnv
@@ -37,7 +7,10 @@ end
 
 switch (uname) 
     case Linux
-        source "$HOME/.config/nixpkgs/config/fish/linux.fish"
+        if test -e "$HOME/.config/nixpkgs/config/fish/linux.fish"
+            source "$HOME/.config/nixpkgs/config/fish/linux.fish"
+        end
+
     case '*'
 end
 
@@ -45,53 +18,22 @@ end
 set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,vendor}/*" '
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 
-
-# Tmux
 function sclear ; clear; tmux clear-history; end
-
-
-# Expose Term for SSH
-function ssh
-    TERM=screen-256color command ssh $argv
-end
-
+function ssh ; TERM=screen-256color command ssh $argv; end
 function gs ; git status --short --branch $argv; end
-
+function ccw ; cargo check --workspace --all-targets $argv; end
 function with-proxy
     http_proxy=http://127.0.0.1:9090 https_proxy=http://127.0.0.1:9090 $argv
 end
 
-# Go(lang)
-set GOPATH $HOME/go/
-set -gx PATH $HOME/go/bin $HOME/bin /usr/local/go/bin $PATH 
-
-# Rust
-set -gx PATH $HOME/.cargo/bin $PATH
-function ccw ; cargo check --workspace --all-targets $argv; end
-
-set -gx PATH $PATH $HOME/.local/bin
-
 set -x GPG_TTY (tty)
-
 set -gx EDITOR "nvim"
 
-# set -g fish_user_paths "/usr/local/opt/icu4c/bin" $fish_user_paths
-# set -g fish_user_paths "/usr/local/opt/icu4c/sbin" $fish_user_paths
-set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+# Go(lang)
+# set GOPATH $HOME/go/
+# set -gx PATH $HOME/go/bin $HOME/bin /usr/local/go/bin $PATH 
 
-
-# zlib
-set -gx LDFLAGS "-L /usr/local/opt/zlib/lib -L/usr/local/opt/libffi/lib"  
-set -gx CPPFLAGS "-I /usr/local/opt/zlib/include"
-set -gx PKG_CONFIG_PATH "/usr/local/opt/zlib/lib/pkgconfig"
-
-# Android
-set -gx ANDROID_HOME $HOME/Library/Android/sdk
-set -gx PATH $PATH $ANDROID_HOME/emulator
-set -gx PATH $PATH $ANDROID_HOME/tools
-set -gx PATH $PATH $ANDROID_HOME/tools/bin
-set -gx PATH $PATH ANDROID_HOME/platform-tools
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc' ]; . '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc'; end
+# Rust
+# set -gx PATH $HOME/.cargo/bin $PATH
+# set -gx PATH $PATH $HOME/.local/bin
 

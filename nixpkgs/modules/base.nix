@@ -4,17 +4,17 @@
     bat
     bottom
     curl
-    htop
-    rnix-lsp
     fd
     fzf
+    graalvm11-ce
+    htop
     imagemagick
     jq
     ripgrep
+    rnix-lsp
     sqlite
     tree
     tree-sitter
-    graalvm11-ce
   ];
 
   # Let Home Manager install and manage itself.
@@ -24,6 +24,11 @@
     zoxide = {
       enable = true;
       enableFishIntegration = true;
+    };
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
     };
   };
 
