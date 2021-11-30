@@ -1,5 +1,15 @@
 { config, pkgs, libs, lib, ... }:
 let
+  overlays = [
+    (final: prev: {
+      tmux = prev.tmux.overrideAttrs
+        (attrs: {
+          buildInputs = attrs.buildInputs ++ [ pkgs.utf8proc ];
+          configureFlags = attrs.configureFlags ++ [ "--enable-utf8proc" ];
+        });
+    })
+  ];
+
   pluginName = p: if lib.types.package.check p then p.pname else p.plugin.pname;
 
   plugins = with pkgs; [
@@ -18,10 +28,12 @@ let
 in
 {
   home.packages = with pkgs; [ tmux ] ++ plugins;
+  nixpkgs.overlays = overlays;
 
   xdg.configFile."tmux/tmux.conf".text = with lib; ''
     # terminal color
     set -g default-terminal "screen-256color"
+    # set-option default-terminal "tmux-256color"
     set-option -ga terminal-overrides ",xterm-256color:Tc"
     set -ga terminal-overrides ",xterm-256color:Tc"
 
@@ -50,8 +62,6 @@ in
     bind-key 'C-a' send-prefix
     set-option -g renumber-windows on
 
-    # set -g @plugin 'seebi/tmux-colors-solarized'
-
     set -g base-index 1
     set -g pane-base-index 1
 
@@ -65,10 +75,6 @@ in
     # bottom bar
     # set-window-option -g status-left " #S "
     run-shell '~/.tmux/custom_theme.sh'
-
-    #t clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-    set -g @resurrect-strategy-nvim 'session'
-
 
     # ============================================= #
     # Load plugins with Home Manager                #

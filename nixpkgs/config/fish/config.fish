@@ -92,28 +92,6 @@ set -gx PATH $PATH $ANDROID_HOME/tools
 set -gx PATH $PATH $ANDROID_HOME/tools/bin
 set -gx PATH $PATH ANDROID_HOME/platform-tools
 
-
-function fish_mode_prompt --description 'Displays the current mode'
-    if test "$fish_key_bindings" = "fish_vi_key_bindings"
-        switch $fish_bind_mode
-        case default
-            set_color --bold red
-            echo 🅽
-        case insert
-            set_color --bold green
-            echo 🅸
-        case replace-one
-            set_color --bold green
-            echo 🆁
-        case visual
-            set_color --bold brmagenta
-            echo 🆅
-        end
-        set_color normal
-        printf " "
-    end
-end
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc' ]; . '/Users/pistachio/tools/google-cloud-sdk/path.fish.inc'; end
 

@@ -18,12 +18,16 @@
 
     shellInit = ''
       source ${config.xdg.configHome}/myfish/config.fish
+    '';
+
+    interactiveShellInit = ''
       source ${config.xdg.configHome}/myfish/theme.fish
     '';
 
     shellAbbrs = {
       n = "nvim";
       vim = "nvim";
+      gst = "git status";
     };
   };
 
