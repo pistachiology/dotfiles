@@ -44,7 +44,6 @@ function showhelp() {
     echo "help - show this message"
 }
 
-
 CMD="$1"
 shift
 
