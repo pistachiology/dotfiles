@@ -21,9 +21,16 @@
               ./modules/base.nix
               ./modules/bloop.nix
               ./modules/fish.nix
-              ./modules/nvim.nix
+              ./modules/git.nix
+              ./modules/neovim.nix
               ./modules/tmux.nix
             ];
+
+            programs.git.signing = {
+              key = "1BF3F801844B853E9665C5C18534BC47EFCB2FBB";
+              signByDefault = true;
+            };
+
           };
         };
 
@@ -39,7 +46,7 @@
                 ./modules/base.nix
                 ./modules/bloop.nix
                 ./modules/fish.nix
-                ./modules/nvim.nix
+                ./modules/neovim.nix
                 ./modules/tmux.nix
               ];
             };
