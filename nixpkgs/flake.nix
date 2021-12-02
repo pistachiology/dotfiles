@@ -26,9 +26,13 @@
               ./modules/tmux.nix
             ];
 
-            programs.git.signing = {
-              key = "1BF3F801844B853E9665C5C18534BC47EFCB2FBB";
-              signByDefault = true;
+            programs.git = {
+              userName = "pistachiology";
+              userEmail = "im@itua.dev";
+              signing = {
+                key = "1BF3F801844B853E9665C5C18534BC47EFCB2FBB";
+                signByDefault = true;
+              };
             };
 
           };
@@ -49,6 +53,7 @@
                 ./modules/neovim.nix
                 ./modules/tmux.nix
                 ./modules/git.nix
+                ./secrets/ag.nix
               ];
 
               programs.git.signing = {

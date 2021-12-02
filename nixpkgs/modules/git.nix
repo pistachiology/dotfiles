@@ -2,9 +2,6 @@
 {
   programs.git = {
     enable = true;
-    userName = "pistachiology";
-    userEmail = "im@itua.dev";
-
     ignores = [ ];
 
     aliases = {
