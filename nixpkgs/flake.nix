@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = https://github.com/nix-community/home-manager/archive/master.tar.gz;
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -48,7 +48,13 @@
                 ./modules/fish.nix
                 ./modules/neovim.nix
                 ./modules/tmux.nix
+                ./modules/git.nix
               ];
+
+              programs.git.signing = {
+                key = "55676A6212EBDA01EF16B79B27A1B1AE3F53C840";
+                signByDefault = true;
+              };
             };
           };
 

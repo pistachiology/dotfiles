@@ -7,6 +7,7 @@
     fd
     fzf
     graalvm11-ce
+    git-crypt
     htop
     imagemagick
     jq
