@@ -6,7 +6,6 @@ return {
     font = wezterm.font_with_fallback({"PragmataProLiga Nerd Font"}),
     font_size = 18.0,
     window_decorations = "NONE",
-    dpi = 144.0,
     color_scheme = "nord",
     exit_behavior = "Close",
 }

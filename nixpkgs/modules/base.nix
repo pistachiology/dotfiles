@@ -6,13 +6,15 @@
     curl
     fd
     fzf
-    graalvm11-ce
     git-crypt
+    graalvm11-ce
     htop
     imagemagick
     jq
     ripgrep
     rnix-lsp
+    rustup
+    rust-analyzer
     sqlite
     tree
     tree-sitter

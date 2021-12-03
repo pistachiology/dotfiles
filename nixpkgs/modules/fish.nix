@@ -25,9 +25,15 @@
     '';
 
     shellAbbrs = {
+      j = "just";
       n = "nvim";
       vim = "nvim";
       gst = "git status";
+      gco = "git checkout";
+      gr = "git rebase -i";
+      grd = "git rebase -i develop";
+      grm = "git rebase -i master";
+      gr2 = "git rebase -i @~2";
     };
   };
 
