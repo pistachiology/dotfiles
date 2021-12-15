@@ -13,6 +13,7 @@
 
     plugins = with pkgs.vimPlugins; [
       (nvim-treesitter.withPlugins (p: pkgs.tree-sitter.allGrammars))
+      markdown-preview-nvim
     ];
   };
 
