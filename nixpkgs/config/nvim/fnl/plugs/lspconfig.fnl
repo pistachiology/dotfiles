@@ -67,6 +67,7 @@
                             :settings {:Lua {:workspace {:maxPreload 4000}}}}
               :null-ls {:on_attach #nil}
               :kotlin_language_server {}
+              :prismals {}
               :rnix {}
               :gopls {}})
 

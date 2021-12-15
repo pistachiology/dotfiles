@@ -1,8 +1,11 @@
 { config, pkgs, libs, ... }:
 {
+
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     bat
     bottom
+    cloudflared
     curl
     fd
     fzf
