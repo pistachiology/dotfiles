@@ -41,8 +41,8 @@
     (lua "return {}"))
 
   (local gl (require :galaxyline))
-  (local fileinfo (require :galaxyline.provider_fileinfo))
-  (local git (require :galaxyline.provider_vcs))
+  (local fileinfo (require :galaxyline.providers.fileinfo))
+  (local git (require :galaxyline.providers.vcs))
 
   (tset gl :short_line_list ["packager"])
 

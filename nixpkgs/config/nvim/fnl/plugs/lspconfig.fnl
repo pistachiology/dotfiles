@@ -34,16 +34,16 @@
   (local null-ls (require "null-ls"))
   (local helper (require "null-ls.helpers"))
 
-  (local node-lookup (fn [mod bin] (helper.conditional (fn [utils] 
-                                                         (let [project-local-bin (.. "node_modules/.bin/" bin)
-                                                               cfg {:command (or (and (utils.root_has_file project-local-bin) project-local-bin) bin )}]
-                                                           (mod cfg))))))
+  (local node-lookup (fn [mod bin] 
+                       (let [project-local-bin (.. "node_modules/.bin/" bin)
+                             cfg {:prefer_local project-local-bin :command bin}]
+                         (mod cfg))))
 
   (local eslint (node-lookup null-ls.builtins.diagnostics.eslint.with "eslint"))
   (local eslint-format (node-lookup null-ls.builtins.formatting.eslint.with "eslint"))
   (local prettier (node-lookup null-ls.builtins.formatting.prettier.with "prettier"))
 
-  (null-ls.config {:debug true
+  (null-ls.setup {:debug true
                    :sources [prettier eslint eslint-format]}))
 
 (null-ls-setup)

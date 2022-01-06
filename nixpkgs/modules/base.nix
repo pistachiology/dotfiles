@@ -3,6 +3,12 @@
 
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
+    # GNU stuffs for better cli experience
+    coreutils
+    findutils
+    gnugrep
+    gnused
+
     bat
     bottom
     cloudflared
@@ -14,10 +20,11 @@
     htop
     imagemagick
     jq
+    nodejs
     ripgrep
     rnix-lsp
-    rustup
     rust-analyzer
+    rustup
     sqlite
     tree
     tree-sitter
