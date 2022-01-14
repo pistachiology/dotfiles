@@ -31,6 +31,7 @@
 
   (nnoremap :<leader>cs "<cmd>lua quick_command_set()<cr>")
   (nnoremap :<leader>ce "<cmd>lua quick_command_execute()<cr>")
+  (nnoremap :<leader>cc ":SlimeSend<cr>")
 
   (nnoremap "]q" ":cn<cr>")
   (nnoremap "[q" ":cp<cr>")

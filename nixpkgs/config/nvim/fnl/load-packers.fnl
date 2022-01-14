@@ -39,7 +39,7 @@
   :hrsh7th/vim-vsnip {}
   :hrsh7th/cmp-vsnip {:requires [:hrsh7th/nvim-cmp :hrsh7th/vim-vsnip]}
   :jose-elias-alvarez/null-ls.nvim {:requires [:nvim-lua/plenary.nvim]}
-  :ray-x/lsp_signature.nvim {}
+  ; :ray-x/lsp_signature.nvim {}
 
   ;; Languages stuffs
   :bakpakin/fennel.vim {:ft ["fennel"]}
@@ -69,9 +69,9 @@
   :andymass/vim-matchup {:event "VimEnter"}
   :glacambre/firenvim {:run #(vim.fn.firenvim#install 0)
                        :plug :firenvim}
-  :NTBBloodbath/galaxyline.nvim {:branch :main
-                            :config (my-galaxy.run)
-                            :requires [:kyazdani42/nvim-web-devicons]}
+  ; :NTBBloodbath/galaxyline.nvim {:branch :main
+  ;                           :config (my-galaxy.run)
+  ;                           :requires [:kyazdani42/nvim-web-devicons]}
   :b3nj5m1n/kommentary {}
   :junegunn/vim-easy-align {}
 

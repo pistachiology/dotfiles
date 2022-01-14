@@ -4,5 +4,5 @@
     (set vim.g.quick-command (vim.fn.input "Command: "))))
 
 (global quick_command_execute (fn []
-    (-?> vim.g.quick-command vim.fn.execute)))
+    (-?> (. "SlimeSend1 " vim.g.quick-command) vim.fn.execute)))
 

@@ -16,11 +16,11 @@
 (local cfg {:init_options {:statusBarProvider :on}
             :on_attach on-attach
             :capabilities capabilities
-            :settings {:showImplicitArguments true
-                       :showImplicitConversionsAndClasses true
-                       :showInferredType true
+            :settings {; :showImplicitArguments true
+                       ; :showImplicitConversionsAndClasses true
+                       ; :showInferredType true
                        ;; stack 8 and heap 8
-                       :serverProperties ["-Xms8g" "-Xmx8g"]}})
+                       :serverProperties ["-Xms8g" "-Xmx16g"]}})
 
 (fn setup []
   (vim.opt_global.shortmess:remove :F)

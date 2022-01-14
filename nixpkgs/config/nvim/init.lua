@@ -30,5 +30,5 @@ require('load-packers')
 
 
 require'nvim-treesitter.configs'.setup {
-    highlight = { enable = true, disable = {"fennel"} }
+    highlight = { enable = true, disable = {"fennel", "markdown"} }
 }

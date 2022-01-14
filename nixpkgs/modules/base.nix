@@ -20,11 +20,12 @@
     htop
     imagemagick
     jq
+    /* sumneko-lua-language-server # broken on mac os https://github.com/NixOS/nixpkgs/issues/153804 */
     nodejs
     ripgrep
     rnix-lsp
     rust-analyzer
-    rustup
+    rust-bin.stable.latest.default
     sqlite
     tree
     tree-sitter

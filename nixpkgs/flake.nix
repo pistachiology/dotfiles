@@ -3,12 +3,16 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    rust-overlay.url = "github:oxalica/rust-overlay";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, rust-overlay, home-manager, ... }:
+    let
+      overlays = [ rust-overlay.overlay ];
+    in
     {
       homeConfigurations = {
         tua = home-manager.lib.homeManagerConfiguration {
@@ -18,6 +22,9 @@
           stateVersion = "22.05";
 
           configuration = { config, pkgs, ... }: {
+            nixpkgs.overlays = overlays;
+            nixpkgs.config.allowUnfree = true;
+
             imports = [
               ./modules/base.nix
               ./modules/bloop.nix
@@ -47,6 +54,8 @@
             stateVersion = "22.05";
 
             configuration = { config, pkgs, ... }: {
+              nixpkgs.overlays = overlays;
+
               imports = [
                 ./modules/base.nix
                 ./modules/bloop.nix

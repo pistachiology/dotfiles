@@ -43,8 +43,7 @@
   (local eslint-format (node-lookup null-ls.builtins.formatting.eslint.with "eslint"))
   (local prettier (node-lookup null-ls.builtins.formatting.prettier.with "prettier"))
 
-  (null-ls.setup {:debug true
-                   :sources [prettier eslint eslint-format]}))
+  (null-ls.setup {:sources [prettier eslint eslint-format]}))
 
 (null-ls-setup)
 
@@ -65,7 +64,6 @@
               :ccls {:init_options {:clang {:extraArgs ["-std=c++20" "-lstdc++"]}}}
               :sumneko_lua {:cmd ["lua-language-server"]
                             :settings {:Lua {:workspace {:maxPreload 4000}}}}
-              :null-ls {:on_attach #nil}
               :kotlin_language_server {}
               :prismals {}
               :rnix {}
