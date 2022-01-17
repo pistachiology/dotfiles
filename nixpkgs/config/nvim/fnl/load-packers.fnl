@@ -69,9 +69,9 @@
   :andymass/vim-matchup {:event "VimEnter"}
   :glacambre/firenvim {:run #(vim.fn.firenvim#install 0)
                        :plug :firenvim}
-  ; :NTBBloodbath/galaxyline.nvim {:branch :main
-  ;                           :config (my-galaxy.run)
-  ;                           :requires [:kyazdani42/nvim-web-devicons]}
+  :NTBBloodbath/galaxyline.nvim {:branch :main
+                            :config (my-galaxy.run)
+                            :requires [:kyazdani42/nvim-web-devicons]}
   :b3nj5m1n/kommentary {}
   :junegunn/vim-easy-align {}
 
