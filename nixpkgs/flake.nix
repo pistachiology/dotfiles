@@ -46,6 +46,38 @@
           };
         };
 
+
+        pistachio = home-manager.lib.homeManagerConfiguration {
+          system = "x86_64-darwin";
+          username = "pistachio";
+          homeDirectory = "/Users/pistachio";
+          stateVersion = "22.05";
+
+          configuration = { config, pkgs, ... }: {
+            nixpkgs.overlays = overlays;
+            nixpkgs.config.allowUnfree = true;
+
+            imports = [
+              ./modules/base.nix
+              ./modules/bloop.nix
+              ./modules/fish.nix
+              ./modules/git.nix
+              ./modules/neovim.nix
+              ./modules/tmux.nix
+            ];
+
+            programs.git = {
+              userName = "pistachiology";
+              userEmail = "im@itua.dev";
+              signing = {
+                key = "1BF3F801844B853E9665C5C18534BC47EFCB2FBB";
+                signByDefault = true;
+              };
+            };
+
+          };
+        };
+
         nlaoticharoe = home-manager.lib.homeManagerConfiguration
           {
             system = "x86_64-darwin";

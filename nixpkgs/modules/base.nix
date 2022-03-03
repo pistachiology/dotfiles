@@ -17,10 +17,12 @@
     fzf
     git-crypt
     graalvm11-ce
+    go
+    gopls
     htop
     imagemagick
     jq
-    /* sumneko-lua-language-server # broken on mac os https://github.com/NixOS/nixpkgs/issues/153804 */
+    sumneko-lua-language-server
     nodejs
     ripgrep
     rnix-lsp
