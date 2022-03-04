@@ -6,6 +6,7 @@
 (local opts {:noremap true :silent true})
 
 (telescope.setup {:defaults {:file_ignore_patterns ["node_modules"]
+                             :preview {:treesitter false} ; this cause neovim to hang sometimes. https://github.com/nvim-telescope/telescope.nvim/issues/1379
                              :path_display {:truncate 3}
                              :layout_config {:horizontal {:width 0.95 :height 0.9 :preview_width 0.5}
                                              :vertical {:height 0.9 :preview_height: 0.5}}

@@ -31,7 +31,6 @@ set -gx EDITOR "nvim"
 
 # Go(lang)
 # set GOPATH $HOME/go/
-# set -gx PATH $HOME/go/bin $HOME/bin /usr/local/go/bin $PATH 
 
 # Rust
 set -gx PATH $HOME/.cargo/bin $PATH

@@ -39,7 +39,7 @@
   :hrsh7th/vim-vsnip {}
   :hrsh7th/cmp-vsnip {:requires [:hrsh7th/nvim-cmp :hrsh7th/vim-vsnip]}
   :jose-elias-alvarez/null-ls.nvim {:requires [:nvim-lua/plenary.nvim]}
-  ; :ray-x/lsp_signature.nvim {}
+  :ray-x/lsp_signature.nvim {}
 
   ;; Languages stuffs
   :bakpakin/fennel.vim {:ft ["fennel"]}
