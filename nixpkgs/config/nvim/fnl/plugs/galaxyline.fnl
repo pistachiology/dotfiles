@@ -32,7 +32,7 @@
 (local checkwidth #(let [squeeze-width (/ (vim.fn.winwidth 0) 2)]
                      (> squeeze-width 40)))
 
-(fn execute-galaxy []
+(defn run []
   ; just hack for installation
   (when (= vim.env.SETUP "true")
     (lua "return {}"))
@@ -243,4 +243,3 @@
                                            ;  }
                       ;}
 
-{:run execute-galaxy}
