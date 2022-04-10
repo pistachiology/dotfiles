@@ -42,5 +42,5 @@ setxkbmap -option caps:escape
 xsetroot -cursor_name left_ptr
  
 
-exec xmonad
+exec i3
 
