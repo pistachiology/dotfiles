@@ -15,6 +15,7 @@
     curl
     fd
     fzf
+    gdb
     git-crypt
     graalvm11-ce
     go
@@ -53,4 +54,9 @@
     experimental-features = nix-command flakes
     sandbox = false
   '';
+
+  xdg.configFile."i3/config" = {
+    source = ../config/i3/config;
+  };
+
 }
