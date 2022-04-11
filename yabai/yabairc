@@ -2,14 +2,27 @@
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-yabai -m rule --add \
-    app='^Microsoft Teams$' \
+yabai -m rule --add                        \
+    app='^Microsoft Teams$'                \
     title='^Microsoft Teams Notification$' \
-    border=off
-yabai -m rule --add \
-    app='^Microsoft Teams$' \
+    border=off                             \
+    managed=off
+yabai -m rule --add                        \
+    app='^Microsoft Teams$'                \
     title='^Microsoft Teams Notification$' \
-    border=off
+    border=off                             \
+    managed=off
+yabai -m rule --add                        \
+    app='^Slack$'                          \
+    title='^Slack | mini panel$'           \
+    border=off                             \
+    managed=off
+
+yabai -m rule --add                        \
+    app='^Slack$'                          \
+    title='^$'                             \
+    border=off                             \
+    managed=off
 
 # focus window after active space changes
 yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"

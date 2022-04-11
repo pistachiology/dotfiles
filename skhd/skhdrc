@@ -77,62 +77,69 @@
 #
 
 
+
+alt - n : yabai -m window --focus prev || yabai -m window --focus last
 # swap window
-mod - h : yabai -m window --warp west
-mod - j : yabai -m window --warp north
-mod - k : yabai -m window --warp next
-mod - l : yabai -m window --warp east
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
 
 # move window
-shift + mod - h : yabai -m window --warp west
-shift + mod - j : yabai -m window --warp north
-shift + mod - k : yabai -m window --warp next
-shift + mod - l : yabai -m window --warp east
+shift + alt - h : yabai -m window --warp west
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - l : yabai -m window --warp east
+
+alt + ctrl - h : yabai -m window --insert west
+alt + ctrl - j : yabai -m window --insert south
+alt + ctrl - k : yabai -m window --insert north
+alt + ctrl - l : yabai -m window --insert east
 
 # swap window
-mod - return : yabai -m window --swap west # swap with "main" tile (simply swap it west)
+alt - return : yabai -m window --swap west # swap with "main" tile (simply swap it west)
 
-mod - 2 : yabai -m space --focus 1
-mod - 4 : yabai -m space --focus 2
-mod - 6 : yabai -m space --focus 3
-mod - 8 : yabai -m space --focus 4
-mod - 0 : yabai -m space --focus 5
-mod - 1 : yabai -m space --focus 6
+alt - 2 : yabai -m space --focus 1
+alt - 4 : yabai -m space --focus 2
+alt - 6 : yabai -m space --focus 3
+alt - 8 : yabai -m space --focus 4
+alt - 0 : yabai -m space --focus 5
+alt - 1 : yabai -m space --focus 6
 
 # send window to desktop and follow focus
-shift + mod - 2 : yabai -m window --space 1
-shift + mod - 4 : yabai -m window --space 2
-shift + mod - 6 : yabai -m window --space 3
-shift + mod - 8 : yabai -m window --space 4
-shift + mod - 0 : yabai -m window --space 5
-shift + mod - 1 : yabai -m window --space 6
+shift + alt - 2 : yabai -m window --space 1
+shift + alt - 4 : yabai -m window --space 2
+shift + alt - 6 : yabai -m window --space 3
+shift + alt - 8 : yabai -m window --space 4
+shift + alt - 0 : yabai -m window --space 5
+shift + alt - 1 : yabai -m window --space 6
 
 # mode resize
 # toggle window fullscreen zoom
-mod - f : yabai -m window --toggle zoom-fullscreen
+alt - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window split type
-mod + shift - s : yabai -m window --toggle split
+alt + shift - s : yabai -m window --toggle split
 
 # float / unfloat window and center on screen
-mod - t : yabai -m window --toggle float; \
+alt - t : yabai -m window --toggle float; \
           yabai -m window --grid 4:4:1:1:2:2; \
           yabai -m window --toggle topmost
 
 # toggle sticky, topmost and resize to picture-in-picture size
-mod - s : yabai -m window --toggle sticky; \
+alt - s : yabai -m window --toggle sticky; \
           yabai -m window --toggle topmost; \
           yabai -m window --grid 5:5:4:0:1:1
 
 
-mod - w : yabai -m display --focus 2
-mod - e : yabai -m display --focus 1
-mod + shift - w : yabai -m window --display 2 && yabai -m display --focus 2
-mod + shift - e : yabai -m window --display 1 && yabai -m display --focus 1
+alt - w : yabai -m display --focus 2
+alt - e : yabai -m display --focus 1
+alt + shift - w : yabai -m window --display 2 && yabai -m display --focus 2
+alt + shift - e : yabai -m window --display 1 && yabai -m display --focus 1
 
 
 # toggle sticky, float and resize to picture-in-picture size
-mod - p : yabai -m window --toggle sticky; \
+alt - p : yabai -m window --toggle sticky; \
           yabai -m window --toggle topmost; \
            yabai -m window --grid 5:5:4:0:1:1
 
@@ -142,7 +149,7 @@ mod - p : yabai -m window --toggle sticky; \
 :: resize @ : yabai -m config active_window_opacity 1; yabai -m config normal_window_opacity 0.9;
 
 # from 'default' mode, activate mode 'resize'
-mod + r ; resize
+alt - r ; resize
 
 # from 'resize' mode, activate mode 'default'
 # (this is the keypress required to leave resize mode)
@@ -165,15 +172,15 @@ resize < l : yabai -m window --resize right:25:0
 
 
 # increase window size
-# shift + mod - a : yabai -m window --resize left:-20:0
-# shift + mod - w : yabai -m window --resize top:0:-20
+# shift + alt - a : yabai -m window --resize left:-20:0
+# shift + alt - w : yabai -m window --resize top:0:-20
 
 # decrease window size
 # shift + cmd - s : yabai -m window --resize bottom:0:-20
 # shift + cmd - w : yabai -m window --resize top:0:20
 
 # toggle sticky(+float), topmost, picture-in-picture
-# mod - p : yabai -m window --toggle sticky;\
+# alt - p : yabai -m window --toggle sticky;\
 #           yabai -m window --toggle topmost;\
 #           yabai -m window --toggle pip
 
