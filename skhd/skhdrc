@@ -78,7 +78,7 @@
 
 
 
-alt - n : yabai -m window --focus prev || yabai -m window --focus last
+alt - n : yabai -m window --focus prev || yabai -m window --focus (yabai -m query --windows --space | jq 'map(select(."is-sticky" == true and ."has-focus" == false)) | last | .id') || yabai -m window --focus last
 # swap window
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
@@ -127,10 +127,12 @@ alt - t : yabai -m window --toggle float; \
           yabai -m window --toggle topmost
 
 # toggle sticky, topmost and resize to picture-in-picture size
-alt - s : yabai -m window --toggle sticky; \
-          yabai -m window --toggle topmost; \
-          yabai -m window --grid 5:5:4:0:1:1
-
+# if window is sticky set padding to 500
+alt - s : yabai -m config right_padding 1;             \
+          yabai -m window --toggle sticky;             \
+          yabai -m window --toggle topmost;            \
+          yabai -m window --float off;                 \
+          yabai -m window --grid 1:100:81:0:19:1;
 
 alt - w : yabai -m display --focus 2
 alt - e : yabai -m display --focus 1
@@ -139,10 +141,11 @@ alt + shift - e : yabai -m window --display 1 && yabai -m display --focus 1
 
 
 # toggle sticky, float and resize to picture-in-picture size
-alt - p : yabai -m window --toggle sticky; \
-          yabai -m window --toggle topmost; \
-           yabai -m window --grid 5:5:4:0:1:1
-
+alt - p : if test (yabai -m config right_padding) = "1"; \
+            yabai -m config right_padding 500;           \
+          else;                                          \
+            yabai -m config right_padding 1;             \
+          end
 
 
 # defines a new mode 'resize' with an on_enter command, that captures keypresses
