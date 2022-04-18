@@ -17,11 +17,16 @@
       function SlimeOverride_EscapeText_scala(text)
         return a:text
       endfunction
+
+      set foldmethod=expr
+      set foldexpr=nvim_treesitter#foldexpr()
+
     '';
 
     plugins = with pkgs.vimPlugins; [
       (nvim-treesitter.withPlugins (p: pkgs.tree-sitter.allGrammars))
       markdown-preview-nvim
+      lightspeed-nvim
       vim-prisma
       vim-slime
     ];

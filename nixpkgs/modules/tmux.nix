@@ -51,10 +51,15 @@ in
     bind k select-pane -U
     bind l select-pane -R
 
-    bind C-j resize-pane -D 15
-    bind C-k resize-pane -U 15
-    bind C-h resize-pane -L 15
-    bind C-l resize-pane -R 15
+    bind -r H resize-pane -L 15
+    bind -r J resize-pane -D 15
+    bind -r K resize-pane -U 15
+    bind -r L resize-pane -R 15
+
+    bind -r Left resize-pane -L 15
+    bind -r Down resize-pane -D 15
+    bind -r Up resize-pane -U 15
+    bind -r Right resize-pane -R 15
 
 
     unbind-key C-b
@@ -67,7 +72,7 @@ in
 
     # set-option -g status-position top
 
-    set-option -g repeat-time 0
+    set-option -g repeat-time 500
 
     # Removes ESC delay
     set -sg escape-time 0

@@ -1,4 +1,4 @@
-{ config, pkgs, libs, ... }:
+{ config, autoPatchelfHook, pkgs, libs, lib, ... }:
 
 let
   fetchurl = pkgs.fetchurl;
@@ -6,13 +6,11 @@ let
   coursier = pkgs.coursier;
   overlays = [
     (final: prev: {
-      bloop = prev.bloop.overrideAttrs (old: rec {
-        version = "1.4.11";
-        bloop-coursier-channel = fetchurl {
-          url = "https://github.com/scalacenter/bloop/releases/download/v1.4.11/bloop-coursier.json";
-          sha256 = "0h8gw1sgn7zgn5a2cfd95aiy1iw918vmi9i5xpss5390g3b7z08a";
-        };
-      });
+      bloop = prev.bloop.overrideAttrs
+        (old: rec {
+          # patch until unstable version are release
+          nativeBuildInputs = [ pkgs.installShellFiles pkgs.makeWrapper ] ++ lib.optional stdenv.isLinux autoPatchelfHook;
+        });
     })
   ];
 in
