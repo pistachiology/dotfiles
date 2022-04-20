@@ -22,9 +22,11 @@
                        ;; stack 8 and heap 8
                        :serverProperties ["-Xms8g" "-Xmx16g"]}})
 
-(fn setup []
+(fn setup- []
   (vim.opt_global.shortmess:remove :F)
   (metals.initialize_or_attach (a.merge (metals.bare_config) cfg)))
 
+(def setup setup-)
+
 ;; setup will call via `metals-hook` since it need to require lua file and run so we add another indirection.
-{:setup setup}
+; {:setup setup}

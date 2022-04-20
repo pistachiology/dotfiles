@@ -106,6 +106,14 @@ alt - 8 : yabai -m space --focus 4
 alt - 0 : yabai -m space --focus 5
 alt - 1 : yabai -m space --focus 6
 
+# Dvorak Programmer
+alt - 0x1C : yabai -m space --focus 1
+alt - 0x19 : yabai -m space --focus 2
+alt - 0x1D : yabai -m space --focus 3
+alt - 0x1B : yabai -m space --focus 4
+alt - 0x1A : yabai -m space --focus 5
+alt - 0x17 : yabai -m space --focus 6
+
 # send window to desktop and follow focus
 shift + alt - 2 : yabai -m window --space 1
 shift + alt - 4 : yabai -m window --space 2
@@ -113,6 +121,13 @@ shift + alt - 6 : yabai -m window --space 3
 shift + alt - 8 : yabai -m window --space 4
 shift + alt - 0 : yabai -m window --space 5
 shift + alt - 1 : yabai -m window --space 6
+
+shift + alt - 0x1C : yabai -m window --space 1
+shift + alt - 0x19 : yabai -m window --space 2
+shift + alt - 0x1D : yabai -m window --space 3
+shift + alt - 0x1B : yabai -m window --space 4
+shift + alt - 0x1A : yabai -m window --space 5
+shift + alt - 0x17 : yabai -m window --space 6
 
 # mode resize
 # toggle window fullscreen zoom
