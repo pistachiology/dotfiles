@@ -143,8 +143,7 @@ alt - t : yabai -m window --toggle float; \
 
 # toggle sticky, topmost and resize to picture-in-picture size
 # if window is sticky set padding to 500
-alt - s : yabai -m config right_padding 1;             \
-          yabai -m window --toggle sticky;             \
+alt - s : yabai -m window --toggle sticky;             \
           yabai -m window --toggle topmost;            \
           yabai -m window --float off;                 \
           yabai -m window --grid 1:100:81:0:19:1;
