@@ -7,7 +7,7 @@ case $layout in
     ;;
   us)
     # dvorak programmer 40 percent
-    setxkbmap th -variant Mnc-DP40
+    setxkbmap th -variant mnc
     ;;
   *)
     setxkbmap us

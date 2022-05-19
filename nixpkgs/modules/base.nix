@@ -29,6 +29,7 @@
     rnix-lsp
     rust-analyzer
     rust-bin.stable.latest.default
+    rsync
     sqlite
     tree
     tree-sitter

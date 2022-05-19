@@ -1,4 +1,4 @@
-{ config, autoPatchelfHook, pkgs, libs, lib, ... }:
+{ config, pkgs, libs, lib, ... }:
 
 let
   fetchurl = pkgs.fetchurl;
@@ -9,7 +9,7 @@ let
       bloop = prev.bloop.overrideAttrs
         (old: rec {
           # patch until unstable version are release
-          nativeBuildInputs = [ pkgs.installShellFiles pkgs.makeWrapper ] ++ lib.optional stdenv.isLinux autoPatchelfHook;
+          nativeBuildInputs = [ pkgs.installShellFiles pkgs.makeWrapper ] ++ lib.optional stdenv.isLinux pkgs.autoPatchelfHook;
         });
     })
   ];
