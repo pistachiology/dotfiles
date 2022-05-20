@@ -1,4 +1,12 @@
 { config, pkgs, libs, lib, ... }:
+let
+  tree-sitter = pkgs.tree-sitter.override {
+    extraGrammars = {
+      tree-sitter-nix = lib.importJSON ./tree-sitter-nix.json;
+    };
+  };
+  grammars = tree-sitter.allGrammars;
+in
 {
   programs.neovim = {
     enable = true;
@@ -24,7 +32,7 @@
     '';
 
     plugins = with pkgs.vimPlugins; [
-      (nvim-treesitter.withPlugins (p: pkgs.tree-sitter.allGrammars))
+      (nvim-treesitter.withPlugins (p: grammars))
       markdown-preview-nvim
       lightspeed-nvim
       vim-prisma
@@ -33,10 +41,11 @@
   };
 
 
-  xdg.configFile."nvim/fnl" = {
-    source = ../config/nvim/fnl;
-    recursive = true;
-  };
+  xdg.configFile."nvim/fnl" =
+    {
+      source = ../config/nvim/fnl;
+      recursive = true;
+    };
 
   xdg.configFile."nvim/boot.lua" = {
     source = ../config/nvim/init.lua;
