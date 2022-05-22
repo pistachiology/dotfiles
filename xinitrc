@@ -42,8 +42,5 @@ setxkbmap -option grp:win_space_toggle -layout us,th -variant ,mnc
 # default x11 set pointer to cross :sad:
 xsetroot -cursor_name left_ptr
 
-xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
- 
-
 exec i3
 

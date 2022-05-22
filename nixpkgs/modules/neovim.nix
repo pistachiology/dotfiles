@@ -41,11 +41,10 @@ in
   };
 
 
-  xdg.configFile."nvim/fnl" =
-    {
-      source = ../config/nvim/fnl;
-      recursive = true;
-    };
+  xdg.configFile."nvim/fnl" = {
+    source = ../config/nvim/fnl;
+    recursive = true;
+  };
 
   xdg.configFile."nvim/boot.lua" = {
     source = ../config/nvim/init.lua;
