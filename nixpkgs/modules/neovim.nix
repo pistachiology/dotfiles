@@ -37,6 +37,7 @@ in
       lightspeed-nvim
       vim-prisma
       vim-slime
+      direnv-vim
     ];
   };
 
