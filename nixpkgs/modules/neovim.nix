@@ -67,6 +67,7 @@ in
       vim-slime
       direnv-vim
       packer-nvim
+      impatient-nvim
     ];
   };
 
