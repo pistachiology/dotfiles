@@ -1,13 +1,13 @@
-(local nvim (require :aniseed.nvim))
+(local set_keymap vim.api.nvim_set_keymap)
 
 (fn map [mode key value]
-  (nvim.set_keymap mode key value {:noremap true :silent true}))
+  (set_keymap mode key value {:noremap true :silent true}))
 
 (fn nnoremap [key value]
-  (nvim.set_keymap :n key value {:noremap true :silent true}))
+  (set_keymap :n key value {:noremap true :silent true}))
 
 (fn inoremap [key value]
-  (nvim.set_keymap :i key value {:noremap true :silent true}))
+  (set_keymap :i key value {:noremap true :silent true}))
 
 
 (global dap_ui_widgets_frames (fn []

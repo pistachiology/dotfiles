@@ -33,6 +33,8 @@
     sqlite
     tree
     tree-sitter
+    
+    fennel
   ];
 
   # Let Home Manager install and manage itself.

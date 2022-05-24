@@ -1,9 +1,7 @@
-(module plugs.nvim-tree
-  {autoload {nvim aniseed.nvim
-             tree nvim-tree}})
+(local tree (require :nvim-tree))
 
 (fn noremap [mode from to]
-  (nvim.set_keymap mode from to {:noremap true}))
+  (vim.api.nvim_set_keymap mode from to {:noremap true}))
 
 (fn do-setup []
   (tree.setup {:git {:enable false :ignore false :timeout 1}})

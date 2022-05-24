@@ -1,14 +1,13 @@
-
-(local nvim (require :aniseed.nvim))
+(local set_keymap vim.api.nvim_set_keymap)
 
 (fn map [mode key value]
-  (nvim.set_keymap mode key value {:noremap true :silent true}))
+  (set_keymap mode key value {:noremap true :silent true}))
 
 (fn nnoremap [key value]
-  (nvim.set_keymap :n key value {:noremap true :silent true}))
+  (set_keymap :n key value {:noremap true :silent true}))
 
 (fn inoremap [key value]
-  (nvim.set_keymap :i key value {:noremap true :silent true}))
+  (set_keymap :i key value {:noremap true :silent true}))
 
 
 (fn setup []
@@ -41,8 +40,8 @@
 
 
 (fn lsp-setup [bufnr]
-  (local k #(nvim.buf_set_keymap bufnr $...))
-  (local o #(nvim.buf_set_option bufnr $...))
+  (local k #(vim.api.nvim_buf_set_keymap bufnr $...))
+  (local o #(vim.api.nvim_buf_set_option bufnr $...))
 
   (o :omnifunc "v:lua.vim.lsp.omnifunc")
 

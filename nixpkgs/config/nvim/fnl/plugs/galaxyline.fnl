@@ -1,5 +1,3 @@
-(module plugs.galaxyline {autoload {a aniseed.core}})
-
 ;; Thanks to
 ;; https://raw.githubusercontent.com/voitd/dotfiles/master/.config/nvim/lua/plugins/statusline.lua
 
@@ -32,7 +30,7 @@
 (local checkwidth #(let [squeeze-width (/ (vim.fn.winwidth 0) 2)]
                      (> squeeze-width 40)))
 
-(defn run []
+(fn run []
   ; just hack for installation
   (when (= vim.env.SETUP "true")
     (lua "return {}"))
@@ -193,31 +191,83 @@
      })
 
 
-(local short_line_left 
-  {1 {:BufferType {:provider :FileIcon
-                   :separtor " "
-                   :separator_highlight [nord_colors.NONE nord_colors.lbg]
-                   :highlight [nord_colors.blue nord_colors.lbg :bold]}}
-   2 {:SFileName  {:provider :SFileName
-                   :condition buffer_not_empty
-                   :highlight [nord_colors.blue nord_colors.lbg :bold]}}
-   })
+  (local short_line_left 
+    {1 {:BufferType {:provider :FileIcon
+                     :separtor " "
+                     :separator_highlight [nord_colors.NONE nord_colors.lbg]
+                     :highlight [nord_colors.blue nord_colors.lbg :bold]}}
+     2 {:SFileName  {:provider :SFileName
+                     :condition buffer_not_empty
+                     :highlight [nord_colors.blue nord_colors.lbg :bold]}}
+     })
 
 
-(local short_line_right 
-  {1 {:BufferIcon {:provider :BufferIcon
-                   :highlight [nord_colors.fg nord_colors.lbg]}}
-   })
+  (local short_line_right 
+    {1 {:BufferIcon {:provider :BufferIcon
+                     :highlight [nord_colors.fg nord_colors.lbg]}}
+     })
 
 
 
-(a.assoc gl.section
-         :mid mid
-         :left left
-         :right right
-         :short_line_left short_line_left
-         :short_line_right short_line_right)
-)
+  ;; Copied from aniseed - to be clean up
+  (fn table? [x]
+    (= "table" (type x)))
+
+  (fn nil? [x]
+    (= nil x))
+
+  (fn even? [n]
+    (= (% n 2) 0))
+
+  (fn odd? [n]
+    (not (even? n)))
+
+  (fn keys [t]
+    "Get all keys of a table."
+    (let [result []]
+      (when t
+        (each [k _ (pairs t)]
+          (table.insert result k)))
+      result))
+
+  (fn table? [x]
+    (= "table" (type x)))
+
+  (fn safe-count [xs]
+    (if
+      (table? xs) (let [maxn (table.maxn xs)]
+                    ;; We only count the keys if maxn returns 0.
+                    (if (= 0 maxn)
+                      (table.maxn (keys xs))
+                      maxn))
+      (not xs) 0
+      (length xs)))
+
+  (fn safe-assoc [t ...]
+    (let [[k v & xs] [...]
+          rem (safe-count xs)
+          t (or t {})]
+
+      (when (odd? rem)
+        (error "assoc expects even number of arguments after table, found odd number"))
+
+      (when (not (nil? k))
+        (tset t k v))
+
+      (when (> rem 0)
+        (safe-assoc t (unpack xs)))
+
+      t))
+
+
+  (safe-assoc gl.section
+           :mid mid
+           :left left
+           :right right
+           :short_line_left short_line_left
+           :short_line_right short_line_right))
+
+{:run run}
 
 
 

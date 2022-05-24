@@ -6,8 +6,36 @@ let
     };
   };
   grammars = tree-sitter.allGrammars;
+  stdenv = pkgs.stdenv;
+
+  nvim-lua-config = stdenv.mkDerivation {
+    name = "nvim-lua-config";
+    src = ../config/nvim/fnl;
+
+    unpackPhase = "false";
+
+    buildInputs = with pkgs; [ fennel ripgrep ];
+
+    phases = [ "buildPhase" "installPhase" ];
+    
+    buildPhase = ''
+        mkdir fnl
+        cp -r $src/* fnl/
+
+        rg --type-add "fnl:*.fnl" -t fnl --files | sed -e 's/^fnl//' | sed -e 's/\.fnl$//' | xargs -I{} -d '\n' sh -c 'mkdir -p lua/$(dirname {}) && fennel --compile fnl/{}.fnl > lua/{}.lua'
+    '';
+
+    installPhase = ''
+        mv ./lua $out
+    '';
+  };
 in
 {
+
+  home.packages = with pkgs; [
+    nvim-lua-config
+  ];
+
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -38,12 +66,12 @@ in
       vim-prisma
       vim-slime
       direnv-vim
+      packer-nvim
     ];
   };
 
-
-  xdg.configFile."nvim/fnl" = {
-    source = ../config/nvim/fnl;
+  xdg.configFile."nvim/lua" = {
+    source = nvim-lua-config.out;
     recursive = true;
   };
 

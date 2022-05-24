@@ -1,6 +1,3 @@
-(module plugs.neogit
-  {autoload {nvim aniseed.nvim
-            core aniseed.core
-            neogit neogit}})
+(local neogit (require :neogit))
 
 (neogit.setup)

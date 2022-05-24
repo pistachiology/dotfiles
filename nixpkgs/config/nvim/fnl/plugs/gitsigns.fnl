@@ -1,6 +1,3 @@
-(module plugs.gitsigns
-  {autoload {nvim aniseed.nvim
-            core aniseed.core
-            gitsigns gitsigns}})
+(local gitsigns (require :gitsigns))
 
 (gitsigns.setup)

@@ -1,9 +1,20 @@
-(module plugs.metals
-  {autoload {a aniseed.core
-            keys keys
-            metals metals}})
-
 (local lsp-signature (require :lsp_signature))
+(local metals (require :metals))
+(local keys (require :keys))
+
+(fn merge! [base ...]
+  (reduce
+    (fn [acc m]
+      (when m
+        (each [k v (pairs m)]
+          (tset acc k v)))
+      acc)
+    (or base {})
+    [...]))
+
+(fn merge [...]
+  (merge! {} ...))
+
 
 (fn on-attach [client bufnr]
   (keys.lsp-setup bufnr)
@@ -26,7 +37,5 @@
   (vim.opt_global.shortmess:remove :F)
   (metals.initialize_or_attach (a.merge (metals.bare_config) cfg)))
 
-(def setup setup-)
-
 ;; setup will call via `metals-hook` since it need to require lua file and run so we add another indirection.
-; {:setup setup}
+{:setup setup}
