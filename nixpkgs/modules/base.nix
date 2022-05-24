@@ -74,8 +74,4 @@ in
     sandbox = false
   '';
 
-  xdg.configFile."i3/config" = {
-    source = ../config/i3/config;
-  };
-
 }

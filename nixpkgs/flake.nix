@@ -30,6 +30,7 @@
               ./modules/bloop.nix
               ./modules/fish.nix
               ./modules/git.nix
+              ./modules/linux.nix
               ./modules/neovim.nix
               ./modules/tmux.nix
             ];
@@ -59,6 +60,7 @@
 
             imports = [
               ./modules/base.nix
+              ./modules/darwin.nix
               ./modules/bloop.nix
               ./modules/fish.nix
               ./modules/git.nix
@@ -91,10 +93,12 @@
               imports = [
                 ./modules/base.nix
                 ./modules/bloop.nix
+                ./modules/darwin.nix
                 ./modules/fish.nix
+                ./modules/git.nix
+                ./modules/kitty.nix
                 ./modules/neovim.nix
                 ./modules/tmux.nix
-                ./modules/git.nix
                 ./secrets/ag.nix
               ];
 

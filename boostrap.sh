@@ -2,33 +2,6 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-function link() {
-    echo "linking file"
-
-    ln -sv ${DIR}/gitconfig $HOME/.gitconfig
-
-    mkdir -p $HOME/.config
-    ln -sv ${DIR}/nixpkgs                       $HOME/.config/nixpkgs
-    ln -sv ${DIR}/alacritty/alacritty.yml       $HOME/.config/alacritty/alacritty.yml
-    ln -sv ${DIR}/wezterm                       $HOME/.config/wezterm
-
-    ln -sv ${DIR}/yabai            $HOME/.config/yabai
-    ln -sv ${DIR}/skhd            $HOME/.config/skhd
-
-    # linux specifics
-    ln -sv ${DIR}/xinitrc                       $HOME/.xinitrc
-    ln -sv ${DIR}/rofi                          $HOME/.config/rofi
-    ln -sv ${DIR}/polybar                       $HOME/.config/polybar
-    ln -sv ${DIR}/xmonad                        $HOME/.xmonad
-    ln -sv ${DIR}/dunst                         $HOME/.config/dunst
-    ln -sv ${DIR}/mutt/muttrc                   $HOME/.mutt/muttrc
-
-    ln -sv ${DIR}/lldb/lldbinit                 $HOME/.lldbinit
-    ln -sv ${DIR}/lldb                          $HOME/lldb 
-    ln -sv ${DIR}/direnv/ $HOME/.config/direnv
-}
-
-
 function enable_fastkeyboard() {
     # set keyboard repeat to very fast need to relogin after running this command
     defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
@@ -39,7 +12,6 @@ function enable_fastkeyboard() {
 function showhelp() {
     echo "boostrapper"
     echo
-    echo "link - link all configurations to proper directory"
     echo "enable-fastkeyboard - write mac os key repeat to very low latency"
     echo "help - show this message"
 }
@@ -48,7 +20,6 @@ CMD="$1"
 shift
 
 case "$CMD" in
-    link) link $@;;
     enable-fastkeyboard) enable_fastkeyboard;;
     *) showhelp;;
 esac
