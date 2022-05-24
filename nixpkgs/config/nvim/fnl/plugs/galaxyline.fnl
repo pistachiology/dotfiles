@@ -1,5 +1,6 @@
 ;; Thanks to
 ;; https://raw.githubusercontent.com/voitd/dotfiles/master/.config/nvim/lua/plugins/statusline.lua
+(local u (require :utils))
 
 (local nord_colors {
                     :bg :NONE
@@ -207,60 +208,7 @@
                      :highlight [nord_colors.fg nord_colors.lbg]}}
      })
 
-
-
-  ;; Copied from aniseed - to be clean up
-  (fn table? [x]
-    (= "table" (type x)))
-
-  (fn nil? [x]
-    (= nil x))
-
-  (fn even? [n]
-    (= (% n 2) 0))
-
-  (fn odd? [n]
-    (not (even? n)))
-
-  (fn keys [t]
-    "Get all keys of a table."
-    (let [result []]
-      (when t
-        (each [k _ (pairs t)]
-          (table.insert result k)))
-      result))
-
-  (fn table? [x]
-    (= "table" (type x)))
-
-  (fn safe-count [xs]
-    (if
-      (table? xs) (let [maxn (table.maxn xs)]
-                    ;; We only count the keys if maxn returns 0.
-                    (if (= 0 maxn)
-                      (table.maxn (keys xs))
-                      maxn))
-      (not xs) 0
-      (length xs)))
-
-  (fn safe-assoc [t ...]
-    (let [[k v & xs] [...]
-          rem (safe-count xs)
-          t (or t {})]
-
-      (when (odd? rem)
-        (error "assoc expects even number of arguments after table, found odd number"))
-
-      (when (not (nil? k))
-        (tset t k v))
-
-      (when (> rem 0)
-        (safe-assoc t (unpack xs)))
-
-      t))
-
-
-  (safe-assoc gl.section
+  (u.assoc gl.section
            :mid mid
            :left left
            :right right

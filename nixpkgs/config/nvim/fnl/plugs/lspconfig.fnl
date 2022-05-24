@@ -3,53 +3,7 @@
 (local keys (require :keys))
 (local rust-tools (require :rust-tools))
 (local null-ls (require :null-ls))
-
-
-;; Copied from aniseed - to be clean up
-(fn table? [x]
-  (= "table" (type x)))
-
-(fn count [xs]
-  (if
-    (table? xs) (let [maxn (table.maxn xs)]
-                  ;; We only count the keys if maxn returns 0.
-                  (if (= 0 maxn)
-                    (table.maxn (keys xs))
-                    maxn))
-    (not xs) 0
-    (length xs)))
-(fn run! [f xs]
-  "Execute the function (for side effects) for every xs."
-  (when xs
-    (let [nxs (count xs)]
-      (when (> nxs 0)
-        (for [i 1 nxs]
-          (f (. xs i)))))))
-
-
-(fn reduce [f init xs]
-  "Reduce xs into a result by passing each subsequent value into the fn with
-  the previous value as the first arg. Starting with init."
-  (var result init)
-  (run!
-    (fn [x]
-      (set result (f result x)))
-    xs)
-  result)
-
-
-(fn merge! [base ...]
-  (reduce
-    (fn [acc m]
-      (when m
-        (each [k v (pairs m)]
-          (tset acc k v)))
-      acc)
-    (or base {})
-    [...]))
-
-(fn merge [...]
-  (merge! {} ...))
+(local u (require :utils))
 
 ;; Golang
 ; Make it works thinking about proper place to puts this :p
@@ -72,7 +26,9 @@
                  (vim.lsp.buf.execute_command action)))
         ]
     (-?> action exec))))
-(vim.cmd "autocmd BufWritePre *.go lua goimports(1000)")
+
+(vim.api.nvim_create_autocmd "BufWritePre" {:pattern ["*.go"]
+                                            :callback (fn [] (goimports 1000))})
 
 ;; Null-ls
 (fn null-ls-setup []
@@ -116,14 +72,14 @@
 
 (each [lang cfg (pairs langs)]
   (let [server (. lsp lang)
-        setting (merge default-cfg cfg)] 
+        setting (u.merge default-cfg cfg)] 
     (server.setup setting)))
 
 
 ;; Rust
 (let [rust-cfg {
    ;;  https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-   :server (merge default-cfg {:rust_analyzer {:settings {:rust-analyzer {:checkOnSave {:command "clippy" :allTargets false}
+   :server (u.merge default-cfg {:rust_analyzer {:settings {:rust-analyzer {:checkOnSave {:command "clippy" :allTargets false}
                                                                             :procMacro {:enable true}}}}})
    :tools {:autoSetHints true}}]
 

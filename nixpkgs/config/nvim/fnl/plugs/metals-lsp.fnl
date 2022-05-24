@@ -1,50 +1,7 @@
 (local lsp-signature (require :lsp_signature))
 (local metals (require :metals))
 (local keys (require :keys))
-
-;; Copied from aniseed - to be clean up
-(fn table? [x]
-  (= "table" (type x)))
-
-(fn count [xs]
-  (if
-    (table? xs) (let [maxn (table.maxn xs)]
-                  ;; We only count the keys if maxn returns 0.
-                  (if (= 0 maxn)
-                    (table.maxn (keys xs))
-                    maxn))
-    (not xs) 0
-    (length xs)))
-(fn run! [f xs]
-  "Execute the function (for side effects) for every xs."
-  (when xs
-    (let [nxs (count xs)]
-      (when (> nxs 0)
-        (for [i 1 nxs]
-          (f (. xs i)))))))
-
-(fn reduce [f init xs]
-  "Reduce xs into a result by passing each subsequent value into the fn with
-  the previous value as the first arg. Starting with init."
-  (var result init)
-  (run!
-    (fn [x]
-      (set result (f result x)))
-    xs)
-  result)
-(fn merge! [base ...]
-  (reduce
-    (fn [acc m]
-      (when m
-        (each [k v (pairs m)]
-          (tset acc k v)))
-      acc)
-    (or base {})
-    [...]))
-
-(fn merge [...]
-  (merge! {} ...))
-
+(local u (require :utils))
 
 (fn on-attach [client bufnr]
   (keys.lsp-setup bufnr)
@@ -68,7 +25,7 @@
 
 (fn setup- []
   (vim.opt_global.shortmess:remove :F)
-  (metals.initialize_or_attach (merge (metals.bare_config) cfg)))
+  (metals.initialize_or_attach (u.merge (metals.bare_config) cfg)))
 
 (fn hook- []
   (local group (vim.api.nvim_create_augroup :lsp {}))

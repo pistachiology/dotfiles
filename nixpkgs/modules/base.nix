@@ -15,6 +15,7 @@
     curl
     fd
     fzf
+    fnlfmt
     gdb
     git-crypt
     graalvm11-ce
