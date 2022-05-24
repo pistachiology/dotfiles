@@ -65,8 +65,8 @@
   (k :n :<leader>lf    "<cmd>lua vim.lsp.buf.formatting()<cr>" opts)
 
   ; Telescope
-  (k :n :<leader>la ":lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_cursor())<cr>" opts)
-  (k :v :<leader>la ":lua require('telescope.builtin').lsp_range_code_actions(require('telescope.themes').get_cursor())<cr>" opts)
+  (k :n :<leader>la "<cmd>lua vim.lsp.buf.code_action()<cr>" opts)
+  (k :v :<leader>la "<cmd>lua vim.lsp.buf.code_action()<cr>" opts)
   (k :n :<leader>lw ":lua require('telescope.builtin').lsp_workspace_diagnostics()<cr>" opts)
   (k :n :<leader>lr ":lua require('telescope.builtin').lsp_references()<cr>" opts)
   (k :n :<leader>li ":lua require('telescope.builtin').lsp_implementations()<cr>" opts)
