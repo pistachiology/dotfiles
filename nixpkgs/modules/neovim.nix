@@ -17,21 +17,20 @@ let
     buildInputs = with pkgs; [ fennel ripgrep ];
 
     phases = [ "buildPhase" "installPhase" ];
-    
-    buildPhase = ''
-        mkdir fnl
-        cp -r $src/* fnl/
 
-        rg --type-add "fnl:*.fnl" -t fnl --files | sed -e 's/^fnl//' | sed -e 's/\.fnl$//' | xargs -I{} -d '\n' sh -c 'mkdir -p lua/$(dirname {}) && fennel --compile fnl/{}.fnl > lua/{}.lua'
+    buildPhase = ''
+      mkdir fnl
+      cp -r $src/* fnl/
+
+      rg --type-add "fnl:*.fnl" -t fnl --files | sed -e 's/^fnl//' | sed -e 's/\.fnl$//' | xargs -I{} -d '\n' sh -c 'mkdir -p lua/$(dirname {}) && fennel --compile fnl/{}.fnl > lua/{}.lua'
     '';
 
     installPhase = ''
-        mv ./lua $out
+      mv ./lua $out
     '';
   };
 in
 {
-
   home.packages = with pkgs; [
     nvim-lua-config
   ];

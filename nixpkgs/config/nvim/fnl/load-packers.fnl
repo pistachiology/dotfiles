@@ -96,7 +96,7 @@
                    :tag :v4.23.0}
   ;;; Scala
   :scalameta/nvim-metals {:requires [:nvim-lua/plenary.nvim]
-                          :plug :metals-hook}
+                          :plug :metals-lsp}
   :derekwyatt/vim-scala {}
   ;;; Rust
   :simrat39/rust-tools.nvim {:requires [:neovim/nvim-lspconfig]}
