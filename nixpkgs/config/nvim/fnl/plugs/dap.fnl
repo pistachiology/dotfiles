@@ -9,7 +9,6 @@
 (fn inoremap [key value]
   (set_keymap :i key value {:noremap true :silent true}))
 
-
 (global dap_ui_widgets_frames (fn []
                                 (local widgets (require :dap.ui.widgets))
                                 (local bar (widgets.sidebar widgets.frames))
@@ -28,17 +27,14 @@
   (nnoremap :<leader>dso "<cmd>lua require'dap'.step_over()<CR>")
   (nnoremap :<leader>dst "<cmd>lua require'dap'.step_out()<CR>")
   (nnoremap :<leader>dsi "<cmd>lua require'dap'.step_into()<CR>")
-  (nnoremap :<leader>dK  "<cmd>lua require'dap.ui.widgets'.hover()<CR>")
-  (nnoremap :<leader>dwf  "<cmd>lua dap_ui_widgets_frames()<CR>")
-  (nnoremap :<leader>dws  "<cmd>lua dap_ui_widgets_scopes()<CR>")
-
+  (nnoremap :<leader>dK "<cmd>lua require'dap.ui.widgets'.hover()<CR>")
+  (nnoremap :<leader>dwf "<cmd>lua dap_ui_widgets_frames()<CR>")
+  (nnoremap :<leader>dws "<cmd>lua dap_ui_widgets_scopes()<CR>")
   (local dap (require :dap))
-
-  (tset dap.configurations :scala [{:type :scala
-                                    :request :launch
-                                    :name "Run"
-                                    :metals {:runType :run
-                                             :jvmOptions ["-Xms8g" "-Xmx8g"]}}])
-  )
+  (tset dap.configurations :scala
+        [{:type :scala
+          :request :launch
+          :name :Run
+          :metals {:runType :run :jvmOptions [:-Xms8g :-Xmx8g]}}]))
 
 (setup)

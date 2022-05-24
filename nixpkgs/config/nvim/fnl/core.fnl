@@ -1,7 +1,6 @@
-
 ;; Generic Neovim configuration.
 (set vim.o.termguicolors true)
-(set vim.o.mouse "a")
+(set vim.o.mouse :a)
 (set vim.o.updatetime 500)
 (set vim.o.timeoutlen 500)
 (set vim.o.sessionoptions "blank,curdir,folds,help,tabpages,winsize")
@@ -10,7 +9,9 @@
 (set vim.o.ignorecase true)
 (set vim.o.smartcase true)
 (set vim.o.completeopt "menu,menuone,noselect")
-(set vim.o.hidden true) ;; allows dirty buffer to be hidden instead of preventing to go to another buffer
+(set vim.o.hidden true)
+
+;; allows dirty buffer to be hidden instead of preventing to go to another buffer
 (set vim.g.qf_max_height 5)
 (set vim.o.tabstop 2)
 (set vim.o.shiftwidth 2)
@@ -33,5 +34,3 @@ augroup numbertoggle
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 ")
-
-
