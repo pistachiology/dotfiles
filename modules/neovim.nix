@@ -26,7 +26,8 @@ let
     '';
 
     installPhase = ''
-      mv ./lua $out
+      mkdir -p $out
+      mv ./lua $out/neovim-lua
     '';
   };
 in
@@ -71,7 +72,7 @@ in
   };
 
   xdg.configFile."nvim/lua" = {
-    source = nvim-lua-config.out;
+    source = nvim-lua-config.out + "/neovim-lua";
     recursive = true;
   };
 

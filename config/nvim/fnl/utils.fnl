@@ -20,14 +20,6 @@
         (table.insert result k)))
     result))
 
-(fn run! [f xs]
-  "Execute the function (for side effects) for every xs."
-  (when xs
-    (let [nxs (count xs)]
-      (when (> nxs 0)
-        (for [i 1 nxs]
-          (f (. xs i)))))))
-
 (fn count [xs]
   (if (table? xs)
       (let [maxn (table.maxn xs)]
@@ -35,9 +27,16 @@
         (if (= 0 maxn)
             (table.maxn (keys xs))
             maxn))
-      (not xs)
-      0
+      (not xs) 0
       (length xs)))
+
+(fn run! [f xs]
+  "Execute the function (for side effects) for every xs."
+  (when xs
+    (let [nxs (count xs)]
+      (when (> nxs 0)
+        (for [i 1 nxs]
+          (f (. xs i)))))))
 
 (fn assoc [t ...]
   (let [[k v & xs] [...]
@@ -59,7 +58,7 @@
           (set result (f result x))) xs)
   result)
 
-(fn merge- [base ...]
+(fn merge! [base ...]
   (reduce (fn [acc m]
             (when m
               (each [k v (pairs m)]
