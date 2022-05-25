@@ -32,6 +32,7 @@
               ./modules/git.nix
               ./modules/linux.nix
               ./modules/neovim.nix
+              ./modules/kitty.nix
               ./modules/tmux.nix
             ];
 
@@ -60,10 +61,11 @@
 
             imports = [
               ./modules/base.nix
-              ./modules/darwin.nix
               ./modules/bloop.nix
+              ./modules/darwin.nix
               ./modules/fish.nix
               ./modules/git.nix
+              ./modules/kitty.nix
               ./modules/neovim.nix
               ./modules/tmux.nix
             ];
