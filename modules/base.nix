@@ -43,6 +43,7 @@ in
     jq
     sumneko-lua-language-server
     nodejs
+    nix-doc
     ripgrep
     rnix-lsp
     rust-analyzer
@@ -69,9 +70,14 @@ in
   };
 
 
-  xdg.configFile."nix/nix.conf".text = ''
-    experimental-features = nix-command flakes
-    sandbox = false
-  '';
+  nix = {
+      package = pkgs.nix;
+      settings = {
+        sandbox = false;
+      };
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
+  };
 
 }
