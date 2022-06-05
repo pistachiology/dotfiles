@@ -2,7 +2,6 @@
 let
   tree-sitter = pkgs.tree-sitter.override {
     extraGrammars = {
-      tree-sitter-nix = lib.importJSON ./tree-sitter-nix.json;
       tree-sitter-kotlin = {
         url = "https://github.com/fwcd/tree-sitter-kotlin";
         rev = "a4f71eb9b8c9b19ded3e0e9470be4b1b77c2b569";
