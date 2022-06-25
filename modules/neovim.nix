@@ -76,6 +76,7 @@ in
       direnv-vim
       packer-nvim
       impatient-nvim
+      lsp-status-nvim
     ];
   };
 

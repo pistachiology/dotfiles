@@ -16,11 +16,11 @@
     in
     {
       homeConfigurations = {
-        tua = home-manager.lib.homeManagerConfiguration {
+        tua = home-manager.lib.homeManagerConfiguration rec {
           system = "x86_64-linux";
           username = "tua";
           homeDirectory = "/home/tua";
-          stateVersion = "22.05";
+          pkgs = nixpkgs.legacyPackages.${system};
 
           configuration = { config, pkgs, ... }: {
             nixpkgs.overlays = overlays;
@@ -50,11 +50,11 @@
         };
 
 
-        pistachio = home-manager.lib.homeManagerConfiguration {
+        pistachio = home-manager.lib.homeManagerConfiguration rec {
           system = "x86_64-darwin";
           username = "pistachio";
           homeDirectory = "/Users/pistachio";
-          stateVersion = "22.05";
+          pkgs = nixpkgs.legacyPackages.${system};
 
           configuration = { config, pkgs, ... }: {
             nixpkgs.overlays = overlays;
@@ -83,34 +83,33 @@
           };
         };
 
-        nlaoticharoe = home-manager.lib.homeManagerConfiguration
-          {
-            system = "x86_64-darwin";
-            username = "nlaoticharoe";
-            homeDirectory = "/Users/nlaoticharoe";
-            stateVersion = "22.05";
+        nlaoticharoe = home-manager.lib.homeManagerConfiguration rec {
+          system = "x86_64-darwin";
+          username = "nlaoticharoe";
+          homeDirectory = "/Users/nlaoticharoe";
+          pkgs = nixpkgs.legacyPackages.${system};
 
-            configuration = { config, pkgs, ... }: {
-              nixpkgs.overlays = overlays;
+          configuration = { config, pkgs, ... }: {
+            nixpkgs.overlays = overlays;
 
-              imports = [
-                ./modules/base.nix
-                ./modules/bloop.nix
-                ./modules/darwin.nix
-                ./modules/fish.nix
-                ./modules/git.nix
-                ./modules/kitty.nix
-                ./modules/neovim.nix
-                ./modules/tmux.nix
-                ./secrets/ag.nix
-              ];
+            imports = [
+              ./modules/base.nix
+              ./modules/bloop.nix
+              ./modules/darwin.nix
+              ./modules/fish.nix
+              ./modules/git.nix
+              ./modules/kitty.nix
+              ./modules/neovim.nix
+              ./modules/tmux.nix
+              ./secrets/ag.nix
+            ];
 
-              programs.git.signing = {
-                key = "55676A6212EBDA01EF16B79B27A1B1AE3F53C840";
-                signByDefault = true;
-              };
+            programs.git.signing = {
+              key = "55676A6212EBDA01EF16B79B27A1B1AE3F53C840";
+              signByDefault = true;
             };
           };
+        };
 
       };
     };

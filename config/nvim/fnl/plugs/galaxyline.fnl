@@ -32,12 +32,16 @@
     (lua "return {}"))
   (when (not (pcall require :galaxyline))
     (lua "return {}"))
+
   (local gl (require :galaxyline))
-  (local fileinfo (require :galaxyline.providers.fileinfo))
-  (local git (require :galaxyline.providers.vcs))
+  (local fileinfo (require :galaxyline.provider_fileinfo))
+  (local git (require :galaxyline.provider_vcs))
+  (local lsp-status (. (require :lsp-status) :status))
   (tset gl :short_line_list [:packager])
-  :separator_highlight
-  [nord_colors.fg nord_colors.line_bg]
+
+  ; :separator_highlight
+  ; [nord_colors.fg nord_colors.line_bg]
+
   (local right-separator "")
   (local left-separator "")
   (local show-lsp?
@@ -57,7 +61,12 @@
                                  :highlight [nord_colors.cyan
                                              nord_colors.line_bg
                                              :bold]}}
-              3 {:MetalsClient {:provider #(let [idle? #(if (= $1 "") :Idle $1)
+              3 {:ShowLspStatus {:provider lsp-status
+                                 :condition show-lsp?
+                                 :highlight [nord_colors.cyan
+                                             nord_colors.line_bg
+                                             :bold]}}
+              4 {:MetalsClient {:provider #(let [idle? #(if (= $1 "") :Idle $1)
                                                  status (or (idle? vim.g.metals_status)
                                                             :Unknown)]
                                              (string.format "Metals: %s "
@@ -67,10 +76,10 @@
                                 :highlight [nord_colors.cyan
                                             nord_colors.line_bg
                                             :bold]}}
-              4 {:Padding {:provider #"  "
+              5 {:Padding {:provider #"  "
                            :condition #(or (show-lsp?) (show-metals?))
                            :highlight [nord_colors.fg nord_colors.nord0 :bold]}}
-              5 {:CurlyLeft {:provider #right-separator
+              6 {:CurlyLeft {:provider #right-separator
                              :condition #(or (show-lsp?) (show-metals?))
                              :separator_highlight [nord_colors.fg
                                                    nord_colors.line_bg]
