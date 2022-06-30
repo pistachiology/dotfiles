@@ -34,6 +34,7 @@
       grd = "git rebase -i develop";
       grm = "git rebase -i master";
       gr2 = "git rebase -i @~2";
+      kns = "kubectl config view --minify -o jsonpath='{..namespace}'";
     };
   };
 

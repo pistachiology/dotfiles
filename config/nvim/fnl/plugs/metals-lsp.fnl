@@ -27,7 +27,7 @@
   (metals.initialize_or_attach (u.merge (metals.bare_config) cfg)))
 
 (fn hook- []
-  (local group (vim.api.nvim_create_augroup :lsp {}))
+  (local group (vim.api.nvim_create_augroup :lsp {:clear true}))
   (vim.api.nvim_create_autocmd :FileType
                                {: group
                                 :pattern [:scala :sbt]

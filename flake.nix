@@ -16,99 +16,92 @@
     in
     {
       homeConfigurations = {
-        tua = home-manager.lib.homeManagerConfiguration rec {
-          system = "x86_64-linux";
-          username = "tua";
-          homeDirectory = "/home/tua";
-          pkgs = nixpkgs.legacyPackages.${system};
+        tua = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
-          configuration = { config, pkgs, ... }: {
-            nixpkgs.overlays = overlays;
-            nixpkgs.config.allowUnfree = true;
+          modules = [
+            {
+              nixpkgs.overlays = overlays;
+              nixpkgs.config.allowUnfree = true;
+              home.username = "tua";
+              home.homeDirectory = "/home/tua";
+              home.stateVersion = "22.11";
 
-            imports = [
-              ./modules/base.nix
-              ./modules/bloop.nix
-              ./modules/fish.nix
-              ./modules/git.nix
-              ./modules/linux.nix
-              ./modules/neovim.nix
-              ./modules/kitty.nix
-              ./modules/tmux.nix
-            ];
-
-            programs.git = {
-              userName = "pistachiology";
-              userEmail = "im@itua.dev";
-              signing = {
-                key = "1BF3F801844B853E9665C5C18534BC47EFCB2FBB";
-                signByDefault = true;
+              programs.git = {
+                userName = "pistachiology";
+                userEmail = "im@itua.dev";
+                signing = {
+                  key = "1BF3F801844B853E9665C5C18534BC47EFCB2FBB";
+                  signByDefault = true;
+                };
               };
-            };
-
-          };
+            }
+            ./modules/base.nix
+            ./modules/bloop.nix
+            ./modules/fish.nix
+            ./modules/git.nix
+            ./modules/linux.nix
+            ./modules/neovim.nix
+            ./modules/kitty.nix
+            ./modules/tmux.nix
+          ];
         };
 
 
-        pistachio = home-manager.lib.homeManagerConfiguration rec {
-          system = "x86_64-darwin";
-          username = "pistachio";
-          homeDirectory = "/Users/pistachio";
-          pkgs = nixpkgs.legacyPackages.${system};
+        pistachio = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-darwin;
 
-          configuration = { config, pkgs, ... }: {
-            nixpkgs.overlays = overlays;
-            nixpkgs.config.allowUnfree = true;
-
-            imports = [
-              ./modules/base.nix
-              ./modules/bloop.nix
-              ./modules/darwin.nix
-              ./modules/fish.nix
-              ./modules/git.nix
-              ./modules/kitty.nix
-              ./modules/neovim.nix
-              ./modules/tmux.nix
-            ];
-
-            programs.git = {
-              userName = "pistachiology";
-              userEmail = "im@itua.dev";
-              signing = {
-                key = "1BF3F801844B853E9665C5C18534BC47EFCB2FBB";
-                signByDefault = true;
+          modules = [
+            {
+              home.username = "pistachio";
+              home.homeDirectory = "/Users/pistachio";
+              nixpkgs.overlays = overlays;
+              nixpkgs.config.allowUnfree = true;
+              programs.git = {
+                userName = "pistachiology";
+                userEmail = "im@itua.dev";
+                signing = {
+                  key = "1BF3F801844B853E9665C5C18534BC47EFCB2FBB";
+                  signByDefault = true;
+                };
               };
-            };
-
-          };
+            }
+            ./modules/base.nix
+            ./modules/bloop.nix
+            ./modules/darwin.nix
+            ./modules/fish.nix
+            ./modules/git.nix
+            ./modules/kitty.nix
+            ./modules/neovim.nix
+            ./modules/tmux.nix
+          ];
         };
 
-        nlaoticharoe = home-manager.lib.homeManagerConfiguration rec {
-          system = "x86_64-darwin";
-          username = "nlaoticharoe";
-          homeDirectory = "/Users/nlaoticharoe";
-          pkgs = nixpkgs.legacyPackages.${system};
+        nlaoticharoe = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-darwin;
 
-          configuration = { config, pkgs, ... }: {
-            nixpkgs.overlays = overlays;
+          modules = [
+            {
+              home.username = "nlaoticharoe";
+              home.homeDirectory = "/Users/nlaoticharoe";
+              home.stateVersion = "22.11";
+              nixpkgs.overlays = overlays;
+              programs.git.signing = {
+                key = "55676A6212EBDA01EF16B79B27A1B1AE3F53C840";
+                signByDefault = true;
+              };
+            }
+            ./modules/base.nix
+            ./modules/bloop.nix
+            ./modules/darwin.nix
+            ./modules/fish.nix
+            ./modules/git.nix
+            ./modules/kitty.nix
+            ./modules/neovim.nix
+            ./modules/tmux.nix
+            ./secrets/ag.nix
+          ];
 
-            imports = [
-              ./modules/base.nix
-              ./modules/bloop.nix
-              ./modules/darwin.nix
-              ./modules/fish.nix
-              ./modules/git.nix
-              ./modules/kitty.nix
-              ./modules/neovim.nix
-              ./modules/tmux.nix
-              ./secrets/ag.nix
-            ];
-
-            programs.git.signing = {
-              key = "55676A6212EBDA01EF16B79B27A1B1AE3F53C840";
-              signByDefault = true;
-            };
-          };
         };
 
       };
