@@ -57,7 +57,9 @@ bindsym $mod+t focus mode_toggle
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym control+space exec "rofi -modes run,ssh -show run"
+bindsym control+space exec "rofi  -combi-modi window,drun -show combi"
+bindsym $mod+Shift+c exec "rofi -show calc"
+bindsym $mod+Shift+g exec "rofi -show emoji"
 # Language
 # bindsym Mod4+space exec "$HOME/bin/layout_switch.sh"
 
@@ -135,8 +137,6 @@ bindsym $mod+Shift+0 move container to workspace number $ws5
 bindsym $mod+Shift+1 move container to workspace number $ws6
 bindsym $mod+Shift+3 move container to workspace number $ws7
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)

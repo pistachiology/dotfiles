@@ -2,6 +2,11 @@
 {
   home.file.".xinitrc".source = ./../config/xinitrc;
 
+  home.packages = with pkgs; [
+    rofi-calc
+    /* OSCAR */
+  ];
+
   xdg.configFile = {
     "rofi" = {
       source = ../config/rofi;

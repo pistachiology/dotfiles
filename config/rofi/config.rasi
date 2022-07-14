@@ -4,9 +4,14 @@ configuration {
   display-window: "𝜔  ";
   drun-display-format: "{icon} {name}";
   font: "PragmataProMono 12";
-  modi: "window,run,drun";
+  modi: "window,run,drun,calc,combi,emoji";
   show-icons: true;
 }
+/*
+ * Requires two commands until migrate to nixos
+ * pacman -S rofi-emoji
+ * pacman -S rofi-calc
+ */
 
 * {
   polar-1: #2E3440;
