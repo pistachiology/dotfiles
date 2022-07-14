@@ -12,7 +12,7 @@
 
   outputs = inputs@{ self, nixpkgs, rust-overlay, home-manager, ... }:
     let
-      overlays = [ rust-overlay.overlay ];
+      overlays = [ rust-overlay.overlays.default ];
     in
     {
       homeConfigurations = {
