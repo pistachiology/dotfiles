@@ -55,6 +55,7 @@
             {
               home.username = "pistachio";
               home.homeDirectory = "/Users/pistachio";
+              home.stateVersion = "22.11";
               nixpkgs.overlays = overlays;
               nixpkgs.config.allowUnfree = true;
               programs.git = {
