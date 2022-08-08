@@ -3,20 +3,29 @@
   home.file.".xinitrc".source = ./../config/xinitrc;
 
   home.packages = with pkgs; [
+    # required
     (rofi.override { plugins = [ rofi-emoji rofi-calc ]; })
     rofi-calc
     rofi-emoji
     kitty
-    OSCAR
-    firefox
-    brave
-    tdesktop
-    discord
     xsel
     pavucontrol
     _1password-gui
     _1password
+
+    # desktop
+    firefox
+    brave
+    tdesktop
+    discord
+
+    # misc
+    OSCAR
   ];
+
+  services.dunst = {
+    enable = true;
+  };
 
   xdg.configFile = {
     "rofi" = {

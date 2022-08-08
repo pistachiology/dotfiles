@@ -15,10 +15,12 @@ function enable_fastkeyboard() {
 }
 
 function showhelp() {
-    echo "boostrapper"
+    echo "usage "
     echo
     echo "link - link all configurations to proper directory"
     echo "enable-fastkeyboard - write mac os key repeat to very low latency"
+    echo "rebuild-qweeeee - rebuild nixos qweeeee"
+    echo "rebuild-qweeeee - rebuild nixos by hostname"
     echo "help - show this message"
 }
 
@@ -28,7 +30,8 @@ shift
 case "$CMD" in
     link) link $@;;
     enable-fastkeyboard) enable_fastkeyboard;;
-    build-qweeee)  nixos-rebuild switch --upgrade --flake '.#qweeeee' --use-remote-sudo;;
+    rebuild-qweeeee) cd ~/dotfiles && nixos-rebuild switch --upgrade --flake '.#qweeeee' --use-remote-sudo;;
+    rebuild) cd ~/dotfiles && nixos-rebuild switch --upgrade --flake ".#$(hostname)" --use-remote-sudo;;
     *) showhelp;;
 esac
 
