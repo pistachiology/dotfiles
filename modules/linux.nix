@@ -18,8 +18,11 @@
     brave
     tdesktop
     discord
+    okular # pdf viewer
 
     # misc
+    flameshot
+    libnotify
     OSCAR
   ];
 
@@ -47,6 +50,10 @@
       source = ../config/dunst;
       recursive = true;
     };
+  };
+
+  home.file.".local/bin/bootstrap.sh" = {
+    source = ../bootstrap.sh;
   };
 
 }

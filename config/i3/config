@@ -60,6 +60,7 @@ bindsym $mod+Shift+q kill
 bindsym control+space exec "rofi  -combi-modi window,drun -show combi"
 bindsym $mod+Shift+c exec "rofi -show calc"
 bindsym $mod+Shift+g exec "rofi -show emoji"
+bindsym control+Mod4+Shift+4 exec "flameshot gui"
 # Language
 # bindsym Mod4+space exec "$HOME/bin/layout_switch.sh"
 

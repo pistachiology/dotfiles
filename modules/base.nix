@@ -31,27 +31,28 @@ in
     cloudflared
     curl
     fd
-    fzf
     fnlfmt
+    fzf
     gdb
     git-crypt
-    graalvm11-ce
     go
     gopls
+    graalvm11-ce
     htop
     imagemagick
     jq
-    sumneko-lua-language-server
-    nodejs
     nix-doc
+    nodejs
     ripgrep
     rnix-lsp
+    rsync
     rust-analyzer
     rust-bin.stable.latest.default
-    rsync
     sqlite
+    sumneko-lua-language-server
     tree
     tree-sitter
+    unzip
   ];
 
   # Let Home Manager install and manage itself.
