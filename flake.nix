@@ -15,39 +15,51 @@
       overlays = [ rust-overlay.overlays.default ];
     in
     {
-      homeConfigurations = {
-        tua = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-
+      nixosConfigurations = {
+        qweeeee = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit (nixpkgs); };
           modules = [
+            ./hosts/qweeeee/configuration.nix
+            home-manager.nixosModules.home-manager
             {
-              nixpkgs.overlays = overlays;
-              nixpkgs.config.allowUnfree = true;
-              home.username = "tua";
-              home.homeDirectory = "/home/tua";
-              home.stateVersion = "22.11";
+              home-manager = {
+                useUserPackages = true;
 
-              programs.git = {
-                userName = "pistachiology";
-                userEmail = "im@itua.dev";
-                signing = {
-                  key = "1BF3F801844B853E9665C5C18534BC47EFCB2FBB";
-                  signByDefault = true;
+                users.tua = {
+                  nixpkgs.overlays = overlays;
+                  imports = [
+                    {
+                      home.stateVersion = "22.11";
+                      home.username = "tua";
+                      home.homeDirectory = "/home/tua";
+
+                      programs.git = {
+                        userName = "pistachiology";
+                        userEmail = "im@itua.dev";
+                        signing = {
+                          key = "1BF3F801844B853E9665C5C18534BC47EFCB2FBB";
+                          signByDefault = true;
+                        };
+                      };
+                    }
+                    ./modules/base.nix
+                    ./modules/bloop.nix
+                    ./modules/fish.nix
+                    ./modules/git.nix
+                    ./modules/linux.nix
+                    ./modules/neovim.nix
+                    ./modules/kitty.nix
+                    ./modules/tmux.nix
+                  ];
                 };
               };
             }
-            ./modules/base.nix
-            ./modules/bloop.nix
-            ./modules/fish.nix
-            ./modules/git.nix
-            ./modules/linux.nix
-            ./modules/neovim.nix
-            ./modules/kitty.nix
-            ./modules/tmux.nix
           ];
         };
+      };
 
-
+      homeConfigurations = {
         pistachio = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-darwin;
 

@@ -17,7 +17,7 @@
              :nvim-telescope/telescope.nvim {:requires [:nvim-lua/plenary.nvim
                                                         :nvim-lua/popup.nvim]
                                              :plug :telescope}
-             :nvim-telescope/telescope-fzf-native.nvim {:run :make}
+             ; :nvim-telescope/telescope-fzf-native.nvim {:run :make}
              :nvim-telescope/telescope-frecency.nvim {:requires [:tami5/sqlite.lua]}
              :nvim-telescope/telescope-ui-select.nvim {}
              :kyazdani42/nvim-tree.lua {:requires [:kyazdani42/nvim-web-devicons]

@@ -77,6 +77,7 @@ in
       packer-nvim
       impatient-nvim
       lsp-status-nvim
+      telescope-fzf-native-nvim
     ];
   };
 

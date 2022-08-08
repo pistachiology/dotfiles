@@ -28,6 +28,7 @@ shift
 case "$CMD" in
     link) link $@;;
     enable-fastkeyboard) enable_fastkeyboard;;
+    build-qweeee)  nixos-rebuild switch --upgrade --flake '.#qweeeee' --use-remote-sudo;;
     *) showhelp;;
 esac
 

@@ -8,16 +8,16 @@ function fish_mode_prompt --description 'Displays the current mode'
         switch $fish_bind_mode
         case default
             set_color --bold red
-            echo 🅽
+            echo N
         case insert
             set_color --bold green
-            echo 🅸
+            echo I
         case replace-one
             set_color --bold green
-            echo 🆁
+            echo R
         case visual
             set_color --bold brmagenta
-            echo 🆅
+            echo V
         end
         set_color normal
 
