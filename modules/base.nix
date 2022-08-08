@@ -29,6 +29,7 @@ in
     bat
     bottom
     cloudflared
+    comma
     curl
     fd
     fnlfmt
