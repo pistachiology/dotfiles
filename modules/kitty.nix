@@ -8,6 +8,8 @@
           font_size 20.0
           font_family PragmataProLiga Nerd Font
 
+          macos_option_as_alt yes
+
 
           foreground            #D8DEE9
           background            #2E3440
