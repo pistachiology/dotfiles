@@ -18,12 +18,14 @@
     brave
     tdesktop
     discord
-    okular # pdf viewer
+    evince # pdf viewer
 
     # misc
     flameshot
     libnotify
     OSCAR
+    rclone
+    xdragon
   ];
 
   services.dunst = {
@@ -52,8 +54,30 @@
     };
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = "org.gnome.Evince.desktop";
+      "x-scheme-handler/tg" = "telegramdesktop.desktop";
+
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+      "x-scheme-handler/chrome" = "brave-browser.desktop";
+      "application/x-extension-htm" = "firefox.desktop";
+      "application/x-extension-html" = "firefox.desktop";
+      "application/x-extension-shtml" = "firefox.desktop";
+      "application/xhtml+xml" = "firefox.desktop";
+      "application/x-extension-xhtml" = "firefox.desktop";
+      "application/x-extension-xht" = "firefox.desktop";
+    };
+  };
+
   home.file.".local/bin/bootstrap.sh" = {
     source = ../bootstrap.sh;
   };
+
 
 }

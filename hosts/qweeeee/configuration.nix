@@ -64,6 +64,15 @@
     enable = true;
   };
 
+  services.redshift = {
+    enable = true;
+  };
+
+  location = {
+    latitude = 13.75398;
+    longitude = 100.50144;
+  };
+
   security.sudo.wheelNeedsPassword = false;
 
 

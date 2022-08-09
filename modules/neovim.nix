@@ -78,6 +78,7 @@ in
       impatient-nvim
       lsp-status-nvim
       telescope-fzf-native-nvim
+      ansible-vim
     ];
   };
 
