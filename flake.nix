@@ -47,9 +47,13 @@
                     ./modules/bloop.nix
                     ./modules/fish.nix
                     ./modules/git.nix
-                    ./modules/linux.nix
-                    ./modules/neovim.nix
                     ./modules/kitty.nix
+                    ./modules/linux.nix
+                    ./modules/mail.nix
+                    ./modules/neomutt.nix
+                    ./modules/neovim.nix
+                    ./modules/pass.nix
+                    ./modules/ranger.nix
                     ./modules/tmux.nix
                   ];
                 };

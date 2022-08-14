@@ -1,7 +1,26 @@
 { config, pkgs, libs, ... }:
+let
+  overlays = [
+    (final: prev: {
+      discord = prev.discord.overrideAttrs
+        (old: rec {
+          version = "0.0.19";
+
+          # patch until unstable version are release
+          src = pkgs.fetchurl {
+            url = "https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
+            sha256 = "sha256-GfSyddbGF8WA6JmHo4tUM27cyHV5kRAyrEiZe1jbA5A=";
+          };
+
+        });
+    })
+  ];
+in
 {
   home.file.".xinitrc".source = ./../config/xinitrc;
 
+
+  nixpkgs.overlays = overlays;
   home.packages = with pkgs; [
     # required
     (rofi.override { plugins = [ rofi-emoji rofi-calc ]; })
@@ -26,6 +45,9 @@
     OSCAR
     rclone
     xdragon
+    file
+    lynx
+    elinks
   ];
 
   services.dunst = {
