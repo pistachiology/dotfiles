@@ -37,6 +37,9 @@ in
     set-option -ga terminal-overrides ",xterm-256color:Tc"
     set -ga terminal-overrides ",xterm-256color:Tc"
 
+    set-option -g default-shell "${pkgs.fish}/bin/fish"
+    set -g default-command "${pkgs.fish}/bin/fish"
+
     # use system clipboard
     bind -T copy-mode-vi y send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
     set -g mouse on

@@ -2,7 +2,7 @@
   description = "pistachiology flakes file";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -108,6 +108,7 @@
                 signByDefault = true;
               };
             }
+            ./modules/ranger.nix
             ./modules/base.nix
             ./modules/bloop.nix
             ./modules/darwin.nix
@@ -118,9 +119,7 @@
             ./modules/tmux.nix
             ./secrets/ag.nix
           ];
-
         };
-
       };
     };
 }

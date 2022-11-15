@@ -11,6 +11,16 @@ let
         deepClone = false;
         leaveDotGit = false;
       };
+      /* Temporary patch until released on unstable branch */
+      tree-sitter-bash = {
+        url = "https://github.com/tree-sitter/tree-sitter-bash";
+        rev = "77cf8a7cab8904baf1a721762e012644ac1d4c7b";
+        sha256 = "sha256-UPMJ7iL8Y0NkAHtPDrkTjG1qFwr8rXuGqvsG+LTWqEY=";
+        fetchLFS = false;
+        fetchSubmodules = false;
+        deepClone = false;
+        leaveDotGit = false;
+      };
     };
   };
   grammars = tree-sitter.allGrammars;
@@ -79,6 +89,7 @@ in
       lsp-status-nvim
       telescope-fzf-native-nvim
       ansible-vim
+      vim-puppet
     ];
   };
 

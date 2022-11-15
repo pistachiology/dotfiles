@@ -9,7 +9,7 @@ let
     (final: prev: {
       bloop = prev.bloop.overrideAttrs
         (old: rec {
-          version = "1.5.2";
+          version = "1.5.4";
 
           platform = old.platform;
 

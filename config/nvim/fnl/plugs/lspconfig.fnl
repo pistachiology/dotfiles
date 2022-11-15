@@ -55,7 +55,7 @@
   (keys.lsp-setup bufnr))
 
 (local default-cfg {:on_attach on-attach
-                    :capabilities (cmplsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
+                    :capabilities (cmplsp.default_capabilities (vim.lsp.protocol.make_client_capabilities))
                     :flags {:debounce-text-change 150}})
 
 (local langs {:tsserver {:init_options {}

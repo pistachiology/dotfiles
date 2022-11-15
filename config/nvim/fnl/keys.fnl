@@ -50,10 +50,9 @@
   (k :n :<leader>D "<cmd>lua vim.lsp.buf.type_definition()<cr>" opts)
   (k :n :<leader>rn "<cmd>lua vim.lsp.buf.rename()<cr>" opts)
   (k :n :gr "<cmd>lua vim.lsp.buf.references()<cr>" opts)
-  (k :n :<leader>e "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>"
-     opts)
-  (k :n "[d" "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>" opts)
-  (k :n "]d" "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>" opts)
+  (k :n :<leader>e "<cmd>lua vim.diagnostic.open_float({scope=\"line\"})<cr>" opts)
+  (k :n "[d" "<cmd>lua vim.diagnostic.goto_prev()<cr>" opts)
+  (k :n "]d" "<cmd>lua vim.diagnostic.goto_next()<cr>" opts)
   (k :n :<leader>q "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>" opts)
   (k :n :<leader>lf "<cmd>lua vim.lsp.buf.formatting()<cr>" opts) ; Telescope
   (k :n :<leader>la "<cmd>lua vim.lsp.buf.code_action()<cr>" opts)
