@@ -53,6 +53,9 @@ in
   services.dunst = {
     enable = true;
   };
+  services.kdeconnect = {
+    enable = true;
+  };
 
   xdg.configFile = {
     "rofi" = {

@@ -12,6 +12,8 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.tmpOnTmpfs = true;
+  boot.tmpOnTmpfsSize = "4G";
 
   fileSystems."/" =
     { device = "none";

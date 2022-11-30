@@ -54,7 +54,7 @@
   (k :n "[d" "<cmd>lua vim.diagnostic.goto_prev()<cr>" opts)
   (k :n "]d" "<cmd>lua vim.diagnostic.goto_next()<cr>" opts)
   (k :n :<leader>q "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>" opts)
-  (k :n :<leader>lf "<cmd>lua vim.lsp.buf.formatting()<cr>" opts) ; Telescope
+  (k :n :<leader>lf "<cmd>lua vim.lsp.buf.format({async = true})<cr>" opts) ; Telescope
   (k :n :<leader>la "<cmd>lua vim.lsp.buf.code_action()<cr>" opts)
   (k :v :<leader>la "<cmd>lua vim.lsp.buf.code_action()<cr>" opts)
   (k :n :<leader>lw

@@ -68,12 +68,14 @@
           pkgs = nixpkgs.legacyPackages.x86_64-darwin;
 
           modules = [
-            {
+            ({ pkgs, ... }: {
               home.username = "pistachio";
               home.homeDirectory = "/Users/pistachio";
               home.stateVersion = "22.11";
               nixpkgs.overlays = overlays;
               nixpkgs.config.allowUnfree = true;
+              nix.package = pkgs.nix;
+
               programs.git = {
                 userName = "pistachiology";
                 userEmail = "im@itua.dev";
@@ -82,7 +84,7 @@
                   signByDefault = true;
                 };
               };
-            }
+            })
             ./modules/base.nix
             ./modules/bloop.nix
             ./modules/darwin.nix
@@ -98,16 +100,17 @@
           pkgs = nixpkgs.legacyPackages.x86_64-darwin;
 
           modules = [
-            {
+            ({ pkgs, ... }: {
               home.username = "nlaoticharoe";
               home.homeDirectory = "/Users/nlaoticharoe";
               home.stateVersion = "22.11";
+              nix.package = pkgs.nix;
               nixpkgs.overlays = overlays;
               programs.git.signing = {
                 key = "55676A6212EBDA01EF16B79B27A1B1AE3F53C840";
                 signByDefault = true;
               };
-            }
+            })
             ./modules/ranger.nix
             ./modules/base.nix
             ./modules/bloop.nix

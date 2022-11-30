@@ -73,13 +73,12 @@ in
 
 
   nix = {
-      package = pkgs.nix;
-      settings = {
-        sandbox = false;
-      };
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
+    settings = {
+      sandbox = false;
+    };
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
   };
 
 }

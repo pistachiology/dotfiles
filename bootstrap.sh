@@ -32,6 +32,12 @@ case "$CMD" in
     enable-fastkeyboard) enable_fastkeyboard;;
     rebuild-qweeeee) cd ~/dotfiles && nixos-rebuild switch --upgrade --flake '.#qweeeee' --use-remote-sudo;;
     rebuild) cd ~/dotfiles && nixos-rebuild switch --upgrade --flake ".#$(hostname)" --use-remote-sudo;;
+    clean-nixos)
+            nix-env --delete-generations old
+            nix-collect-garbage
+            nix-collect-garbage -d
+            nix-store --gc --print-dead
+      ;;
     *) showhelp;;
 esac
 

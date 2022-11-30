@@ -4,6 +4,10 @@
 
 { config, pkgs, ... }:
 
+
+let
+  kdeconnect-port = { from = 1714; to = 1764; };
+in
 {
   imports =
     [
@@ -45,6 +49,20 @@
       languages = [ "tha" ];
       symbolsFile = ./../../layouts/Manoonchai-DVP-40p_xkb;
     };
+
+    xrandrHeads = [
+      {
+        output = "DP-4";
+        primary = true;
+      }
+      {
+        output = "HDMI-0";
+        primary = false;
+        monitorConfig = ''
+          Option "Rotate" "left"
+        '';
+      }
+    ];
 
     videoDrivers = [ "nvidia" ];
   };
@@ -125,9 +143,10 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPortRanges = [ kdeconnect-port ];
+  networking.firewall.allowedUDPPortRanges = [ kdeconnect-port ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
