@@ -65,8 +65,7 @@
                                             :document_formatting false))}
               :clojure_lsp {}
               :ccls {:init_options {:clang {:extraArgs [:-std=c++20 :-lstdc++]}}}
-              :sumneko_lua {:cmd [:lua-language-server]
-                            :settings {:Lua {:workspace {:maxPreload 4000}}}}
+              :lua_ls {:settings {:Lua {:workspace {:maxPreload 4000}}}}
               :kotlin_language_server {}
               :prismals {}
               :rnix {}

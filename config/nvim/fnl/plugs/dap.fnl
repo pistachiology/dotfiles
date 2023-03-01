@@ -21,6 +21,7 @@
 
 (fn setup []
   (nnoremap :<leader>dc "<cmd>lua require'dap'.continue()<CR>")
+  (nnoremap :<leader>dl "<cmd>lua require'dap'.run_last()<CR>")
   (nnoremap :<leader>dr "<cmd>lua require'dap'.repl.toggle()<CR>")
   (nnoremap :<leader>dv "<cmd>lua require'dap.ui.variables'.scopes()<CR>")
   (nnoremap :<leader>dbt "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
@@ -34,7 +35,11 @@
   (tset dap.configurations :scala
         [{:type :scala
           :request :launch
-          :name :Run
-          :metals {:runType :run :jvmOptions [:-Xms8g :-Xmx8g]}}]))
+          :name "Run"
+          :metals {:runType :run :jvmOptions [:-Xms8g :-Xmx16g]}}
+         {:type :scala
+          :request :launch
+          :name "Test Target"
+          :metals {:runType :testTarget :jvmOptions [:-Xms8g :-Xmx16g]}}]))
 
 (setup)

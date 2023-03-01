@@ -53,6 +53,9 @@
             ":lua require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep for > \") })<cr>"
             opts)
 
+(set_keymap :n :<leader>fq ":lua require('telescope.builtin').quickfix()<cr>"
+            opts)
+
 (set_keymap :n :<leader>fb ":lua require('telescope.builtin').buffers()<cr>"
             opts)
 

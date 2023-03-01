@@ -29,8 +29,8 @@
   (nnoremap :<leader>ce "<cmd>lua quick_command_execute()<cr>")
   (nnoremap :<leader>cc ":SlimeSend<cr>")
   (nnoremap "]q" ":cn<cr>")
-  (nnoremap "[q" ":cp<cr>")
-  (map :x :ga "<Plug>(EasyAlign)"))
+  (nnoremap "[q" ":cp<cr>"))
+  ;(map :x :ga "<Plug>(EasyAlign)"))
 
 (fn lsp-setup [bufnr]
   (local k #(vim.api.nvim_buf_set_keymap bufnr $...))
@@ -56,14 +56,19 @@
   (k :n :<leader>q "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>" opts)
   (k :n :<leader>lf "<cmd>lua vim.lsp.buf.format({async = true})<cr>" opts) ; Telescope
   (k :n :<leader>la "<cmd>lua vim.lsp.buf.code_action()<cr>" opts)
-  (k :v :<leader>la "<cmd>lua vim.lsp.buf.code_action()<cr>" opts)
-  (k :n :<leader>lw
-     ":lua require('telescope.builtin').lsp_workspace_diagnostics()<cr>" opts)
   (k :n :<leader>lr ":lua require('telescope.builtin').lsp_references()<cr>"
      opts)
   (k :n :<leader>li
      ":lua require('telescope.builtin').lsp_implementations()<cr>" opts)
   (k :n :<leader>ls
-     ":lua require('telescope.builtin').lsp_document_symbols()<cr>" opts))
+     ":lua require('telescope.builtin').lsp_document_symbols()<cr>" opts)
+  (k :n :<leader>lws
+     ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>" opts)
+  (k :n :<leader>lwd
+     ":lua require('telescope.builtin').lsp_workspace_diagnostics()<cr>" opts)
+  (k :n :<leader>gh
+     ":lua require('telescope.builtin').git_commits()<cr>" opts)
+  (k :n :<leader>ma
+     ":lua require'telescope'.extensions.metals.commands()<cr>" opts))
 
 {: setup : lsp-setup}

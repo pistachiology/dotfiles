@@ -9,7 +9,7 @@ let
     (final: prev: {
       bloop = prev.bloop.overrideAttrs
         (old: rec {
-          version = "1.5.4";
+          version = "1.5.6";
 
           platform = old.platform;
 
@@ -38,12 +38,19 @@ let
       url = "https://github.com/oyvindberg/bleep/releases/download/v${version}/bleep-${platform}.tar.gz";
       sha256 =
         if stdenv.isLinux && stdenv.isx86_64 then "sha256:0nzm0xmcaz11nvcm2ax7q612z5lhq3crqrmf5riscmcg1vn4ynnm"
-        else if stdenv.isDarwin && stdenv.isx86_64 then "1a3a90ggyhfjq58wiqlxhz4djjp5crxvl822f8gzm3pjara5xpbc"
+        else if stdenv.isDarwin && stdenv.isx86_64 then "sha256:05qddjdhycvgqj9appga5nlxngzza4gwfgbc38bfqhd1730b15k3"
         else throw "unsupported platform";
     };
 
     dontUnpack = true;
-    buildInputs = [ stdenv.cc.cc.lib zlib ];
+    buildInputs = [
+      stdenv.cc.cc.lib
+      zlib
+      coreutils
+      findutils
+      gnugrep
+      gnused
+    ];
     nativeBuildInputs = [ installShellFiles makeWrapper ]
       ++ lib.optional stdenv.isLinux autoPatchelfHook;
 

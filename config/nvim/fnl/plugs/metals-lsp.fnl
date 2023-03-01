@@ -13,13 +13,15 @@
 (set capabilities.textDocument.completion.completionItem.snippetSupport true)
 
 ;; metals doesn't rely on nvim lspconfig so we need some special case for this file
-(local cfg {:init_options {:statusBarProvider :on}
+(local cfg {:init_options {:statusBarProvider :on
+                           :testExplorerProvider true}
             :on_attach on-attach
             : capabilities
             :settings {; :showImplicitArguments true
                        ; :showImplicitConversionsAndClasses true
                        ; :showInferredType true
                        ;; stack 8 and heap 8
+                       :testUserInterface "Test Explorer"
                        :serverProperties [:-Xms8g :-Xmx16g]}})
 
 (fn setup- []

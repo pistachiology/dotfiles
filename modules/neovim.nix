@@ -11,11 +11,30 @@ let
         deepClone = false;
         leaveDotGit = false;
       };
+
+      tree-sitter-scala = {
+        url = "https://github.com/tree-sitter/tree-sitter-scala";
+        rev = "628e0aab6c2f7d31cf3b7d730f964d4fd9b340ee";
+        sha256 = "sha256-LbVebyhVPKobPxosLDl21NGGtNlZ5gUhJN6fGX87iak=";
+        fetchLFS = false;
+        fetchSubmodules = false;
+        deepClone = false;
+        leaveDotGit = false;
+      };
       /* Temporary patch until released on unstable branch */
       tree-sitter-bash = {
         url = "https://github.com/tree-sitter/tree-sitter-bash";
         rev = "77cf8a7cab8904baf1a721762e012644ac1d4c7b";
         sha256 = "sha256-UPMJ7iL8Y0NkAHtPDrkTjG1qFwr8rXuGqvsG+LTWqEY=";
+        fetchLFS = false;
+        fetchSubmodules = false;
+        deepClone = false;
+        leaveDotGit = false;
+      };
+      tree-sitter-hocon = {
+        url = "https://github.com/antosha417/tree-sitter-hocon";
+        rev = "c390f10519ae69fdb03b3e5764f5592fb6924bcc";
+        sha256 = "sha256-9Zo3YYoo9mJ4Buyj7ofSrlZURrwstBo0vgzeTq1jMGw=";
         fetchLFS = false;
         fetchSubmodules = false;
         deepClone = false;
@@ -75,6 +94,7 @@ in
       set foldmethod=expr
       set foldexpr=nvim_treesitter#foldexpr()
       set foldlevelstart=5
+
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -90,6 +110,7 @@ in
       telescope-fzf-native-nvim
       ansible-vim
       vim-puppet
+      neodev-nvim
     ];
   };
 
