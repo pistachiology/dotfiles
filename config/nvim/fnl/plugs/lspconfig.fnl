@@ -61,14 +61,23 @@
 (local langs {:tsserver {:init_options {}
                          :on_attach (fn [client bufnr]
                                       (on-attach client bufnr)
-                                      (tset client.resolved_capabilities
-                                            :document_formatting false))}
+                                      (tset client.server_capabilities
+                                            :documentFormattingProvider false)
+                                      (tset client.server_capabilities
+                                            :documentRangeFormattingProvider false))}
               :clojure_lsp {}
-              :ccls {:init_options {:clang {:extraArgs [:-std=c++20 :-lstdc++]}}}
-              :lua_ls {:settings {:Lua {:workspace {:maxPreload 4000}}}}
+              ; :ccls {:init_options {:clang {:extraArgs [:-std=c++20 :-lstdc++]}}}
+              :clangd {:init_options {:clang {:extraArgs ["-std=c++20" "-stdlib=libc++"]}}}
+              :lua_ls {:settings {:Lua {:workspace {:maxPreload 4000
+                                                    :library {(vim.fn.expand "$VIMRUNTIME/lua") true
+                                                              (vim.fn.expand "$VIMRUNTIME/lua/vim/lsp") true}}}}}
               :kotlin_language_server {}
               :prismals {}
               :rnix {}
+              :marksman {}
+              :pyright {:init_options {:python {:analysis {:diagnosticSeverityOverrides {:strictParameterNoneValue false}
+                                                           :diagnosticMode "off" 
+                                                           :typeCheckingMode "off"}}}}
               :gopls {}})
 
 (each [lang cfg (pairs langs)]

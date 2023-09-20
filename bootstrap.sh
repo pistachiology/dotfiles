@@ -6,6 +6,16 @@ function link() {
     ln -sv ${DIR} $HOME/.config/nixpkgs
 }
 
+#
+# note: to migrate fish history, we can copy from ~/.local/share/fish/fish_history to other machine
+#       to enable ssh proxy add this to zshrc  or default shell
+#
+# ```
+#   # if $SSH_AUTH_SOCK is a socket, replace .ssh/auth.sock with a new symlink pointing to it
+#   [ -S "$SSH_AUTH_SOCK" ] && ln -snf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+# ```
+#
+
 
 function enable_fastkeyboard() {
     # set keyboard repeat to very fast need to relogin after running this command

@@ -68,10 +68,13 @@
              :b3nj5m1n/kommentary {}
              :junegunn/vim-easy-align {}
              ;; Git
+             :ruifm/gitlinker.nvim {:requires [:nvim-lua/plenary.nvim]
+                                       :plug :gitlinker}
              :lewis6991/gitsigns.nvim {:requires [:nvim-lua/plenary.nvim]
                                        :plug :gitsigns}
              :TimUntersberger/neogit {:requires [:nvim-lua/plenary.nvim]
                                       :plug :neogit}})
+
 
 (packer.startup (fn [use]
                   (each [name opts (pairs pkgs)]

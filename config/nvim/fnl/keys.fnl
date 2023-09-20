@@ -32,7 +32,7 @@
   (nnoremap "[q" ":cp<cr>"))
   ;(map :x :ga "<Plug>(EasyAlign)"))
 
-(fn lsp-setup [bufnr]
+(fn -lsp-setup [bufnr]
   (local k #(vim.api.nvim_buf_set_keymap bufnr $...))
   (local o #(vim.api.nvim_buf_set_option bufnr $...))
   (o :omnifunc "v:lua.vim.lsp.omnifunc")
@@ -71,4 +71,6 @@
   (k :n :<leader>ma
      ":lua require'telescope'.extensions.metals.commands()<cr>" opts))
 
-{: setup : lsp-setup}
+(global lsp_setup -lsp-setup)
+
+{: setup :lsp-setup -lsp-setup}

@@ -99,20 +99,30 @@ alt + ctrl - l : yabai -m window --insert east
 # swap window
 alt - return : yabai -m window --swap west # swap with "main" tile (simply swap it west)
 
-alt - 2 : yabai -m space --focus 1
-alt - 4 : yabai -m space --focus 2
-alt - 6 : yabai -m space --focus 3
-alt - 8 : yabai -m space --focus 4
-alt - 0 : yabai -m space --focus 5
-alt - 1 : yabai -m space --focus 6
+# redirect to mission control
+# make sure skhd -o use proper keyboard layout
+alt - 2 : skhd -k 'ctrl + cmd - 2'
+alt - 4 : skhd -k 'ctrl + cmd - 4'
+alt - 6 : skhd -k 'ctrl + cmd - 6'
+alt - 8 : skhd -k 'ctrl + cmd - 8'
+alt - 0 : skhd -k 'ctrl + cmd - 0'
+alt - 1 : skhd -k 'ctrl + cmd - 1'
 
 # Dvorak Programmer
-alt - 0x1C : yabai -m space --focus 1
-alt - 0x19 : yabai -m space --focus 2
-alt - 0x1D : yabai -m space --focus 3
-alt - 0x1B : yabai -m space --focus 4
-alt - 0x1A : yabai -m space --focus 5
-alt - 0x17 : yabai -m space --focus 6
+#
+alt - 0x1C : skhd -k 'ctrl + cmd - 0x1C'
+alt - 0x19 : skhd -k 'ctrl + cmd - 0x19'
+alt - 0x1D : skhd -k 'ctrl + cmd - 0x1D'
+alt - 0x1B : skhd -k 'ctrl + cmd - 0x1B'
+alt - 0x1A : skhd -k 'ctrl + cmd - 0x1A'
+alt - 0x17 : skhd -k 'ctrl + cmd - 0x17'
+#
+# alt - 0x1C : osascript -e "tell application \"System Events\" to key code 18 using {command down, option down}"
+# alt - 0x19 : osascript -e "tell application \"System Events\" to key code 19 using {command down, option down}"
+# alt - 0x1D : osascript -e "tell application \"System Events\" to key code 20 using {command down, option down}"
+# alt - 0x1B : osascript -e "tell application \"System Events\" to key code 21 using {command down, option down}"
+# alt - 0x1A : osascript -e "tell application \"System Events\" to key code 22 using {command down, option down}"
+# alt - 0x17 : osascript -e "tell application \"System Events\" to key code 23 using {command down, option down}"
 
 # send window to desktop and follow focus
 shift + alt - 2 : yabai -m window --space 1

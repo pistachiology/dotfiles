@@ -11,4 +11,10 @@
       recursive = true;
     };
   };
+
+
+  # bind skhd to bin path. this is required
+  home.packages = with pkgs; [
+    skhd
+  ];
 }

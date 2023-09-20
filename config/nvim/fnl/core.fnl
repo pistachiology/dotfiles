@@ -19,8 +19,8 @@
 (set vim.o.expandtab true)
 
 ;; Legacy Command
+; lang en_US.utf-8
 (vim.cmd "
-lang en_US.utf-8
 set encoding=utf-8
 set fileencoding=utf-8
 set shiftwidth=4 tabstop=4 softtabstop=4 expandtab

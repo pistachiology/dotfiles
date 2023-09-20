@@ -42,6 +42,8 @@ in
 
     # use system clipboard
     bind -T copy-mode-vi y send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+    # handle osc52
+    set -s set-clipboard on
     set -g mouse on
 
     setw -g mode-keys vi
@@ -67,6 +69,8 @@ in
 
     unbind-key C-b
     set -g prefix 'C-a'
+
+    ${if pkgs.stdenv.isDarwin then "" else "set-option -g prefix2 'C-b'"}
     bind-key 'C-a' send-prefix
     set-option -g renumber-windows on
 

@@ -4,4 +4,4 @@ plugged
 tags*
 
 priv.vim
-lua/
+# lua/

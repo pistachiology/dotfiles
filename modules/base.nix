@@ -16,7 +16,7 @@ let
   ];
 in
 {
-  nixpkgs.config.allowUnfree = true;
+  /* nixpkgs.config.allowUnfree = true; */
   nixpkgs.overlays = overlays;
 
   home.packages = with pkgs; [
@@ -27,33 +27,50 @@ in
     gnused
 
     bat
+    bear
     bottom
+    # clangd - better use native clangd from os.
     cloudflared
     comma
     curl
+    ccls
+    # eza
+    sccache
     fd
     fnlfmt
     fzf
-    gdb
     git-crypt
     go
     gopls
-    graalvm11-ce
+    gdb
+    openjdk8
     htop
     imagemagick
     jq
+    kotlin-language-server
     nix-doc
     nodejs
+    nodejs-18_x
+    marksman
     ripgrep
     rnix-lsp
     rsync
-    rust-analyzer
-    rust-bin.stable.latest.default
+    rustup
+    pyright
+    /* rust-bin.stable.latest.default */
     sqlite
     sumneko-lua-language-server
+    socat
+    netcat
     tree
     tree-sitter
     unzip
+
+    openssh
+    nodePackages.typescript-language-server
+    nodePackages.eslint
+    nodePackages.aws-cdk
+    zk
   ];
 
   # Let Home Manager install and manage itself.
@@ -78,6 +95,7 @@ in
     };
     extraOptions = ''
       experimental-features = nix-command flakes
+      extra-platforms = x86_64-darwin aarch64-darwin
     '';
   };
 

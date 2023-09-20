@@ -5,6 +5,11 @@ if type -q direnv
     eval (direnv hook fish)
 end
 
+if type -q /opt/homebrew/bin/brew shellenv
+    eval (/opt/homebrew/bin/brew shellenv)
+
+end
+
 switch (uname) 
     case Linux
         if test -e "$HOME/.config/nixpkgs/config/fish/linux.fish"
@@ -25,6 +30,7 @@ function ccw ; cargo check --workspace --all-targets $argv; end
 function with-proxy
     http_proxy=http://127.0.0.1:9090 https_proxy=http://127.0.0.1:9090 $argv
 end
+function fixssh ; set -x SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock"; end
 
 set -x GPG_TTY (tty)
 set -gx EDITOR "nvim"
@@ -36,3 +42,4 @@ set -gx EDITOR "nvim"
 set -gx PATH $HOME/.cargo/bin $PATH
 set -gx PATH $PATH $HOME/.local/bin
 
+set -gx ZK_NOTEBOOK_DIR $HOME/notes
