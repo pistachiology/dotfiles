@@ -58,6 +58,7 @@ in
     marksman
     ripgrep
     nixd
+
     rsync
     rustup
     pyright

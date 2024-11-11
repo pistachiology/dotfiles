@@ -322,7 +322,7 @@ mouse_mode true
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 //
-scrollback_editor "/home/nltcr/.nix-profile/bin/nvim"
+// scrollback_editor "/home/nltcr/.nix-profile/bin/nvim"
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)

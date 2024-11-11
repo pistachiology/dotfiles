@@ -24,7 +24,7 @@ in
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Bangkok";
+  time.timeZone = "America/Vancouver";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -42,12 +42,15 @@ in
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    layout = "us,mnc";
-    xkbOptions = "grp:win_space_toggle, caps:escape";
-    extraLayouts.mnc = {
-      description = "Manoonchai DVP";
-      languages = [ "tha" ];
-      symbolsFile = ./../../layouts/Manoonchai-DVP-40p_xkb;
+    xkb = {
+      layout = "us,mnc";
+      options = "grp:win_space_toggle, caps:escape";
+
+      extraLayouts.mnc = {
+        description = "Manoonchai DVP";
+        languages = [ "tha" ];
+        symbolsFile = ./../../layouts/Manoonchai-DVP-40p_xkb;
+      };
     };
 
     xrandrHeads = [
@@ -69,7 +72,7 @@ in
 
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager = {
+  services.displayManager = {
     gdm.enable = true;
     defaultSession = "none+i3";
 
@@ -99,7 +102,16 @@ in
 
   # Enable sound.
   # sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.bluetooth = {
+    enable = true; # enables support for Bluetooth
+    powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
+    settings.General.Experimental = "true";
+  };
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -119,12 +131,26 @@ in
     git
   ];
 
+  programs.fish.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+  };
+  services.pcscd.enable = true;
+
+  networking.nftables.enable = true;
+
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "server";
+    extraUpFlags = [
+      "--advertise-routes=192.168.1.156/32"
+    ];
+
   };
 
   nix = {
@@ -134,7 +160,7 @@ in
     '';
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
@@ -162,6 +188,10 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "adobe-reader-9.5.5"
+  ];
 
 }
 

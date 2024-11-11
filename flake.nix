@@ -39,6 +39,7 @@
 
                     users.tua = {
                       nixpkgs.overlays = overlays;
+                      nixpkgs.config.allowUnfree = true;
                       imports = [
                         {
                           home.stateVersion = "22.11";
@@ -66,6 +67,7 @@
                         ./modules/pass.nix
                         ./modules/ranger.nix
                         ./modules/tmux.nix
+                        ./modules/zellij.nix
                       ];
                     };
                   };

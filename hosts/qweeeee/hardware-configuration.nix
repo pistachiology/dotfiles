@@ -12,8 +12,10 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  boot.tmpOnTmpfs = true;
-  boot.tmpOnTmpfsSize = "4G";
+  boot.tmp = {
+      useTmpfs = true;
+      tmpfsSize = "4G";
+  };
 
   fileSystems."/" =
     { device = "none";
@@ -69,6 +71,7 @@
   # networking.interfaces.wlp7s0.useDHCP = lib.mkDefault true;
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.ledger.enable = true;
   # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
+  /* hardware.video.hidpi.enable = lib.mkDefault true; */
 }
