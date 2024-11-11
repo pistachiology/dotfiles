@@ -149,6 +149,12 @@ keybinds clear-defaults=true {
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
+        bind "Ctrl h" {
+            LaunchOrFocusPlugin "file:/home/nltcr/.config/zellij/plugins/zellij-j.wasm" {
+                floating true; 
+                move_to_focused_tab true;
+            }
+        }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }

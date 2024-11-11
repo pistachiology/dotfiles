@@ -1,8 +1,8 @@
-{ config, pkgs, libs, lib, ... }:
+{ config, pkgs, pkgs-unstable, libs, lib, ... }:
 let
   /* Treesitter always broken in nix ;( */
-  tree-sitter = pkgs.vimPlugins.nvim-treesitter;
-  grammars = tree-sitter.allGrammars;
+  grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+  treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: grammars);
   stdenv = pkgs.stdenv;
 
   nvim-lua-config = stdenv.mkDerivation {
@@ -59,8 +59,20 @@ let
 
 
   jdtls = with pkgs; jdt-language-server.override { };
-  lombok = with pkgs; pkgs.lombok.override { };
 
+  # https://github.com/eclipse-jdtls/eclipse.jdt.ls/issues/2985
+  lombok = stdenv.mkDerivation {
+    name = "lombok-snapshot";
+    src = ../static/lombok;
+
+    phases = [ "unpackPhase" "installPhase" ];
+
+    installPhase = ''
+        mkdir -p $out/share/java
+        cp $src/lombok-1.18.31-3454.jar $out/share/java/lombok.jar
+    '';
+
+  };
   lombokjar = lombok.out + "/share/java/lombok.jar";
   jdt = pkgs.writeShellApplication {
     name = "jdt";
@@ -68,8 +80,7 @@ let
     runtimeInputs = [ jdtls lombok ];
 
     text = ''
-      export JAVA_OPTS="-javaagent:${lombokjar}"
-      ${jdtls}/bin/jdt-language-server "$@"
+      ${jdtls}/bin/jdtls --jvm-arg=-javaagent:${lombokjar} "$@"
     '';
   };
 
@@ -77,7 +88,7 @@ in
 {
   /* nixpkgs.overlays = overlays; */
 
-  home.packages = (with pkgs;
+  home.packages = ( 
     [
       nvim-lua-config
       java-styleguide
@@ -85,6 +96,7 @@ in
 
   programs.neovim = {
     enable = true;
+    defaultEditor = true;
     vimAlias = true;
     viAlias = true;
     withNodeJs = true;
@@ -94,38 +106,48 @@ in
       luafile ${config.xdg.configHome}/nvim/global.lua
       luafile ${config.xdg.configHome}/nvim/boot.lua
 
-      let g:slime_target = "tmux"
-      let g:slime_default_config = {"socket_name": "default", "target_pane": ".2"}
-      let g:slime_no_mappings = 1
-      let g:slime_dont_ask_default = 1
-      function SlimeOverride_EscapeText_scala(text)
-        return a:text
-      endfunction
-
       set foldmethod=expr
       set foldexpr=nvim_treesitter#foldexpr()
       set foldlevelstart=5
     '';
 
-    plugins = with pkgs.vimPlugins; [
-      (nvim-treesitter.withPlugins (p: grammars))
-      ansible-vim
-      direnv-vim
-      impatient-nvim
-      lightspeed-nvim
-      lsp-status-nvim
-      markdown-preview-nvim
-      neodev-nvim
-      nvim-jdtls
-      nvim-osc52
-      packer-nvim
-      telescope-fzf-native-nvim
-      venn-nvim
-      vim-prisma
-      vim-puppet
-      vim-slime
-      zk-nvim
-    ];
+    plugins = let 
+        # nix does not work really well with lazy.nvim
+        stable = with pkgs.vimPlugins; [
+          ansible-vim
+          direnv-vim
+          leap-nvim
+          lsp-status-nvim
+          markdown-preview-nvim
+          neodev-nvim
+          nvim-osc52
+          lazy-nvim
+          sqlite-lua
+
+          plenary-nvim
+          popup-nvim
+          telescope-nvim
+          telescope-fzf-native-nvim
+          telescope-frecency-nvim
+          telescope-ui-select-nvim
+
+          vim-prisma
+          vim-puppet
+          fzf-lua
+          zk-nvim
+          vim-jinja
+        ];
+
+        unstable = with pkgs-unstable.vimPlugins; [
+          harpoon2
+        ];
+    in [treesitter] ++ stable ++ unstable;
+
+  };
+
+  home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
+    recursive = true;
+    source = treesitter;
   };
 
   xdg.configFile."nvim/lua" = {
@@ -141,12 +163,17 @@ in
   xdg.configFile."nvim/global.lua".text =
     let
       java-styleguide-path = java-styleguide.out + "/share/java/style.xml";
+      default-path = "${jdt}/bin/jdt";
+      bin-path = if builtins.pathExists default-path then
+        default-path
+      else
+        "${jdt}/bin/jdt-language-server";
     in
     ''
        NIX_GLOBAL = {}
        NIX_GLOBAL["jdtls"] = {
           styleguide_path = "${java-styleguide-path}";
-          jdt_bin_path = "${jdt}/bin/jdt";
+          jdt_bin_path = "${bin-path}";
       }
     '';
   xdg.configFile."nvim/after/syntax/markdown.vim".text = ''

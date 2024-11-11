@@ -25,7 +25,9 @@ in
     findutils
     gnugrep
     gnused
+    fennel-ls
 
+    aws-sam-cli
     bat
     bear
     bottom
@@ -34,26 +36,28 @@ in
     comma
     curl
     ccls
-    # eza
+    eza
     sccache
     fd
     fnlfmt
     fzf
+    flatbuffers
     git-crypt
     go
     gopls
-    gdb
-    openjdk8
+    /* gdb */
+    openjdk17
     htop
     imagemagick
     jq
     kotlin-language-server
     nix-doc
+    nixfmt-rfc-style
     nodejs
     nodejs-18_x
     marksman
     ripgrep
-    rnix-lsp
+    nixd
     rsync
     rustup
     pyright
@@ -65,12 +69,24 @@ in
     tree
     tree-sitter
     unzip
+    watchexec
 
     openssh
     nodePackages.typescript-language-server
     nodePackages.eslint
     nodePackages.aws-cdk
+    nodePackages.eslint_d
+    nodePackages.quicktype
     zk
+    zstd
+
+    pulumi
+    pulumiPackages.pulumi-language-go
+    pulumiPackages.pulumi-language-nodejs
+
+    python3Packages.black
+    python3Packages.isort
+    yq
   ];
 
   # Let Home Manager install and manage itself.

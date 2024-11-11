@@ -31,6 +31,7 @@
     delta = {
       enable = true;
       options = {
+        dark = true;
         plus-color = "#012800";
         minus-color = "#340001";
         syntax-theme = "DarkNeon";

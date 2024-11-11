@@ -1,4 +1,5 @@
 (local gitlinker (require :gitlinker))
+(local osc52 (require :osc52))
 
 (let 
    [callbacks {}]
@@ -7,15 +8,13 @@
 (global custom_gitlinks_yank_n 
   (fn []
     (let [action_callback (fn [url]
-                            ;; patch url since vim treat # as a special character
-                            (vim.api.nvim_exec (.. "!echo '" (url:gsub "#" "\\#") "' | base64 | ssh laptop 'base64 -d | pbcopy'") {}))]
+                            (osc52.copy url))]
       (gitlinker.get_buf_range_url "n" {: action_callback}))))
 
 (global custom_gitlinks_yank_v
   (fn []
     (let [action_callback (fn [url]
-                            ;; patch url since vim treat # as a special character
-                            (vim.api.nvim_exec (.. "!echo '" (url:gsub "#" "\\#") "' | base64 | ssh laptop 'base64 -d | pbcopy'") {}))]
+                            (osc52.copy url))]
       (gitlinker.get_buf_range_url "v" {: action_callback}))))
 
 ; (global custom_gitlinks_open_in_browser_n 

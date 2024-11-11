@@ -1,6 +1,5 @@
-require('impatient') -- must be first line
 
-vim.lsp.set_log_level("off")
+-- vim.lsp.set_log_level("off")
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -8,14 +7,12 @@ vim.g.maplocalleader = ' '
 require('core')
 require('keys').setup()
 require('quick-command')
-require('load-packers')
 
 
-local function ts_disable(_, bufnr)
-    return vim.api.nvim_buf_line_count(bufnr) > 5000
-end
+require('plugs.telescope')
 
-require 'nvim-treesitter.configs'.setup {
+
+--[[ require 'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
         disable = function(lang, bufnr)
@@ -29,7 +26,9 @@ require 'nvim-treesitter.configs'.setup {
         end,
         additional_vim_regex_highlighting = { "markdown" }
     }
-}
+} ]]
+
+require('load-packers')
 
 
 local lsp_status = require('lsp-status')
@@ -54,3 +53,5 @@ vim.api.nvim_create_autocmd(
 require('nix.osc52')
 require('nix.zk')
 require('nix.venn')
+require('nix.harpoon')
+

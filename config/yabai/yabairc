@@ -23,6 +23,7 @@ yabai -m rule --add                        \
     manage=off
 
 yabai -m rule --add app="^Slack$" title="Window Title" border=off
+yabai -m rule --add app="^Amazon Chime$" border=off
 yabai -m rule --add app="^Amazon Chime$" title="Amazon Chime: Screen Share Border" border=off
 
 yabai -m rule --add app='^Firefox$' title='^Picture\-in\-Picture$' manage=off border=off

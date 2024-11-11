@@ -2,7 +2,9 @@
   description = "pistachiology flakes file";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    # nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     /* mach-nix.url = "mach-nix/3.5.0"; */
@@ -12,11 +14,12 @@
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager";
+    # home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager?ref=release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, darwin, nixpkgs, rust-overlay, home-manager, mach-nix, ... }:
+  outputs = inputs@{ self, darwin, nixpkgs, nixpkgs-unstable, rust-overlay, home-manager, mach-nix, ... }:
     let
       overlays = [ rust-overlay.overlays.default ];
     in
@@ -74,6 +77,9 @@
       darwinConfigurations = rec {
         nltcr = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
+          specialArgs = rec {
+            inherit inputs;
+          };
           modules = [
             # Main `nix-darwin` config
             ./hosts/nltcr/configuration.nix
@@ -82,6 +88,11 @@
             {
               # `home-manager` config
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = rec {
+                pkgs-unstable = import nixpkgs-unstable {
+                  system = "aarch64-darwin";
+                };
+              };
               home-manager.users.nltcr = {
                 nixpkgs.overlays = overlays;
 
