@@ -72,14 +72,17 @@ in
 
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager = {
+  services.xserver.displayManager = {
     gdm.enable = true;
-    defaultSession = "none+i3";
+    autoRepeatDelay = 150;
+    autoRepeatInterval = 50;
 
     sessionCommands = ''
       ${pkgs.xorg.xset}/bin/xset r rate 150 50
     '';
   };
+
+  services.displayManager.defaultSession = "none+i3";
 
   services.xserver.windowManager.i3 = {
     enable = true;

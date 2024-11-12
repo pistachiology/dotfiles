@@ -29,6 +29,7 @@
           {
             system = "x86_64-linux";
             specialArgs = { inherit (nixpkgs); };
+
             modules = [
               ./hosts/qweeeee/configuration.nix
               home-manager.nixosModules.home-manager
@@ -36,6 +37,13 @@
                 home-manager =
                   {
                     useUserPackages = true;
+                    backupFileExtension = "backup";
+
+                    extraSpecialArgs = rec {
+                        pkgs-unstable = import nixpkgs-unstable {
+                            system = "x86_64-linux";
+                        };
+                    };
 
                     users.tua = {
                       nixpkgs.overlays = overlays;

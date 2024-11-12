@@ -90,7 +90,8 @@
 ;; Rust
 (let [rust-cfg {;;  https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
                 :server (u.merge default-cfg
-                                 {:cmd [(.. vim.env.HOME "/.toolbox/bin/rust-analyzer")]
+                                 {:cmd (let [file (.. vim.env.HOME "/.toolbox/bin/rust-analyzer")]
+                                             (if (u.nil? (vim.loop.fs_stat file)) nil file))
                                   :rust_analyzer {:settings {:rust-analyzer {:checkOnSave {:command :clippy
                                                                                            :allTargets false}
                                                                              :procMacro {:enable true}}}}})

@@ -60,14 +60,13 @@
              :ggandor/leap.nvim {:keys {1 :s :mode [:n :x :o] :desc "Leap forward to"}
                                        {2 :S :mode [:n :x :o] :desc "Leap backward to"}
                                        {3 :gs :mode [:n :x :o] :desc "Leap from windows"}
+                                :lazy false
                                 :dependencies [:tpope/vim-repeat]
                                 :config (fn [_ opts]
                                           (local leap (require :leap))
                                           (each [k v (pairs opts)]
                                             (tset leap.opts k v))
-                                          (leap.create_default_mappings)
-                                          (vim.keymap.del [:x :o] :x)
-                                          (vim.keymap.del [:x :o] :X))}
+                                          (leap.create_default_mappings))}
              :tpope/vim-repeat {:event :VeryLazy}
 
              ;; Debug
