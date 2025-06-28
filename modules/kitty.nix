@@ -6,7 +6,7 @@
           hide_window_decorations yes
           macos_titlebar_color background
           font_size 20.0
-          font_family PragmataProLiga Nerd Font
+          font_family PragmataPro Mono Liga 
 
           macos_option_as_alt yes
 

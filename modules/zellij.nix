@@ -2,7 +2,7 @@
 {
   programs.zellij = {
     enable = true;
-    enableFishIntegration = true;
+    enableFishIntegration = false;
   };
 
   xdg.configFile."zellij" = {

@@ -5,10 +5,12 @@
     home = "/Users/nltcr";
     shell = pkgs.fish;
   };
+  programs.fish.enable = true;
 
-  environment.loginShell = "${pkgs.fish}/bin/fish -l";
+  # environment.loginShell = "${pkgs.fish}/bin/fish -l";
   environment.variables.SHELL = "${pkgs.fish}/bin/fish";
 
+  system.stateVersion = 5;
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 10;
   system.defaults.NSGlobalDomain.KeyRepeat = 1;
@@ -18,6 +20,11 @@
   system.defaults.NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
   system.defaults.NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = false;
   system.defaults.NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
+
+  system.defaults.spaces.spans-displays = true;
+  system.defaults.dock.expose-group-by-app = true;
+  system.defaults.NSGlobalDomain.NSWindowShouldDragOnGesture = true;
+  system.defaults.NSGlobalDomain.NSAutomaticWindowAnimationsEnabled = false;
 
   # Turn off - auto rearrange space 
   system.defaults.dock.mru-spaces = false;
@@ -36,9 +43,9 @@
   programs.zsh.enable = true;
 
 
-  services.yabai.enable = true;
+  /* services.yabai.enable = true;
   services.yabai.package = pkgs.yabai;
-  services.skhd.enable = true;
+  services.skhd.enable = true; */
 
   nixpkgs.config.allowUnfree = true;
 
@@ -49,7 +56,6 @@
   # `home-manager` currently has issues adding them to `~/Applications`
   # Issue: https://github.com/nix-community/home-manager/issues/1341
   environment.systemPackages = with pkgs; [
-    kitty
     terminal-notifier
   ];
 
@@ -61,16 +67,23 @@
     ];
     brews = [
       "graphviz"
+      "imageoptim-cli"
     ];
     # updates homebrew packages on activation,
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
     casks = [
+      "kitty"
       "alfred"
+      "obsidian"
       "logseq"
       "intellij-idea"
       "xquartz"
+      "imageoptim"
+      "nikitabobko/tap/aerospace"
+      "ghostty"
     ];
   };
+  ids.uids.nixbld = 19999999;
 
   programs.nix-index.enable = false;
 

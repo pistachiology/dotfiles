@@ -1,6 +1,13 @@
-{ config, pkgs, pkgs-unstable, libs, lib, ... }:
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  libs,
+  lib,
+  ...
+}:
 let
-  /* Treesitter always broken in nix ;( */
+  # Treesitter always broken in nix ;(
   grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
   treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: grammars);
   stdenv = pkgs.stdenv;
@@ -11,9 +18,15 @@ let
 
     unpackPhase = "false";
 
-    buildInputs = with pkgs; [ fennel ripgrep ];
+    buildInputs = with pkgs; [
+      fennel
+      ripgrep
+    ];
 
-    phases = [ "buildPhase" "installPhase" ];
+    phases = [
+      "buildPhase"
+      "installPhase"
+    ];
 
     buildPhase = ''
       mkdir fnl
@@ -37,26 +50,21 @@ let
     '';
   };
 
-  java-styleguide = stdenv.mkDerivation
-    rec {
-      pname = "java-styleguide";
-      version = "1.0.0";
+  java-styleguide = stdenv.mkDerivation {
+    name = "java-styleguide";
 
-      src = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml";
-        sha256 = "sha256-51Uku2fj/8iNXGgO11JU4HLj28y7kcSgxwjc+r8r35E=";
-      };
+    src = ../static/java-google-style.xml;
 
-      nativeBuildInputs = [ ];
+    phases = [
+      "installPhase"
+    ];
 
-      outputs = [ "out" ];
 
-      buildCommand = ''
-        mkdir -p $out/share/java
-        cp $src $out/share/java/style.xml
-      '';
-    };
-
+    installPhase = ''
+      mkdir -p $out/share/java
+      cp $src $out/share/java/style.xml
+    '';
+  };
 
   jdtls = with pkgs; jdt-language-server.override { };
 
@@ -65,11 +73,14 @@ let
     name = "lombok-snapshot";
     src = ../static/lombok;
 
-    phases = [ "unpackPhase" "installPhase" ];
+    phases = [
+      "unpackPhase"
+      "installPhase"
+    ];
 
     installPhase = ''
-        mkdir -p $out/share/java
-        cp $src/lombok-1.18.31-3454.jar $out/share/java/lombok.jar
+      mkdir -p $out/share/java
+      cp $src/lombok-1.18.36.jar $out/share/java/lombok.jar
     '';
 
   };
@@ -77,7 +88,10 @@ let
   jdt = pkgs.writeShellApplication {
     name = "jdt";
 
-    runtimeInputs = [ jdtls lombok ];
+    runtimeInputs = [
+      jdtls
+      lombok
+    ];
 
     text = ''
       ${jdtls}/bin/jdtls --jvm-arg=-javaagent:${lombokjar} "$@"
@@ -86,13 +100,18 @@ let
 
 in
 {
-  /* nixpkgs.overlays = overlays; */
+  # nixpkgs.overlays = overlays;
 
-  home.packages = ( 
-    [
+  home.packages =
+    ([
       nvim-lua-config
       java-styleguide
-    ]) ++ [ jdtls lombok jdt ];
+    ])
+    ++ [
+      jdtls
+      lombok
+      jdt
+    ];
 
   programs.neovim = {
     enable = true;
@@ -102,7 +121,9 @@ in
     withNodeJs = true;
 
     extraConfig = ''
-      let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.${if pkgs.stdenv.isDarwin then "dylib" else "so"}'
+      let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.${
+        if pkgs.stdenv.isDarwin then "dylib" else "so"
+      }'
       luafile ${config.xdg.configHome}/nvim/global.lua
       luafile ${config.xdg.configHome}/nvim/boot.lua
 
@@ -111,7 +132,8 @@ in
       set foldlevelstart=5
     '';
 
-    plugins = let 
+    plugins =
+      let
         # nix does not work really well with lazy.nvim
         stable = with pkgs.vimPlugins; [
           ansible-vim
@@ -141,7 +163,8 @@ in
         unstable = with pkgs-unstable.vimPlugins; [
           harpoon2
         ];
-    in [treesitter] ++ stable ++ unstable;
+      in
+      [ treesitter ] ++ stable ++ unstable;
 
   };
 
@@ -164,10 +187,8 @@ in
     let
       java-styleguide-path = java-styleguide.out + "/share/java/style.xml";
       default-path = "${jdt}/bin/jdt";
-      bin-path = if builtins.pathExists default-path then
-        default-path
-      else
-        "${jdt}/bin/jdt-language-server";
+      bin-path =
+        if builtins.pathExists default-path then default-path else "${jdt}/bin/jdt-language-server";
     in
     ''
        NIX_GLOBAL = {}

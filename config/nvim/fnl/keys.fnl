@@ -28,6 +28,7 @@
   (nnoremap :<leader>cs "<cmd>lua quick_command_set()<cr>")
   (nnoremap :<leader>ce "<cmd>lua quick_command_execute()<cr>")
   (nnoremap :<leader>cc ":SlimeSend<cr>")
+  (nnoremap :<leader>as ":lua require(\"codesearch.fzf\").code_search()<cr>")
   (nnoremap "]q" ":cn<cr>")
   (nnoremap "[q" ":cp<cr>"))
   ;(map :x :ga "<Plug>(EasyAlign)"))

@@ -131,13 +131,15 @@ shift + alt - 6 : yabai -m window --space 3
 shift + alt - 8 : yabai -m window --space 4
 shift + alt - 0 : yabai -m window --space 5
 shift + alt - 1 : yabai -m window --space 6
+shift + alt - 3 : yabai -m window --space 7
+shift + alt - 5 : yabai -m window --space 8
 
 shift + alt - 0x1C : yabai -m window --space 1
 shift + alt - 0x19 : yabai -m window --space 2
 shift + alt - 0x1D : yabai -m window --space 3
 shift + alt - 0x1B : yabai -m window --space 4
 shift + alt - 0x1A : yabai -m window --space 5
-shift + alt - 0x17 : yabai -m window --space 6
+shift  alt - 0x17 : yabai -m window --space 6
 
 # mode resize
 # toggle window fullscreen zoom

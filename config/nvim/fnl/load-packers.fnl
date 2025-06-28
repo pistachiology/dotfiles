@@ -10,7 +10,7 @@
              ;; Themes
              :tjdevries/colorbuddy.nvim {}
 
-             :nvim-treesitter/nvim-treesitter {:dev true}
+             ; :nvim-treesitter/nvim-treesitter {:dev true}
 
              :jbyuki/venn.nvim {}
              :andersevenrud/nordic.nvim {:dependencies [:tjdevries/colorbuddy.nvim]
@@ -51,11 +51,10 @@
                                      :plug :metals-lsp}
              :derekwyatt/vim-scala {}
              ;;; Rust
-             :simrat39/rust-tools.nvim {:dependencies [:neovim/nvim-lspconfig]}
+             ; :simrat39/rust-tools.nvim {:dependencies [:neovim/nvim-lspconfig]}
+             :mrcjkb/rustaceanvim {:version :^4 :lazy false}
              ;;; Kotlin
              :udalov/kotlin-vim {}
-             ;;; Others
-             :vmchale/just-vim {}
 
              :ggandor/leap.nvim {:keys {1 :s :mode [:n :x :o] :desc "Leap forward to"}
                                        {2 :S :mode [:n :x :o] :desc "Leap backward to"}

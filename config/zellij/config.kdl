@@ -112,6 +112,27 @@ keybinds clear-defaults=true {
         bind "Ctrl o" { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
+        bind "w" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                    move_to_focused_tab true
+            };
+            SwitchToMode "Normal"
+        }
+        bind "c" {
+            LaunchOrFocusPlugin "configuration" {
+                floating true
+                    move_to_focused_tab true
+            };
+            SwitchToMode "Normal"
+        }
+        bind "p" {
+            LaunchOrFocusPlugin "plugin-manager" {
+                floating true
+                    move_to_focused_tab true
+            };
+            SwitchToMode "Normal"
+        }
     }
     tmux {
         bind "[" { SwitchToMode "Scroll"; }
@@ -150,7 +171,7 @@ keybinds clear-defaults=true {
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
         bind "Ctrl h" {
-            LaunchOrFocusPlugin "file:/home/nltcr/.config/zellij/plugins/zellij-j.wasm" {
+            LaunchOrFocusPlugin "zellij-j" {
                 floating true; 
                 move_to_focused_tab true;
             }
@@ -168,13 +189,13 @@ keybinds clear-defaults=true {
     shared_except "scroll" "locked" {
         bind "Ctrl s" { SwitchToMode "Scroll"; }
     }
-    /* shared_except "session" "locked" {
-        bind "Ctrl o" { SwitchToMode "Session"; }
-    } */
+    shared_except "session" "locked" {
+        bind "Ctrl l" { SwitchToMode "Session"; }
+    }
     shared_except "tab" "locked" {
         bind "Ctrl t" { SwitchToMode "Tab"; }
     }
-    shared_except "move" "locked" {
+    shared_except "normal" "move" "locked" {
         bind "Ctrl q" { SwitchToMode "Move"; }
     }
     shared_except "tmux" "locked" {
@@ -187,6 +208,18 @@ plugins {
     status-bar { path "status-bar"; }
     strider { path "strider"; }
     compact-bar { path "compact-bar"; }
+    session-manager location="zellij:session-manager"
+    session-manager location="zellij:session-manager"
+    welcome-screen location="zellij:session-manager" {
+        welcome_screen true
+    }
+    filepicker location="zellij:strider" {
+        cwd "/"
+    }
+    configuration location="zellij:configuration"
+    plugin-manager location="zellij:plugin-manager"
+
+    zellij-j location="file:/home/nltcr/.config/zellij/plugins/zellij-j.wasm"
 }
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
@@ -322,7 +355,7 @@ mouse_mode true
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 //
-// scrollback_editor "/home/nltcr/.nix-profile/bin/nvim"
+// scrollback_editor "$EDITOR"
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)

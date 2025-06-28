@@ -35,6 +35,18 @@
       grm = "git rebase -i master";
       gr2 = "git rebase -i @~2";
       kns = "kubectl config view --minify -o jsonpath='{..namespace}'";
+
+      bb = "brazil-build";
+      bba = "brazil-build apollo-pkg";
+      bre = "brazil-runtime-exec";
+      brc = "brazil-recursive-cmd";
+      b = "brazil";
+      bwscreate = "bws create -n";
+      bbr = "brazil-recursive-cmd brazil-build";
+      bball = "brazil-recursive-cmd --allPackages";
+      bbb = "brazil-recursive-cmd --allPackages brazil-build";
+      bbra = "bbr apollo-pkg";
+
     };
   };
 

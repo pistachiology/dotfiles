@@ -32,10 +32,12 @@ in
 
   xdg.configFile."tmux/tmux.conf".text = with lib; ''
     # terminal color
-    set -g default-terminal "screen-256color"
+    set -g default-terminal "xterm-ghostty"
+    # set -g default-terminal "screen-256color"
     # set-option default-terminal "tmux-256color"
-    set-option -ga terminal-overrides ",xterm-256color:Tc"
-    set -ga terminal-overrides ",xterm-256color:Tc"
+    # set-option -ga terminal-overrides ",xterm-256color:Tc"
+    set-option -sa terminal-overrides ",xterm*:Tc"
+    # set -ga terminal-overrides ",xterm-256color:Tc"
 
     set-option -g default-shell "${pkgs.fish}/bin/fish"
     set -g default-command "${pkgs.fish}/bin/fish"
@@ -48,7 +50,7 @@ in
 
     setw -g mode-keys vi
     set -g status-keys vi
-    set -g history-limit 10000
+    set -g history-limit 500000
 
     # Vim style pane selection
     bind h select-pane -L
@@ -87,6 +89,9 @@ in
     # bottom bar
     # set-window-option -g status-left " #S "
     run-shell '~/.tmux/custom_theme.sh'
+
+    bind -r f run-shell "tmux neww ~/.tmux/bin/tmux-sessionizer"
+    bind A run-shell "~/.tmux/bin/tmux-popup"
 
     # ============================================= #
     # Load plugins with Home Manager                #

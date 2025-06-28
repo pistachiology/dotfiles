@@ -16,12 +16,12 @@
                                              :vertical {:height 0.9
                                                         "preview_height:" 0.5}}
                              ; :prompt_prefix "🔍 "
-                             :mappings {:i {:<C-c> actions.delete_buffer}
-                                        :n {:<C-c> actions.delete_buffer}
-                                        :i {:<C-q> (+ actions.send_selected_to_qflist actions.open_qflist)}
-                                        :n {:<C-q> (+ actions.send_selected_to_qflist actions.open_qflist)}
-                                        :i {:<C-Q> (+ actions.send_to_qflist actions.open_qflist)}
-                                        :n {:<C-Q> (+ actions.send_to_qflist actions.open_qflist)}}}
+                             :mappings {:i {:<C-c> actions.delete_buffer
+                                            :<C-q> (+ actions.send_selected_to_qflist actions.open_qflist)
+                                            :<C-Q> (+ actions.send_to_qflist actions.open_qflist)}
+                                        :n {:<C-c> actions.delete_buffer
+                                            :<C-q> (+ actions.send_selected_to_qflist actions.open_qflist)
+                                            :<C-Q> (+ actions.send_to_qflist actions.open_qflist)}}}
 
                   :pickers {:find_files {:find_command [:rg
                                                         :--files

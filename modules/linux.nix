@@ -38,10 +38,6 @@ in
     tdesktop
     discord
     evince # pdf viewer
-    onlyoffice-bin
-    adobe-reader
-    rpi-imager
-    ledger-live-desktop
 
     # misc
     flameshot
@@ -52,11 +48,6 @@ in
     file
     lynx
     elinks
-    usbutils
-  ];
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "adobe-reader-9.5.5"
   ];
 
   services.dunst = {

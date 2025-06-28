@@ -1,7 +1,7 @@
 (local lsp (require :lspconfig))
 (local cmplsp (require :cmp_nvim_lsp))
 (local keys (require :keys))
-(local rust-tools (require :rust-tools))
+; (local rust-tools (require :rust-tools))
 (local u (require :utils))
 
 ;; Golang
@@ -43,6 +43,7 @@
   ;                              :prettier))
   (null-ls.setup {:sources [(require :none-ls.code_actions.eslint_d)
                             (require :none-ls.formatting.eslint_d)
+                            null_ls.builtins.formatting.prettier
                             null-ls.builtins.formatting.isort
                             null-ls.builtins.formatting.black]}))
 
@@ -87,13 +88,17 @@
         setting (u.merge default-cfg cfg)]
     (server.setup setting)))
 
+
+(when (not (u.nil? setup_amazonq))
+  (setup_amazonq))
+
 ;; Rust
 (let [rust-cfg {;;  https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
                 :server (u.merge default-cfg
                                  {:cmd (let [file (.. vim.env.HOME "/.toolbox/bin/rust-analyzer")]
-                                             (if (u.nil? (vim.loop.fs_stat file)) nil file))
+                                             (if (u.nil? (vim.loop.fs_stat file)) nil [file]))
                                   :rust_analyzer {:settings {:rust-analyzer {:checkOnSave {:command :clippy
                                                                                            :allTargets false}
-                                                                             :procMacro {:enable true}}}}})
-                :tools {:autoSetHints true}}]
-  (rust-tools.setup rust-cfg))
+                                                                             :procMacro {:enable true}}}}})}] 
+  (set vim.g.rustaceanvim rust-cfg))
+

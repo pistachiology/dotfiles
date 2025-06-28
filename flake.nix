@@ -4,7 +4,7 @@
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs/master";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs.url = "nixpkgs/nixos-25.05";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     /* mach-nix.url = "mach-nix/3.5.0"; */
@@ -15,7 +15,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # home-manager.url = "github:nix-community/home-manager";
-    home-manager.url = "github:nix-community/home-manager?ref=release-24.05";
+    home-manager.url = "github:nix-community/home-manager?ref=release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -47,7 +47,6 @@
 
                     users.tua = {
                       nixpkgs.overlays = overlays;
-                      nixpkgs.config.allowUnfree = true;
                       imports = [
                         {
                           home.stateVersion = "22.11";
@@ -75,7 +74,6 @@
                         ./modules/pass.nix
                         ./modules/ranger.nix
                         ./modules/tmux.nix
-                        ./modules/zellij.nix
                       ];
                     };
                   };
@@ -119,6 +117,7 @@
                   ./modules/kitty.nix
                   ./modules/neovim.nix
                   ./modules/tmux.nix
+                  ./modules/zellij.nix
                 ];
               };
             }

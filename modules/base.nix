@@ -1,22 +1,29 @@
-{ config, pkgs, libs, ... }:
+{
+  config,
+  pkgs,
+  libs,
+  ...
+}:
 
 let
   overlays = [
     (final: prev: {
-      fnlfmt = prev.fnlfmt.overrideAttrs (attrs: rec {
-        version = "0.2.3";
-        src = prev.fetchFromSourcehut {
-          owner = "~technomancy";
-          repo = "fnlfmt";
-          rev = version;
-          sha256 = "sha256-FKmr5Xihyk+ikYN8WXBq5UFJziwEb8xaUBswNt/JMBg=";
-        };
-      });
+      /*
+        fnlfmt = prev.fnlfmt.overrideAttrs (attrs: rec {
+          version = "0.2.3";
+          src = prev.fetchFromSourcehut {
+            owner = "~technomancy";
+            repo = "fnlfmt";
+            rev = version;
+            sha256 = "sha256-FKmr5Xihyk+ikYN8WXBq5UFJziwEb8xaUBswNt/JMBg=";
+          };
+        });
+      */
     })
   ];
 in
 {
-  /* nixpkgs.config.allowUnfree = true; */
+  # nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = overlays;
 
   home.packages = with pkgs; [
@@ -27,10 +34,10 @@ in
     gnused
     fennel-ls
 
-    aws-sam-cli
     bat
     bear
     bottom
+    bun
     # clangd - better use native clangd from os.
     cloudflared
     comma
@@ -45,7 +52,7 @@ in
     git-crypt
     go
     gopls
-    /* gdb */
+    # gdb
     openjdk17
     htop
     imagemagick
@@ -54,15 +61,13 @@ in
     nix-doc
     nixfmt-rfc-style
     nodejs
-    nodejs-18_x
     marksman
     ripgrep
     nixd
-
     rsync
     rustup
     pyright
-    /* rust-bin.stable.latest.default */
+    # rust-bin.stable.latest.default
     sqlite
     sumneko-lua-language-server
     socat
@@ -81,13 +86,19 @@ in
     zk
     zstd
 
-    pulumi
-    pulumiPackages.pulumi-language-go
-    pulumiPackages.pulumi-language-nodejs
+    /*
+      pulumi
+      pulumiPackages.pulumi-language-go
+      pulumiPackages.pulumi-language-nodejs
+    */
 
-    python3Packages.black
-    python3Packages.isort
+    /*
+      python3Packages.black
+      python3Packages.isort
+    */
     yq
+    upx
+    yazi
   ];
 
   # Let Home Manager install and manage itself.
@@ -104,7 +115,6 @@ in
       nix-direnv.enable = true;
     };
   };
-
 
   nix = {
     settings = {
